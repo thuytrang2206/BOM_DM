@@ -273,46 +273,80 @@ namespace DM_BOM
             DataTable dt = new DataTable();
             datagridview_Result.DataSource = dt;
             dt.Columns.Add("PartNoBOM");
-            for (int i = 0; i < datagridview_BOM.Rows.Count; i++)
-            {
-                string value1 = datagridview_BOM.Rows[i].Cells[6].Value.ToString();
-                string result1 = value1.Substring(0, 9);
-                for (int j = 2; j < datagridview_ECS.Rows.Count - 1; j++)
-                {
-                    string value2 = datagridview_ECS.Rows[j].Cells[0].Value.ToString();
-                  
-                    if (value2.Equals(result1)== true)
-                    {
-                        datagridview_BOM.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-                        datagridview_ECS.Rows[j].DefaultCellStyle.BackColor = Color.Yellow;
-                        j++;
-                    }
-                    else
-                    {
-                        label5.Text = "Danh sách Part code trong file BOM còn thiếu!";
-                        label5.ForeColor = Color.Red;
-                        //   string[] row = { datagridview_ECS.Rows[j].Cells[0].Value.ToString() };
-                        // dt.Rows.Add();
+            dt.Columns.Add("Location");
+            //for (int i = 0; i < datagridview_BOM.Rows.Count; i++)
+            //{
+            //    string value1 = datagridview_BOM.Rows[i].Cells[6].Value.ToString();
+            //    string result1 = value1.Substring(0, 9);
+            //    for (int j = 2; j < datagridview_ECS.Rows.Count - 1; j++)
+            //    {
+            //        string value2 = datagridview_ECS.Rows[j].Cells[0].Value.ToString();
 
+            //        if (value2.Equals(result1)== true)
+            //        {
+            //            datagridview_BOM.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+            //            datagridview_ECS.Rows[j].DefaultCellStyle.BackColor = Color.Yellow;
+            //            j++;
+            //        }
+            //        else
+            //        {
+            //            label5.Text = "Danh sách Part code trong file BOM còn thiếu!";
+            //            label5.ForeColor = Color.Red;
+            //            string[] row = { datagridview_ECS.Rows[j].Cells[0].Value.ToString() };
+            //            dt.Rows.Add(row);
+
+            //        }
+            //    }
+            //}
+            list_bom.Clear();
+            list_ecs.Clear();
+            var result_bom = datagridview_BOM.Rows.OfType<DataGridViewRow>().Select(
+              r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
+            foreach (var item in result_bom)
+            {
+                    var data_bom = new Data_BOM() { BOM_Component = item[6].ToString(), Location = item[40].ToString() };
+                    list_bom.Add(data_bom);
+               
+            }
+            var result_ecs = datagridview_ECS.Rows.OfType<DataGridViewRow>().Select(r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
+            foreach( var item_ecs in result_ecs)
+            {
+                var data_ecs = new Data_ECS() { PartNo = item_ecs[0].ToString(), Location = item_ecs[3].ToString() };
+                list_ecs.Add(data_ecs);
+            }
+            if(bunifuSwitch1.Value == true)
+            {
+                foreach (var items in list_ecs)
+                {
+                    var check_result = list_bom.Where(x => x.BOM_Component.Substring(0, 9) == items.PartNo && (x.Location.Replace(",","")).Contains(items.Location.Replace(",",""))==true).FirstOrDefault();
+                    if (check_result == null)
+                    {
+                        label5.Text = "MÃ BOM_SAP KHÔNG CÓ TRONG DANH SÁCH BOM_CUSTOMER";
+                        label5.ForeColor = Color.Red;
+                        label5.Location = new Point(100, 5);
+                        var addlist = new Result() { BOM = items.PartNo, Incomplete= items.Location };
+                        list_result.Add(addlist);
+                        dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
                     }
                 }
             }
-            //int k,l;
-            //for (k = 0; k < datagridview_Result.Rows.Count - 1; k++)
-            //{
-            //    string tmp1 = datagridview_Result.Rows[k].Cells[0].Value.ToString();
-            //    for (l = datagridview_Result.Rows.Count ; l < k; l--)
-            //    {
-            //        string x = datagridview_Result.Rows[l].Cells[0].Value.ToString();
-            //        if (tmp1.Equals(x) == true)
-            //        {
-            //            datagridview_Result.Rows.RemoveAt(l);
-
-            //        }
-
-
-            //    }
-            //}
+            else {
+                foreach (var items in list_bom)
+                {
+                    string value1 = items.BOM_Component.ToString();
+                    string tmp = value1.Substring(0, 9);
+                    var check_result = list_ecs.Where(x => x.PartNo == tmp).FirstOrDefault();
+                    if (check_result == null)
+                    {
+                        label5.Text = "MÃ BOM_CUSTOMER KHÔNG CÓ TRONG DANH SÁCH BOM_SAP";
+                        label5.ForeColor = Color.Red;
+                        label5.Location = new Point(100, 5);
+                        var addlist = new Result() { BOM = items.BOM_Component };
+                        list_result.Add(addlist);
+                        dt.Rows.Add(addlist.BOM.ToString());
+                    }
+                }
+            }
             ON = false;
         }
 
@@ -320,6 +354,18 @@ namespace DM_BOM
         {
             //  reload();
            
+        }
+
+        private void bunifuSwitch1_Click(object sender, EventArgs e)
+        {
+            if (bunifuSwitch1.Value == true)
+            {
+                label5.Text = "Tìm kiếm vị trí thiếu trong Bom so với Tài liệu";
+            }
+            else
+            {
+                label5.Text = "Tìm kiếm vị trí thiếu trong Tài liệu so với BOM";
+            }
         }
     }
 }

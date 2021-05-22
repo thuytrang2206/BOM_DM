@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DM_BOM.MyClass
 {
-    class Result
+    public class Result
     {
+        public string BOM { get; set; }
+        
+        public string Incomplete { get; set; }
     }
 }

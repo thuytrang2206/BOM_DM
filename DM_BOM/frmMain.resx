@@ -118,6 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="linkLabel2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAB3RJ
+        TUUH5AUPARUGDpZFBAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACnSURBVDhP
+        zdOxCoJQFMbxM+TcFAltDdHQ5uALhPQCRU/Q1JRDuTSHCTb3tP0/ESGRvKmDB36XK5zzwcV7bYhKkOHx
+        J83cYC8tjrXDDEd4yGGpFse6Y4M3pihmtaxxQoB9uW+jmSogRgilLrBsoV7NfAX4+nCsOS7oHDDBCp0D
+        1NvrCCMNOGDrSL1VgK6j/n1T4y+aKa6yHsQTTQ+m7oyo3Gvmij5l9gFaFTSmQUNnPAAAAABJRU5ErkJg
+        gg==
+</value>
+  </data>
   <data name="linkLabel1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
