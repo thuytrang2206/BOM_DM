@@ -69,6 +69,7 @@
     <Compile Include="MyClass\Data_BOM.cs" />
     <Compile Include="MyClass\Data_ECS.cs" />
     <Compile Include="MyClass\Result.cs" />
+    <Compile Include="MyClass\Result_Location.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">

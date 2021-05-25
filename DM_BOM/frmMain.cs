@@ -24,6 +24,7 @@ namespace DM_BOM
         List<Data_BOM> list_bom = new List<Data_BOM>();
         List<Data_ECS> list_ecs = new List<Data_ECS>();
         List<Result> list_result = new List<Result>();
+        List<Result_Location> list_rl = new List<Result_Location>();
         public frmMain()
         {
 
@@ -40,6 +41,7 @@ namespace DM_BOM
             colors.Add(Color.FromArgb(70, 175, 227));
             colors.Add(Color.FromArgb(0, 158, 71));
             InitializeComponent();
+
         }
         DataTableCollection tableCollcetion;
         public static string GetRunningVersion()
@@ -274,30 +276,7 @@ namespace DM_BOM
             datagridview_Result.DataSource = dt;
             dt.Columns.Add("PartNoBOM");
             dt.Columns.Add("Location");
-            //for (int i = 0; i < datagridview_BOM.Rows.Count; i++)
-            //{
-            //    string value1 = datagridview_BOM.Rows[i].Cells[6].Value.ToString();
-            //    string result1 = value1.Substring(0, 9);
-            //    for (int j = 2; j < datagridview_ECS.Rows.Count - 1; j++)
-            //    {
-            //        string value2 = datagridview_ECS.Rows[j].Cells[0].Value.ToString();
-
-            //        if (value2.Equals(result1)== true)
-            //        {
-            //            datagridview_BOM.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
-            //            datagridview_ECS.Rows[j].DefaultCellStyle.BackColor = Color.Yellow;
-            //            j++;
-            //        }
-            //        else
-            //        {
-            //            label5.Text = "Danh sách Part code trong file BOM còn thiếu!";
-            //            label5.ForeColor = Color.Red;
-            //            string[] row = { datagridview_ECS.Rows[j].Cells[0].Value.ToString() };
-            //            dt.Rows.Add(row);
-
-            //        }
-            //    }
-            //}
+            
             list_bom.Clear();
             list_ecs.Clear();
             var result_bom = datagridview_BOM.Rows.OfType<DataGridViewRow>().Select(
@@ -318,7 +297,7 @@ namespace DM_BOM
             {
                 foreach (var items in list_ecs)
                 {
-                    var check_result = list_bom.Where(x => x.BOM_Component.Substring(0, 9) == items.PartNo && (x.Location.Replace(",","")).Contains(items.Location.Replace(",",""))==true).FirstOrDefault();
+                    var check_result = list_bom.Where(x => x.BOM_Component.Substring(0, 9) == items.PartNo/* && (x.Location.Replace(",","")).Contains(items.Location.Replace(",",""))==true*/).FirstOrDefault();
                     if (check_result == null)
                     {
                         label5.Text = "MÃ BOM_SAP KHÔNG CÓ TRONG DANH SÁCH BOM_CUSTOMER";
@@ -330,22 +309,97 @@ namespace DM_BOM
                     }
                 }
             }
-            else {
+            else
+            {
                 foreach (var items in list_bom)
                 {
+                    label5.Text = "MÃ BOM_CUSTOMER  CÓ TRONG DANH SÁCH BOM_SAP";
+                    label5.ForeColor = Color.Red;
+                    label5.Location = new Point(100, 5);
                     string value1 = items.BOM_Component.ToString();
                     string tmp = value1.Substring(0, 9);
-                    var check_result = list_ecs.Where(x => x.PartNo == tmp).FirstOrDefault();
-                    if (check_result == null)
+                    var check_result = list_ecs.Find(x => x.PartNo == tmp);
+                    if (check_result != null)
                     {
-                        label5.Text = "MÃ BOM_CUSTOMER KHÔNG CÓ TRONG DANH SÁCH BOM_SAP";
-                        label5.ForeColor = Color.Red;
-                        label5.Location = new Point(100, 5);
-                        var addlist = new Result() { BOM = items.BOM_Component };
-                        list_result.Add(addlist);
-                        dt.Rows.Add(addlist.BOM.ToString());
+                        string[] arrList1 = items.Location.Split(',');
+                        string[] arrList2 = check_result.Location.Split(',');
+                        for (int i = 0; i < arrList2.Length; i++)
+                        {
+                            for (int j = 0; j < arrList1.Length; j++)
+                            {
+                                if (arrList1[j].Contains(arrList2[i]))
+                                {
+                                    var addlist = new Result() { BOM = items.BOM_Component, Incomplete =  arrList2[i] };
+                                    list_result.Add(addlist);
+                                    i++;
+                                    dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
+
+
+                                }
+                                else
+                                {
+                                    //var addlist = new Result() { BOM = items.BOM_Component, Incomplete = arrList2[i] };
+                                    //list_result.Add(addlist);
+                                    //dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
+
+                                }
+                            }
+                        }
+                       
                     }
                 }
+                //foreach (var itemsss in list_result)
+                //{
+                    //for (int k = 0; k < list_result.Count-1; k++)
+                    //{
+                    //string x1 = (list_result[k].BOM.ToString()).Substring(0, 9);
+                    //string x2 = (list_result[k + 1].BOM.ToString()).Substring(0, 9);
+                    //string[] a1 = (list_result[k].Incomplete.ToString()).Split(',');
+                    //string[] a2 = (list_result[k+1].Incomplete.ToString()).Split(',');
+                    //if ( x1==x2 )
+                    //    {
+                    //    for (int i = 0; i < a1.Length; i++)
+                    //    {
+                    //        for (int j = 0; j < a2.Length; j++)
+                    //        {
+                    //            if (a2[j]==a1[i])
+                    //            {
+                    //                var addlist1 = new Result_Location() { BOM = x1, Location = a1[i].ToString()};
+                    //                list_rl.Add(addlist1);
+                    //                list_result.RemoveAt(k + 1);
+                    //                dt.Rows.Add(addlist1.BOM.ToString(), addlist1.Location.ToString());
+                    //            }
+                    //             }
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+
+                    //    }
+                    //}
+                //}
+                //foreach (var item_result in list_result)
+                //{
+                //    string tmp1 = (item_result.BOM.ToString()).Substring(0, 9);
+                //    var check = list_ecs.Where(x => x.PartNo == tmp1).FirstOrDefault();
+                //    if (check != null)
+                //    {
+                //        string[] arrList3 = check.Location.Split(',');
+                //        for (int k = 0; k < arrList3.Length; k++)
+                //        {
+                //            if (item_result.Incomplete.Contains(arrList3[k]))
+                //            {
+
+                //            }
+                //            else
+                //            {
+                //                var addlist1 = new Result_Location() { BOM = item_result.BOM, Location = arrList3[k] };
+                //                list_rl.Add(addlist1);
+                //                dt.Rows.Add(addlist1.BOM.ToString(), addlist1.Location.ToString());
+                //            }
+                //        }
+                //    }
+                //}
             }
             ON = false;
         }
@@ -360,12 +414,14 @@ namespace DM_BOM
         {
             if (bunifuSwitch1.Value == true)
             {
-                label5.Text = "Tìm kiếm vị trí thiếu trong Bom so với Tài liệu";
+                label5.Text = "Tìm kiếm mã bom thiếu trong Bom so với Tài liệu";
             }
             else
             {
-                label5.Text = "Tìm kiếm vị trí thiếu trong Tài liệu so với BOM";
+                label5.Text = "Tìm kiếm mã bom thiếu trong Tài liệu so với BOM";
             }
         }
+
+       
     }
 }
