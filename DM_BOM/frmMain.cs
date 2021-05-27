@@ -265,7 +265,7 @@ namespace DM_BOM
                 lbltime.ForeColor = Color.DimGray;
             }
         }
-
+        ///
         private void btnStart_Click(object sender, EventArgs e)
         {
             if(CboSheet.Items.Count==0 || cbosheettwo.Items.Count == 0)
