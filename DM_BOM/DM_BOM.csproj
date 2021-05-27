@@ -66,6 +66,7 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyClass\Class1.cs" />
     <Compile Include="MyClass\Data_BOM.cs" />
     <Compile Include="MyClass\Data_ECS.cs" />
     <Compile Include="MyClass\Result.cs" />

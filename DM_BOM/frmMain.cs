@@ -25,6 +25,7 @@ namespace DM_BOM
         List<Data_ECS> list_ecs = new List<Data_ECS>();
         List<Result> list_result = new List<Result>();
         List<Result_Location> list_rl = new List<Result_Location>();
+        List<Class1> _class = new List<Class1>();
         public frmMain()
         {
 
@@ -313,95 +314,98 @@ namespace DM_BOM
             {
                 foreach (var items in list_bom)
                 {
-                    label5.Text = "MÃ BOM_CUSTOMER  CÓ TRONG DANH SÁCH BOM_SAP";
+                    label5.Text = "VỊ TRÍ CỦA BOM_SAP KHÔNG CÓ TRONG BOM_CUSTOMER";
                     label5.ForeColor = Color.Red;
                     label5.Location = new Point(100, 5);
                     string value1 = items.BOM_Component.ToString();
                     string tmp = value1.Substring(0, 9);
-                    var check_result = list_ecs.Find(x => x.PartNo == tmp);
+                    var check_result = list_ecs.Where(x => x.PartNo == tmp).FirstOrDefault();
                     if (check_result != null)
                     {
-                        string[] arrList1 = items.Location.Split(',');
-                        string[] arrList2 = check_result.Location.Split(',');
-                        for (int i = 0; i < arrList2.Length; i++)
+                        string[] arrList1 = (items.Location +"," + check_result.Location).Split(',');
+                       // string[] arrList2 = check_result.Location.Split(',');
+                        var result = arrList1.Distinct().ToArray();
+                        if (result.Count() != 0)
                         {
-                            for (int j = 0; j < arrList1.Length; j++)
-                            {
-                                if (arrList1[j].Contains(arrList2[i]))
-                                {
-                                    var addlist = new Result() { BOM = items.BOM_Component, Incomplete =  arrList2[i] };
-                                    list_result.Add(addlist);
-                                    i++;
-                                    dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
-
-
-                                }
-                                else
-                                {
-                                    //var addlist = new Result() { BOM = items.BOM_Component, Incomplete = arrList2[i] };
-                                    //list_result.Add(addlist);
-                                    //dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
-
-                                }
-                            }
+                            var addlist = new Result() { BOM= items.BOM_Component, Incomplete = items.Location.ToString() };
+                            list_result.Add(addlist);
+                            dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
                         }
-                       
+        
                     }
                 }
-                //foreach (var itemsss in list_result)
+                //var disdistinctItems = list_result.GroupBy(c => c.BOM.Substring(0, 9)).Select(x => x.First()).ToList();
+                //foreach (var items in disdistinctItems)
                 //{
-                    //for (int k = 0; k < list_result.Count-1; k++)
-                    //{
-                    //string x1 = (list_result[k].BOM.ToString()).Substring(0, 9);
-                    //string x2 = (list_result[k + 1].BOM.ToString()).Substring(0, 9);
-                    //string[] a1 = (list_result[k].Incomplete.ToString()).Split(',');
-                    //string[] a2 = (list_result[k+1].Incomplete.ToString()).Split(',');
-                    //if ( x1==x2 )
-                    //    {
-                    //    for (int i = 0; i < a1.Length; i++)
-                    //    {
-                    //        for (int j = 0; j < a2.Length; j++)
-                    //        {
-                    //            if (a2[j]==a1[i])
-                    //            {
-                    //                var addlist1 = new Result_Location() { BOM = x1, Location = a1[i].ToString()};
-                    //                list_rl.Add(addlist1);
-                    //                list_result.RemoveAt(k + 1);
-                    //                dt.Rows.Add(addlist1.BOM.ToString(), addlist1.Location.ToString());
-                    //            }
-                    //             }
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-
-                    //    }
-                    //}
-                //}
-                //foreach (var item_result in list_result)
-                //{
-                //    string tmp1 = (item_result.BOM.ToString()).Substring(0, 9);
-                //    var check = list_ecs.Where(x => x.PartNo == tmp1).FirstOrDefault();
-                //    if (check != null)
+                //    list_result.Count();
+                //    for (int i = 0; i < list_result.Count(); i++)
                 //    {
-                //        string[] arrList3 = check.Location.Split(',');
-                //        for (int k = 0; k < arrList3.Length; k++)
+                //        if (list_result[i].BOM.ToString().Substring(0, 9) == items.BOM)
                 //        {
-                //            if (item_result.Incomplete.Contains(arrList3[k]))
-                //            {
-
-                //            }
-                //            else
-                //            {
-                //                var addlist1 = new Result_Location() { BOM = item_result.BOM, Location = arrList3[k] };
-                //                list_rl.Add(addlist1);
-                //                dt.Rows.Add(addlist1.BOM.ToString(), addlist1.Location.ToString());
-                //            }
+                //            string s = list_result[i].Incomplete.ToString() + "," + items.Incomplete;
+                //            string[] ss = s.Split(',');
+                //            string[] dist = ss.Distinct().ToArray();
+                //            string result_dist = string.Join(",", dist);
+                //            items.Incomplete = result_dist;
                 //        }
                 //    }
+                //    // dt.Rows.Add(items.BOM, items.Incomplete);
+
+                //    list_rl.Add(new Result_Location() { BOM = items.BOM, Location = items.Incomplete });
+
                 //}
+                //foreach (var item_result in list_rl)
+                //{
+                //    for (int i = 0; i < list_ecs.Count(); i++)
+                //    {
+                //        if (item_result.BOM == list_ecs[i].PartNo)
+                //        {
+                //            string[] d1 = (list_ecs[i].Location.ToString()).Split(',');
+                //            string[] d2 = item_result.Location.Split(',');
+                //            //string[] dist2 = dd.Distinct().ToArray();
+                //            //string result_dist2 = string.Join(",", dist2);
+                //            string[] result_dist2 = d1.Except(d2).ToArray();
+
+                //            string dist2 = string.Join(",", result_dist2);
+                //            if(dist2 != "")
+                //            {
+
+                //                item_result.Location = dist2;
+                //               var add= new Class1 { BOM = item_result.BOM, Location = dist2 };
+                //                _class.Add(add);
+                //                dt.Rows.Add(add.BOM.ToString(), add.Location.ToString());
+                //            }
+
+                //        }
+                //    }
+
+                //}
+
+                //094000720
             }
             ON = false;
+        }
+        public class ItemEqualityComparer<T> : IEqualityComparer<T> where T : class
+        {
+            private readonly PropertyInfo _propertyInfo;
+
+            public ItemEqualityComparer(string keyItem)
+            {
+                _propertyInfo = typeof(T).GetProperty(keyItem, BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.Public);
+            }
+
+            public bool Equals(T x, T y)
+            {
+                var xValue = _propertyInfo?.GetValue(x, null);
+                var yValue = _propertyInfo?.GetValue(y, null);
+                return xValue != null && yValue != null && xValue.Equals(yValue);
+            }
+
+            public int GetHashCode(T obj)
+            {
+                var propertyValue = _propertyInfo.GetValue(obj, null);
+                return propertyValue == null ? 0 : propertyValue.GetHashCode();
+            }
         }
 
         private void frmMain_Load(object sender, EventArgs e)

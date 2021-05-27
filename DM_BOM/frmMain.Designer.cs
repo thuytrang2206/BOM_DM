@@ -267,7 +267,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(2, 300);
+            this.label3.Location = new System.Drawing.Point(2, 367);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 16);
             this.label3.TabIndex = 96;
@@ -296,7 +296,7 @@
             this.datagridview_BOM.EnableHeadersVisualStyles = false;
             this.datagridview_BOM.HeaderBgColor = System.Drawing.Color.White;
             this.datagridview_BOM.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.datagridview_BOM.Location = new System.Drawing.Point(5, 319);
+            this.datagridview_BOM.Location = new System.Drawing.Point(5, 386);
             this.datagridview_BOM.Name = "datagridview_BOM";
             this.datagridview_BOM.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.datagridview_BOM.RowHeadersVisible = false;
@@ -307,7 +307,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(636, 300);
+            this.label4.Location = new System.Drawing.Point(636, 367);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 16);
             this.label4.TabIndex = 98;
@@ -335,7 +335,7 @@
             this.datagridview_ECS.EnableHeadersVisualStyles = false;
             this.datagridview_ECS.HeaderBgColor = System.Drawing.Color.White;
             this.datagridview_ECS.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.datagridview_ECS.Location = new System.Drawing.Point(639, 319);
+            this.datagridview_ECS.Location = new System.Drawing.Point(639, 386);
             this.datagridview_ECS.Name = "datagridview_ECS";
             this.datagridview_ECS.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.datagridview_ECS.RowHeadersVisible = false;
@@ -368,7 +368,7 @@
             this.datagridview_Result.Name = "datagridview_Result";
             this.datagridview_Result.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.datagridview_Result.RowHeadersVisible = false;
-            this.datagridview_Result.Size = new System.Drawing.Size(627, 205);
+            this.datagridview_Result.Size = new System.Drawing.Size(627, 272);
             this.datagridview_Result.TabIndex = 100;
             // 
             // btnStart
