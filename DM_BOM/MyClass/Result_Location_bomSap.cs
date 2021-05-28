@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DM_BOM.MyClass
 {
-  public  class Class1
+  public  class Result_Location_bomSap
     {
         public string BOM { get; set; }
         public string Location { get; set; }

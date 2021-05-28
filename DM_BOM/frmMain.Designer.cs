@@ -37,6 +37,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.bunifuCircleProgressbar2 = new Bunifu.Framework.UI.BunifuCircleProgressbar();
             this.lbltime = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -60,6 +62,14 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.bunifuSwitch1 = new Bunifu.Framework.UI.BunifuSwitch();
             this.label7 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -67,10 +77,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_BOM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_ECS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_Result)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.bunifuCircleProgressbar2);
             this.panel1.Controls.Add(this.lbltime);
             this.panel1.Controls.Add(this.linkLabel2);
             this.panel1.Controls.Add(this.linkLabel1);
@@ -80,6 +93,41 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1271, 57);
             this.panel1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1049, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 107;
+            this.label6.Text = "Restart";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // bunifuCircleProgressbar2
+            // 
+            this.bunifuCircleProgressbar2.animated = true;
+            this.bunifuCircleProgressbar2.animationIterval = 5;
+            this.bunifuCircleProgressbar2.animationSpeed = 3;
+            this.bunifuCircleProgressbar2.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuCircleProgressbar2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuCircleProgressbar2.BackgroundImage")));
+            this.bunifuCircleProgressbar2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuCircleProgressbar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F);
+            this.bunifuCircleProgressbar2.ForeColor = System.Drawing.Color.SeaGreen;
+            this.bunifuCircleProgressbar2.LabelVisible = false;
+            this.bunifuCircleProgressbar2.LineProgressThickness = 0;
+            this.bunifuCircleProgressbar2.LineThickness = 0;
+            this.bunifuCircleProgressbar2.Location = new System.Drawing.Point(1043, 2);
+            this.bunifuCircleProgressbar2.Margin = new System.Windows.Forms.Padding(10, 9, 10, 9);
+            this.bunifuCircleProgressbar2.MaxValue = 100;
+            this.bunifuCircleProgressbar2.Name = "bunifuCircleProgressbar2";
+            this.bunifuCircleProgressbar2.ProgressBackColor = System.Drawing.Color.Gainsboro;
+            this.bunifuCircleProgressbar2.ProgressColor = System.Drawing.Color.RoyalBlue;
+            this.bunifuCircleProgressbar2.Size = new System.Drawing.Size(52, 52);
+            this.bunifuCircleProgressbar2.TabIndex = 106;
+            this.bunifuCircleProgressbar2.Value = 95;
+            this.bunifuCircleProgressbar2.Visible = false;
+            this.bunifuCircleProgressbar2.Click += new System.EventHandler(this.bunifuCircleProgressbar2_Click);
             // 
             // lbltime
             // 
@@ -428,11 +476,84 @@
             this.label7.TabIndex = 106;
             this.label7.Text = "PartNoBom";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel4,
+            this.toolStripStatusLabel6,
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel5,
+            this.lblVersion});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 864);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1271, 25);
+            this.statusStrip1.TabIndex = 107;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.toolStripStatusLabel3.ForeColor = System.Drawing.Color.DimGray;
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(55, 20);
+            this.toolStripStatusLabel3.Text = "Support: ";
+            // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.toolStripStatusLabel4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.toolStripStatusLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(33, 20);
+            this.toolStripStatusLabel4.Text = "PE-IT";
+            // 
+            // toolStripStatusLabel6
+            // 
+            this.toolStripStatusLabel6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel6.Image")));
+            this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
+            this.toolStripStatusLabel6.Size = new System.Drawing.Size(20, 20);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.DimGray;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 20);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel2.Image")));
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(20, 20);
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.toolStripStatusLabel5.ForeColor = System.Drawing.Color.DimGray;
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(48, 20);
+            this.toolStripStatusLabel5.Text = "Version:";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblVersion.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(13, 20);
+            this.lblVersion.Text = "0";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1271, 824);
+            this.ClientSize = new System.Drawing.Size(1271, 889);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.bunifuSwitch1);
             this.Controls.Add(this.btnStart);
@@ -459,6 +580,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_BOM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_ECS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_Result)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,6 +613,16 @@
         private System.Windows.Forms.Label lbltime;
         private Bunifu.Framework.UI.BunifuSwitch bunifuSwitch1;
         private System.Windows.Forms.Label label7;
+        private Bunifu.Framework.UI.BunifuCircleProgressbar bunifuCircleProgressbar2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripStatusLabel lblVersion;
     }
 }
 
