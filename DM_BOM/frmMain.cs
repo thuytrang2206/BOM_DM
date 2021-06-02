@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 namespace DM_BOM
 {
     public partial class frmMain : Form
@@ -29,6 +30,23 @@ namespace DM_BOM
         List<Result_Location_bomSap> list_location_bomsap_null = new List<Result_Location_bomSap>();
         List<Result_Location_bomSap> list_location_bomsap = new List<Result_Location_bomSap>();
         DataTableCollection tableCollcetion;
+        DataTable dttable;
+        SqlDataAdapter adapter;
+        SqlConnection connect;
+        string constring = @"Data Source=172.28.10.17;Initial Catalog=BOM_DM;Persist Security Info=True;User ID=sa;PASSWORD=umc@2019";
+        void Connect()
+        {
+            connect = new SqlConnection();
+            connect.ConnectionString = constring;
+            connect.Open();
+            adapter = new SqlDataAdapter("Select * from Main_Sub", connect);
+            dttable = new DataTable();
+            adapter.Fill(dttable);
+           // dataGridView1.DataSource= dttable;
+            adapter.Dispose();
+            connect.Close();
+        }
+        
         public frmMain()
         {
 
@@ -45,7 +63,7 @@ namespace DM_BOM
             colors.Add(Color.FromArgb(70, 175, 227));
             colors.Add(Color.FromArgb(0, 158, 71));
             InitializeComponent();
-
+            Connect();
         }
 
         public static string GetRunningVersion()
@@ -63,7 +81,7 @@ namespace DM_BOM
         private void btn_BOM_Click(object sender, EventArgs e)
         {
             try {
-                using (OpenFileDialog openfiledialog = new OpenFileDialog() { Filter = "All files (*.*)|*.*" })
+                using (OpenFileDialog openfiledialog = new OpenFileDialog() { Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx" })/*All files (*.*)|*.**/
                 {
                     if (openfiledialog.ShowDialog() == DialogResult.OK)
                     {
@@ -102,7 +120,7 @@ namespace DM_BOM
         private void btn_ECS_Click(object sender, EventArgs e)
         {
             try {
-                using (OpenFileDialog openfiledialog = new OpenFileDialog() { Filter = "All files (*.*)|*.*" })
+                using (OpenFileDialog openfiledialog = new OpenFileDialog() { Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx" })
                 {
                     if (openfiledialog.ShowDialog() == DialogResult.OK)
                     {
@@ -213,7 +231,7 @@ namespace DM_BOM
         private void btnStart_Click(object sender, EventArgs e)
         {
             try
-            {
+            { 
                 if (CboSheet.Items.Count == 0 || cbosheettwo.Items.Count == 0)
                 {
                     MessageBox.Show("Please select file before pressing start", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -230,9 +248,8 @@ namespace DM_BOM
                   r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
                 foreach (var item in result_bom)
                 {
-                    var data_bom = new Data_BOM() { BOM_Component = item[6].ToString(), Location = item[40].ToString().TrimEnd(' ') + item[41].ToString().TrimEnd(' ') };
+                    var data_bom = new Data_BOM() { BOM_Component = item[6].ToString(), Location = item[40].ToString().TrimEnd(' ') + item[41].ToString().TrimEnd(' ') + item[42].ToString().TrimEnd(' ') };
                     list_bom.Add(data_bom);
-
                 }
                 var result_ecs = datagridview_ECS.Rows.OfType<DataGridViewRow>().Select(r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
                 foreach (var item_ecs in result_ecs)
@@ -242,19 +259,43 @@ namespace DM_BOM
                 }
                 if (bunifuSwitch1.Value == true)
                 {
-                    foreach (var items in list_ecs)
-                    {
-                        var check_result = list_bom.Where(x => x.BOM_Component.Substring(0, 9) == items.PartNo/* && (x.Location.Replace(",","")).Contains(items.Location.Replace(",",""))==true*/).FirstOrDefault();
-                        if (check_result == null)
+                  
+                        foreach (var items in list_ecs)
                         {
-                            label5.Text = "MÃ BOM_SAP KHÔNG CÓ TRONG DANH SÁCH BOM_CUSTOMER";
-                            label5.ForeColor = Color.Green;
-                            label5.Location = new Point(100, 5);
-                            var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
-                            list_result.Add(addlist);
-                            dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
+                        for (int i = 0; i < dttable.Rows.Count; i++)
+                        {
+                            string name_sub_bom = dttable.Rows[i]["PartNoBom"].ToString().Replace("\r\n", "");
+                            string name_part_bom = dttable.Rows[i]["SubBom"].ToString().Replace("\r\n", "");
+                            if (name_sub_bom == items.PartNo)
+                            {
+                                //var check_result = list_bom.Where(x => x.BOM_Component.Substring(0, 9) == items.PartNo).FirstOrDefault();
+                                //if (check_result != null)
+                                //{
+                                //    label5.Text = "MÃ BOM_SAP KHÔNG CÓ TRONG DANH SÁCH BOM_CUSTOMER";
+                                //    label5.ForeColor = Color.Green;
+                                //    label5.Location = new Point(100, 5);
+                                //    var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
+                                //    list_result.Add(addlist);
+                                //    dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
+                                //}
+                            }
+                          
                         }
+
                     }
+                    //foreach (var items in list_ecs)
+                    //{
+                    //    var check_result = list_bom.Where(x => x.BOM_Component.Substring(0, 9) == items.PartNo).FirstOrDefault();
+                    //    if (check_result == null)
+                    //    {
+                    //        label5.Text = "MÃ BOM_SAP KHÔNG CÓ TRONG DANH SÁCH BOM_CUSTOMER";
+                    //        label5.ForeColor = Color.Green;
+                    //        label5.Location = new Point(100, 5);
+                    //        var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
+                    //        list_result.Add(addlist);
+                    //        dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
+                    //    }
+                    //}
                 }
                 else
                 {
@@ -298,6 +339,12 @@ namespace DM_BOM
                         {
                             if (item_result.BOM == list_ecs[i].PartNo)
                             {
+                                label5.Text = "KHÔNG CÓ VỊ TRÍ CỦA MÃ BOM SAP THIẾU TRONG MÃ BOM KHÁCH HÀNG!";
+                                label5.ForeColor = Color.Red;
+                                label5.Location = new Point(60, 5);
+                            }
+                            else
+                            {
                                 string[] location_ecs = (list_ecs[i].Location.ToString()).Split(',');
                                 string[] location_rl = item_result.Location.Split(',');
                                 //string[] dist2 = dd.Distinct().ToArray();
@@ -310,26 +357,16 @@ namespace DM_BOM
                                     item_result.Location = dist2;
                                     var add = new Result_Location_bomSap { BOM = item_result.BOM, Location = dist2 };
                                     list_location_bomsap.Add(add);
-                                    if (list_location_bomsap.Count() == 0)
-                                    {
-                                        label5.Text = "KHÔNG CÓ VỊ TRÍ CỦA MÃ BOM SAP THIẾU TRONG MÃ BOM KHÁCH HÀNG!";
-                                        label5.ForeColor = Color.Red;
-                                        label5.Location = new Point(60, 5);
-                                    }
-                                    else
-                                    {
-                                        label5.Text = "VỊ TRÍ CỦA BOM_SAP KHÔNG CÓ TRONG BOM_CUSTOMER";
-                                        label5.ForeColor = Color.Green;
-                                        label5.Location = new Point(100, 5);
-                                        dt.Rows.Add(add.BOM.ToString(), add.Location.ToString());
-                                    }
-
+                                    label5.Text = "VỊ TRÍ CỦA BOM_SAP KHÔNG CÓ TRONG BOM_CUSTOMER";
+                                    label5.ForeColor = Color.Green;
+                                    label5.Location = new Point(100, 5);
+                                    dt.Rows.Add(add.BOM.ToString(), add.Location.ToString());
                                 }
-
                             }
                         }
                     }
                 }
+                
                 bunifuCircleProgressbar2.Visible = true;
                 label6.Visible = true;
                 Properties.Settings.Default.Bom = CboSheet.Text;
