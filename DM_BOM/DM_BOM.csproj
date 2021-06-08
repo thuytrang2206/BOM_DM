@@ -83,6 +83,7 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyClass\List_flash_memory.cs" />
     <Compile Include="MyClass\Result_Location_bomSap.cs" />
     <Compile Include="MyClass\Data_BOM.cs" />
     <Compile Include="MyClass\Data_ECS.cs" />

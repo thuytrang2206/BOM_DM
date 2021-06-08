@@ -20,18 +20,24 @@ namespace DM_BOM
         int currentColor = 0;
         int a = 0;
         bool ON = false;
+        private bool dragging = false;
+        private Point startPoint = new Point(0, 0);
         List<Color> colors = new List<Color>();
         List<Data_BOM> list_bom = new List<Data_BOM>();
         List<Data_BOM> list_bom_null = new List<Data_BOM>();
         List<Data_ECS> list_ecs = new List<Data_ECS>();
         List<Data_ECS> list_ecs_null = new List<Data_ECS>();
         List<Result> list_result = new List<Result>();
+        List<Result> list_result_null = new List<Result>();
         List<Result_Location> list_rl = new List<Result_Location>();
         List<Result_Location_bomSap> list_location_bomsap_null = new List<Result_Location_bomSap>();
         List<Result_Location_bomSap> list_location_bomsap = new List<Result_Location_bomSap>();
+        List<List_flash_memory> list_flash_memory = new List<List_flash_memory>();
         DataTableCollection tableCollcetion;
         DataTable dttable;
-        SqlDataAdapter adapter;
+        DataTable dttable_flash_memory;
+        SqlDataAdapter adapter_mainsub;
+        SqlDataAdapter adapter_flashmemory;
         SqlConnection connect;
         string constring = @"Data Source=172.28.10.17;Initial Catalog=BOM_DM;Persist Security Info=True;User ID=sa;PASSWORD=umc@2019";
         void Connect()
@@ -39,11 +45,15 @@ namespace DM_BOM
             connect = new SqlConnection();
             connect.ConnectionString = constring;
             connect.Open();
-            adapter = new SqlDataAdapter("Select * from Main_Sub", connect);
+            adapter_mainsub = new SqlDataAdapter("Select * from Main_Sub", connect);
+            adapter_flashmemory = new SqlDataAdapter("Select * from Flash_memory", connect);
             dttable = new DataTable();
-            adapter.Fill(dttable);
+            dttable_flash_memory = new DataTable();
+            adapter_mainsub.Fill(dttable);
+            adapter_flashmemory.Fill(dttable_flash_memory);
+            adapter_flashmemory.Dispose();
            // dataGridView1.DataSource= dttable;
-            adapter.Dispose();
+            adapter_mainsub.Dispose();
             connect.Close();
         }
         
@@ -68,9 +78,9 @@ namespace DM_BOM
         }
         private const int cGript = 16;
         private const int cCaption = 32;
-        protected override void WndProc( ref Message m)
+        protected override void WndProc(ref Message m)
         {
-            if(m.Msg == 0x84)
+            if (m.Msg == 0x84)
             {
                 Point pos = new Point(m.LParam.ToInt32());
                 pos = this.PointToClient(pos);
@@ -79,7 +89,7 @@ namespace DM_BOM
                     m.Result = (IntPtr)2;
                     return;
                 }
-                if(pos.X>= this.ClientSize.Width-cGript && pos.Y>= this.ClientSize.Height - cGript)
+                if (pos.X >= this.ClientSize.Width - cGript && pos.Y >= this.ClientSize.Height - cGript)
                 {
                     m.Result = (IntPtr)17;
                     return;
@@ -203,15 +213,14 @@ namespace DM_BOM
 
         private void linkLabel2_Click(object sender, EventArgs e)
         {
-            if (linkLabel2.BackColor == Color.White)
+            if (WindowState.ToString() =="Narmal")
             {
-                linkLabel2.BackColor = Color.DarkGray;
-                WindowState = FormWindowState.Maximized;
+                this.WindowState = FormWindowState.Maximized;
             }
             else
             {
-                linkLabel2.BackColor = Color.White;
-                WindowState = FormWindowState.Normal;
+ 
+                this.WindowState = FormWindowState.Normal;
             }
         }
 
@@ -248,6 +257,15 @@ namespace DM_BOM
                 lbltime.ForeColor = Color.DimGray;
             }
         }
+        public void Load_datatable_list_flash_memory()
+        {
+            list_flash_memory = (from DataRow row in dttable_flash_memory.Rows
+                                 select new List_flash_memory()
+                                 {
+                                     PartNoCUS = row["PartNoCUS"].ToString().Replace("\r\n", ""),
+                                     PartNoBOM = row["PartNoBOM"].ToString().Replace("\r\n", "")
+                                 }).ToList();
+        }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -262,11 +280,10 @@ namespace DM_BOM
                 datagridview_Result.DataSource = dt;
                 dt.Columns.Add("PartNoBOM");
                 dt.Columns.Add("Location");
-
                 list_bom.Clear();
                 list_ecs.Clear();
-                var result_bom = datagridview_BOM.Rows.OfType<DataGridViewRow>().Select(
-                  r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
+                Load_datatable_list_flash_memory();     
+                var result_bom = datagridview_BOM.Rows.OfType<DataGridViewRow>().Select(r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
                 foreach (var item in result_bom)
                 {
                     var data_bom = new Data_BOM() { BOM_Component = item[6].ToString(), Location = item[40].ToString().TrimEnd(' ') + item[41].ToString().TrimEnd(' ') + item[42].ToString().TrimEnd(' ') };
@@ -274,31 +291,56 @@ namespace DM_BOM
                 }
                 var result_ecs = datagridview_ECS.Rows.OfType<DataGridViewRow>().Select(r => r.Cells.OfType<DataGridViewCell>().Select(c => c.Value).ToArray()).ToList();
                 foreach (var item_ecs in result_ecs)
-                {
+                {        
+                    
                     var data_ecs = new Data_ECS() { PartNo = item_ecs[0].ToString(), Location = item_ecs[3].ToString().Replace("\n", "") };
                     list_ecs.Add(data_ecs);
                 }
+                list_ecs.RemoveRange(0, 2);
                 if (bunifuSwitch1.Value == true)
                 {
+                    label5.Text = "MÃ BOM KHÁCH HÀNG KHÔNG CÓ TRONG DANH SÁCH BOM SAP";
+                    label5.ForeColor = Color.Green;
+                    label5.Location = new Point(100, 5);
                     foreach (var items in list_ecs)
                     {
                         var check_result = list_bom.Where(x => x.BOM_Component.Substring(0, 9) == items.PartNo).FirstOrDefault();
                         if (check_result == null)
                         {
-                            label5.Text = "MÃ BOM_SAP KHÔNG CÓ TRONG DANH SÁCH BOM_CUSTOMER";
-                            label5.ForeColor = Color.Green;
-                            label5.Location = new Point(100, 5);
                             var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
                             list_result.Add(addlist);
-                            dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
+                           // dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
                         }
+                    }
+                    foreach ( var item_flash in list_result)
+                    { 
+                        var result_list_cus = list_flash_memory.Where(x => x.PartNoCUS == item_flash.BOM).FirstOrDefault();
+                      
+                        if (result_list_cus == null)
+                        {
+                                
+                                var addlistd = new Result_Location() { BOM = item_flash.BOM, Location= item_flash.Incomplete };
+                                list_rl.Add(addlistd);
+                                dt.Rows.Add(addlistd.BOM.ToString(), addlistd.Location.ToString());
+                        }
+                        else
+                        {
+                            string name_bom = result_list_cus.PartNoBOM.ToString();
+                            var result_list_bom = list_bom.Where(x => x.BOM_Component.Substring(0,9) == name_bom).FirstOrDefault();
+                            if (result_list_bom == null)
+                            {
+                                var addlistd = new Result_Location() { BOM = item_flash.BOM, Location = item_flash.Incomplete };
+                                list_rl.Add(addlistd);
+                                dt.Rows.Add(addlistd.BOM.ToString(), addlistd.Location.ToString());
+                            }
+                        }
+
                     }
                 }
                 else
                 {
                     foreach (var items in list_bom)
                     {
-
                         string value1 = items.BOM_Component.ToString();
                         string tmp = value1.Substring(0, 9);
                         var check_result = list_ecs.Where(x => x.PartNo == tmp).FirstOrDefault();
@@ -418,6 +460,9 @@ namespace DM_BOM
           //  datagridview_Result.Size = new Size(400, 100);
             CboSheet.Text = Properties.Settings.Default.Bom;
             cbosheettwo.Text = Properties.Settings.Default.ECS;
+            datagridview_Result_main.DataSource = list_result_null;
+            datagridview_Result_main.Visible = false;
+            panel3.Visible = false;
         }
 
         private void bunifuCircleProgressbar2_Click(object sender, EventArgs e)
@@ -554,51 +599,47 @@ namespace DM_BOM
                     var data_ecs = new Data_ECS() { PartNo = item_ecs[0].ToString(), Location = item_ecs[3].ToString().Replace("\n", "") };
                     list_ecs.Add(data_ecs);
                 }
+                list_ecs.RemoveRange(0, 2);
                 foreach (var items in list_ecs)
+                {
+                    for (int i = 0; i < list_flash_memory.Count; i++)
+                    {
+                        string name_part_bom = dttable.Rows[i]["PartNoBom"].ToString().Replace("\r\n", "");
+                        string name_sub_bom = dttable.Rows[i]["SubBom"].ToString().Replace("\r\n", "");
+                        if (name_part_bom == items.PartNo || name_sub_bom == items.PartNo)
+                        {
+                            var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
+                            list_result.Add(addlist);
+                            label5.Text = "BOM_CUSTOMER CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
+                            label5.ForeColor = Color.Green;
+                            label5.Location = new Point(100, 5);
+                            dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
+                        }
+                    }
+                }
+                DataTable table = new DataTable();
+                datagridview_Result_main.DataSource = table;
+                table.Columns.Add("PartNoBOM");
+                table.Columns.Add("Location");
+                foreach (var items in list_bom)
                 {
                     for (int i = 0; i < dttable.Rows.Count; i++)
                     {
                         string name_part_bom = dttable.Rows[i]["PartNoBom"].ToString().Replace("\r\n", "");
                         string name_sub_bom = dttable.Rows[i]["SubBom"].ToString().Replace("\r\n", "");
-                        if (name_part_bom == items.PartNo|| name_sub_bom == items.PartNo)
+                        if (name_part_bom == items.BOM_Component.Substring(0,9) || name_sub_bom == items.BOM_Component.Substring(0,9))
                         {
-                                //label5.Text = "Main_sub_special!";
-                                //label5.ForeColor = Color.Green;
-                                //label5.Location = new Point(100, 5);
-                                var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
-                                list_result.Add(addlist);
-                               // dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
+                            var addlist = new Result() { BOM = items.BOM_Component, Incomplete = items.Location };
+                            list_result.Add(addlist);         
+                            datagridview_Result_main.Visible = true;
+                            panel3.Visible = true;
+                            label9.Text = "BOM_SAP CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
+                            label9.ForeColor = Color.Green;
+                            label9.Location = new Point(200, 5);
+                            table.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
                         }
                     }
                 }
-                //////
-                foreach(var item_bom in list_result)
-                {
-                    for( int i=0; i<list_bom.Count(); i++)
-                    {
-                        if (item_bom.BOM == list_bom[i].BOM_Component)
-                        {
-                            string[] location_ecs = (list_ecs[i].Location.ToString()).Split(',');
-                            string[] location_rl = item_bom.Incomplete.Split(',');
-                            //string[] dist2 = dd.Distinct().ToArray();
-                            //string result_dist2 = string.Join(",", dist2);
-                            string[] result_dist2 = location_ecs.Except(location_rl).ToArray();
-                            string dist2 = string.Join(",", result_dist2);
-                            if (dist2 != "")
-                            {
-
-                                item_bom.Incomplete = dist2;
-                                var add = new Result_Location_bomSap { BOM = item_bom.BOM, Location = dist2 };
-                                list_location_bomsap.Add(add);
-                                label5.Text = "VỊ TRÍ CỦA BOM_SAP KHÔNG CÓ TRONG BOM_CUSTOMER";
-                                label5.ForeColor = Color.Green;
-                                label5.Location = new Point(100, 5);
-                                dt.Rows.Add(add.BOM.ToString(), add.Location.ToString());
-                            }
-                        }
-                    }
-                }
-                /////
                 bunifuCircleProgressbar2.Visible = true;
                 label6.Visible = true;
                 Properties.Settings.Default.Bom = CboSheet.Text;
@@ -606,12 +647,47 @@ namespace DM_BOM
                 Properties.Settings.Default.Save();
                 datagridview_Result.AutoResizeColumns();
                 datagridview_Result.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                datagridview_Result_main.AutoResizeColumns();
+                datagridview_Result_main.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 ON = false;
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void linkLabel2_Click_1(object sender, EventArgs e)
+        {
+            if (WindowState.ToString() == "Normal")
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void frmMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            startPoint = new Point(e.X, e.Y);
+
+        }
+
+        private void frmMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void frmMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point p = PointToScreen(e.Location);
+                Location = new Point(p.X - this.startPoint.X, p.Y - this.startPoint.Y);
             }
         }
     }
