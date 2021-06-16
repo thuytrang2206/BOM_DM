@@ -29,22 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_ECS = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.btn_BOM = new Bunifu.Framework.UI.BunifuThinButton2();
             this.CboSheet = new System.Windows.Forms.ComboBox();
             this.cbosheettwo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,34 +65,36 @@
             this.lblVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.btn_MainSubSpecial = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.bunifuCircleProgressbar2 = new Bunifu.Framework.UI.BunifuCircleProgressbar();
+            this.lbltime = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lblConfigs = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.datagridview_Result_main = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblConfigs = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.lbltime = new System.Windows.Forms.Label();
-            this.bunifuCircleProgressbar2 = new Bunifu.Framework.UI.BunifuCircleProgressbar();
-            this.label6 = new System.Windows.Forms.Label();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.btn_BOM = new Bunifu.Framework.UI.BunifuThinButton2();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_BOM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_ECS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_Result)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datagridview_Result_main)).BeginInit();
-            this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridview_Result_main)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(1, 61);
+            this.panel2.Location = new System.Drawing.Point(1, 62);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(631, 28);
             this.panel2.TabIndex = 94;
@@ -131,15 +132,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btn_ECS);
             this.groupBox1.Controls.Add(this.btn_BOM);
+            this.groupBox1.Controls.Add(this.btn_ECS);
             this.groupBox1.Controls.Add(this.CboSheet);
             this.groupBox1.Controls.Add(this.cbosheettwo);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(639, 85);
+            this.groupBox1.Location = new System.Drawing.Point(639, 86);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(631, 118);
+            this.groupBox1.Size = new System.Drawing.Size(625, 118);
             this.groupBox1.TabIndex = 95;
             this.groupBox1.TabStop = false;
             // 
@@ -168,32 +169,6 @@
             this.btn_ECS.TabIndex = 96;
             this.btn_ECS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btn_ECS.Click += new System.EventHandler(this.btn_ECS_Click);
-            // 
-            // btn_BOM
-            // 
-            this.btn_BOM.ActiveBorderThickness = 1;
-            this.btn_BOM.ActiveCornerRadius = 20;
-            this.btn_BOM.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.btn_BOM.ActiveForecolor = System.Drawing.Color.White;
-            this.btn_BOM.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.btn_BOM.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_BOM.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_BOM.BackgroundImage")));
-            this.btn_BOM.ButtonText = "Choose File";
-            this.btn_BOM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_BOM.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_BOM.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btn_BOM.IdleBorderThickness = 1;
-            this.btn_BOM.IdleCornerRadius = 20;
-            this.btn_BOM.IdleFillColor = System.Drawing.Color.White;
-            this.btn_BOM.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.btn_BOM.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btn_BOM.Location = new System.Drawing.Point(465, 12);
-            this.btn_BOM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btn_BOM.Name = "btn_BOM";
-            this.btn_BOM.Size = new System.Drawing.Size(80, 40);
-            this.btn_BOM.TabIndex = 95;
-            this.btn_BOM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_BOM.Click += new System.EventHandler(this.btn_BOM_Click);
             // 
             // CboSheet
             // 
@@ -235,26 +210,26 @@
             // 
             this.datagridview_BOM.AllowUserToAddRows = false;
             this.datagridview_BOM.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle49.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.datagridview_BOM.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle49;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.datagridview_BOM.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.datagridview_BOM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.datagridview_BOM.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.datagridview_BOM.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.datagridview_BOM.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle50.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle50.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle50.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle50.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridview_BOM.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle50;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview_BOM.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.datagridview_BOM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridview_BOM.DoubleBuffered = true;
             this.datagridview_BOM.EnableHeadersVisualStyles = false;
             this.datagridview_BOM.HeaderBgColor = System.Drawing.Color.White;
             this.datagridview_BOM.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.datagridview_BOM.Location = new System.Drawing.Point(5, 386);
+            this.datagridview_BOM.Location = new System.Drawing.Point(5, 387);
             this.datagridview_BOM.Name = "datagridview_BOM";
             this.datagridview_BOM.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.datagridview_BOM.RowHeadersVisible = false;
@@ -265,7 +240,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(636, 367);
+            this.label4.Location = new System.Drawing.Point(636, 368);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 16);
             this.label4.TabIndex = 98;
@@ -275,25 +250,25 @@
             // 
             this.datagridview_ECS.AllowUserToAddRows = false;
             this.datagridview_ECS.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle51.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.datagridview_ECS.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle51;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.datagridview_ECS.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.datagridview_ECS.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.datagridview_ECS.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.datagridview_ECS.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle52.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle52.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle52.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle52.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle52.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle52.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridview_ECS.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle52;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview_ECS.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.datagridview_ECS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridview_ECS.DoubleBuffered = true;
             this.datagridview_ECS.EnableHeadersVisualStyles = false;
             this.datagridview_ECS.HeaderBgColor = System.Drawing.Color.White;
             this.datagridview_ECS.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.datagridview_ECS.Location = new System.Drawing.Point(639, 386);
+            this.datagridview_ECS.Location = new System.Drawing.Point(639, 387);
             this.datagridview_ECS.Name = "datagridview_ECS";
             this.datagridview_ECS.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.datagridview_ECS.RowHeadersVisible = false;
@@ -304,25 +279,25 @@
             // 
             this.datagridview_Result.AllowUserToAddRows = false;
             this.datagridview_Result.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.datagridview_Result.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle53;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.datagridview_Result.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.datagridview_Result.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.datagridview_Result.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.datagridview_Result.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle54.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle54.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle54.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle54.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridview_Result.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle54;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview_Result.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.datagridview_Result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridview_Result.DoubleBuffered = true;
             this.datagridview_Result.EnableHeadersVisualStyles = false;
             this.datagridview_Result.HeaderBgColor = System.Drawing.Color.White;
             this.datagridview_Result.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.datagridview_Result.Location = new System.Drawing.Point(5, 92);
+            this.datagridview_Result.Location = new System.Drawing.Point(5, 93);
             this.datagridview_Result.Name = "datagridview_Result";
             this.datagridview_Result.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.datagridview_Result.RowHeadersVisible = false;
@@ -347,7 +322,7 @@
             this.btnStart.IdleFillColor = System.Drawing.Color.Red;
             this.btnStart.IdleForecolor = System.Drawing.Color.White;
             this.btnStart.IdleLineColor = System.Drawing.Color.Red;
-            this.btnStart.Location = new System.Drawing.Point(740, 226);
+            this.btnStart.Location = new System.Drawing.Point(740, 227);
             this.btnStart.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(87, 47);
@@ -366,7 +341,7 @@
             this.bunifuSwitch1.BorderRadius = 0;
             this.bunifuSwitch1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuSwitch1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bunifuSwitch1.Location = new System.Drawing.Point(721, 66);
+            this.bunifuSwitch1.Location = new System.Drawing.Point(721, 67);
             this.bunifuSwitch1.Name = "bunifuSwitch1";
             this.bunifuSwitch1.Oncolor = System.Drawing.Color.SeaGreen;
             this.bunifuSwitch1.Onoffcolor = System.Drawing.Color.DarkGray;
@@ -380,7 +355,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(635, 69);
+            this.label7.Location = new System.Drawing.Point(635, 70);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 13);
             this.label7.TabIndex = 106;
@@ -398,7 +373,7 @@
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel5,
             this.lblVersion});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 864);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 869);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1271, 25);
             this.statusStrip1.TabIndex = 107;
@@ -476,7 +451,7 @@
             this.btn_MainSubSpecial.IdleFillColor = System.Drawing.Color.Green;
             this.btn_MainSubSpecial.IdleForecolor = System.Drawing.Color.White;
             this.btn_MainSubSpecial.IdleLineColor = System.Drawing.Color.Green;
-            this.btn_MainSubSpecial.Location = new System.Drawing.Point(958, 226);
+            this.btn_MainSubSpecial.Location = new System.Drawing.Point(948, 227);
             this.btn_MainSubSpecial.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btn_MainSubSpecial.Name = "btn_MainSubSpecial";
             this.btn_MainSubSpecial.Size = new System.Drawing.Size(158, 47);
@@ -491,67 +466,10 @@
             this.bunifuDragControl1.TargetControl = this.panel1;
             this.bunifuDragControl1.Vertical = true;
             // 
-            // datagridview_Result_main
-            // 
-            this.datagridview_Result_main.AllowUserToAddRows = false;
-            this.datagridview_Result_main.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle55.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.datagridview_Result_main.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle55;
-            this.datagridview_Result_main.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.datagridview_Result_main.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.datagridview_Result_main.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle56.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle56.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle56.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle56.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle56.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle56.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridview_Result_main.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle56;
-            this.datagridview_Result_main.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.datagridview_Result_main.DoubleBuffered = true;
-            this.datagridview_Result_main.EnableHeadersVisualStyles = false;
-            this.datagridview_Result_main.HeaderBgColor = System.Drawing.Color.White;
-            this.datagridview_Result_main.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.datagridview_Result_main.Location = new System.Drawing.Point(637, 92);
-            this.datagridview_Result_main.Name = "datagridview_Result_main";
-            this.datagridview_Result_main.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.datagridview_Result_main.RowHeadersVisible = false;
-            this.datagridview_Result_main.Size = new System.Drawing.Size(627, 272);
-            this.datagridview_Result_main.TabIndex = 110;
-            this.datagridview_Result_main.Visible = false;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Location = new System.Drawing.Point(633, 61);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(631, 28);
-            this.panel3.TabIndex = 109;
-            this.panel3.Visible = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(120, 1);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 13);
-            this.label9.TabIndex = 97;
-            this.label9.Text = "label9";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label8.Location = new System.Drawing.Point(270, 5);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(0, 17);
-            this.label8.TabIndex = 96;
-            // 
             // panel1
             // 
             this.panel1.AllowDrop = true;
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.linkLabel2);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.bunifuCircleProgressbar2);
@@ -565,48 +483,40 @@
             this.panel1.Size = new System.Drawing.Size(1271, 57);
             this.panel1.TabIndex = 0;
             this.panel1.TabStop = true;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
-            // pictureBox1
+            // label10
             // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(69, 54);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(242, 30);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 20);
+            this.label10.TabIndex = 109;
             // 
-            // lblConfigs
+            // linkLabel2
             // 
-            this.lblConfigs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblConfigs.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblConfigs.Image = ((System.Drawing.Image)(resources.GetObject("lblConfigs.Image")));
-            this.lblConfigs.Location = new System.Drawing.Point(1228, 8);
-            this.lblConfigs.Name = "lblConfigs";
-            this.lblConfigs.Size = new System.Drawing.Size(30, 30);
-            this.lblConfigs.TabIndex = 102;
-            this.lblConfigs.Click += new System.EventHandler(this.lblConfigs_Click);
+            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.linkLabel2.Image = global::DM_BOM.Properties.Resources.web;
+            this.linkLabel2.Location = new System.Drawing.Point(1192, 9);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(30, 30);
+            this.linkLabel2.TabIndex = 108;
+            this.linkLabel2.Click += new System.EventHandler(this.linkLabel2_Click_1);
             // 
-            // linkLabel1
+            // label6
             // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkLabel1.Image = ((System.Drawing.Image)(resources.GetObject("linkLabel1.Image")));
-            this.linkLabel1.Location = new System.Drawing.Point(1156, 9);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(30, 30);
-            this.linkLabel1.TabIndex = 103;
-            this.linkLabel1.Click += new System.EventHandler(this.linkLabel1_Click);
-            // 
-            // lbltime
-            // 
-            this.lbltime.AutoSize = true;
-            this.lbltime.ForeColor = System.Drawing.Color.Gray;
-            this.lbltime.Location = new System.Drawing.Point(88, 37);
-            this.lbltime.Name = "lbltime";
-            this.lbltime.Size = new System.Drawing.Size(82, 13);
-            this.lbltime.TabIndex = 105;
-            this.lbltime.Text = "CLINT (ADMIN)";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1049, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 107;
+            this.label6.Text = "Restart";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // bunifuCircleProgressbar2
             // 
@@ -633,31 +543,137 @@
             this.bunifuCircleProgressbar2.Visible = false;
             this.bunifuCircleProgressbar2.Click += new System.EventHandler(this.bunifuCircleProgressbar2_Click);
             // 
-            // label6
+            // lbltime
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1049, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 13);
-            this.label6.TabIndex = 107;
-            this.label6.Text = "Restart";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.lbltime.AutoSize = true;
+            this.lbltime.ForeColor = System.Drawing.Color.Gray;
+            this.lbltime.Location = new System.Drawing.Point(88, 37);
+            this.lbltime.Name = "lbltime";
+            this.lbltime.Size = new System.Drawing.Size(82, 13);
+            this.lbltime.TabIndex = 105;
+            this.lbltime.Text = "CLINT (ADMIN)";
             // 
-            // linkLabel2
+            // linkLabel1
             // 
-            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkLabel2.Image = global::DM_BOM.Properties.Resources.web;
-            this.linkLabel2.Location = new System.Drawing.Point(1192, 9);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(30, 30);
-            this.linkLabel2.TabIndex = 108;
-            this.linkLabel2.Click += new System.EventHandler(this.linkLabel2_Click_1);
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.linkLabel1.Image = ((System.Drawing.Image)(resources.GetObject("linkLabel1.Image")));
+            this.linkLabel1.Location = new System.Drawing.Point(1156, 9);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(30, 30);
+            this.linkLabel1.TabIndex = 103;
+            this.linkLabel1.Click += new System.EventHandler(this.linkLabel1_Click);
+            // 
+            // lblConfigs
+            // 
+            this.lblConfigs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblConfigs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblConfigs.Image = ((System.Drawing.Image)(resources.GetObject("lblConfigs.Image")));
+            this.lblConfigs.Location = new System.Drawing.Point(1228, 8);
+            this.lblConfigs.Name = "lblConfigs";
+            this.lblConfigs.Size = new System.Drawing.Size(30, 30);
+            this.lblConfigs.TabIndex = 102;
+            this.lblConfigs.Click += new System.EventHandler(this.lblConfigs_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(69, 54);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // datagridview_Result_main
+            // 
+            this.datagridview_Result_main.AllowUserToAddRows = false;
+            this.datagridview_Result_main.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.datagridview_Result_main.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.datagridview_Result_main.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.datagridview_Result_main.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.datagridview_Result_main.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview_Result_main.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.datagridview_Result_main.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datagridview_Result_main.DoubleBuffered = true;
+            this.datagridview_Result_main.EnableHeadersVisualStyles = false;
+            this.datagridview_Result_main.HeaderBgColor = System.Drawing.Color.White;
+            this.datagridview_Result_main.HeaderForeColor = System.Drawing.Color.SeaGreen;
+            this.datagridview_Result_main.Location = new System.Drawing.Point(637, 92);
+            this.datagridview_Result_main.Name = "datagridview_Result_main";
+            this.datagridview_Result_main.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.datagridview_Result_main.RowHeadersVisible = false;
+            this.datagridview_Result_main.Size = new System.Drawing.Size(627, 272);
+            this.datagridview_Result_main.TabIndex = 110;
+            this.datagridview_Result_main.Visible = false;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Location = new System.Drawing.Point(633, 62);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(631, 28);
+            this.panel3.TabIndex = 109;
+            this.panel3.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(122, 9);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 13);
+            this.label9.TabIndex = 97;
+            this.label9.Text = "label9";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label8.Location = new System.Drawing.Point(270, 5);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 17);
+            this.label8.TabIndex = 96;
+            // 
+            // btn_BOM
+            // 
+            this.btn_BOM.ActiveBorderThickness = 1;
+            this.btn_BOM.ActiveCornerRadius = 20;
+            this.btn_BOM.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btn_BOM.ActiveForecolor = System.Drawing.Color.White;
+            this.btn_BOM.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btn_BOM.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_BOM.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_BOM.BackgroundImage")));
+            this.btn_BOM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_BOM.ButtonText = "Choose File";
+            this.btn_BOM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_BOM.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_BOM.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btn_BOM.IdleBorderThickness = 1;
+            this.btn_BOM.IdleCornerRadius = 20;
+            this.btn_BOM.IdleFillColor = System.Drawing.Color.White;
+            this.btn_BOM.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btn_BOM.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btn_BOM.Location = new System.Drawing.Point(465, 12);
+            this.btn_BOM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_BOM.Name = "btn_BOM";
+            this.btn_BOM.Size = new System.Drawing.Size(80, 40);
+            this.btn_BOM.TabIndex = 97;
+            this.btn_BOM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_BOM.Click += new System.EventHandler(this.btn_BOM_Click);
             // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1271, 889);
+            this.ClientSize = new System.Drawing.Size(1271, 894);
             this.Controls.Add(this.datagridview_Result_main);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.btn_MainSubSpecial);
@@ -679,9 +695,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmMain_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmMain_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmMain_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.frmMain_MouseUp);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -691,12 +704,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_Result)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datagridview_Result_main)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridview_Result_main)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -710,7 +723,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox CboSheet;
         private System.Windows.Forms.ComboBox cbosheettwo;
-        private Bunifu.Framework.UI.BunifuThinButton2 btn_BOM;
         private Bunifu.Framework.UI.BunifuThinButton2 btn_ECS;
         private System.Windows.Forms.Label label3;
         private Bunifu.Framework.UI.BunifuCustomDataGrid datagridview_BOM;
@@ -743,6 +755,8 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel lblConfigs;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label10;
+        private Bunifu.Framework.UI.BunifuThinButton2 btn_BOM;
     }
 }
 
