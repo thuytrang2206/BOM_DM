@@ -154,7 +154,7 @@
             this.groupBox1.Controls.Add(this.labelmain);
             this.groupBox1.Controls.Add(this.lblpart);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(416, 96);
+            this.groupBox1.Location = new System.Drawing.Point(416, 92);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(219, 138);
             this.groupBox1.TabIndex = 17;
@@ -164,6 +164,7 @@
             // txtId
             // 
             this.txtId.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtId.Enabled = false;
             this.txtId.Location = new System.Drawing.Point(105, 24);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(103, 20);
@@ -191,6 +192,7 @@
             // txtSubbom
             // 
             this.txtSubbom.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtSubbom.Enabled = false;
             this.txtSubbom.Location = new System.Drawing.Point(105, 95);
             this.txtSubbom.Name = "txtSubbom";
             this.txtSubbom.Size = new System.Drawing.Size(106, 20);
@@ -199,6 +201,7 @@
             // txtPartlistName
             // 
             this.txtPartlistName.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtPartlistName.Enabled = false;
             this.txtPartlistName.Location = new System.Drawing.Point(105, 57);
             this.txtPartlistName.Name = "txtPartlistName";
             this.txtPartlistName.Size = new System.Drawing.Size(103, 20);
@@ -229,7 +232,7 @@
             this.groupBox2.Controls.Add(this.btn_Searchs);
             this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(416, 37);
+            this.groupBox2.Location = new System.Drawing.Point(416, 33);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(219, 53);
             this.groupBox2.TabIndex = 18;
@@ -243,6 +246,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(164, 20);
             this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btn_Searchs
             // 

@@ -75,7 +75,8 @@ namespace DM_BOM
             connect = new SqlConnection();
             connect.ConnectionString = constring;
             connect.Open();
-            cmd = new SqlCommand("select * from Main_Sub where CONCAT('Id','PartNoBom','SubBom') like'%" + txtSearch.Text + "%'", connect);
+            //cmd = new SqlCommand("select * from Main_Sub where CONCAT(Id,PartNoBom,SubBom) like'%" + txtSearch.Text + "%'", connect);
+            cmd = new SqlCommand("select * from Main_Sub where PartNoBom like'%" + txtSearch.Text + "%' or SubBom like '%" + txtSearch.Text + "%'", connect);
             adapter = new SqlDataAdapter(cmd);
             table = new DataTable();
             adapter.Fill(table);
@@ -85,6 +86,14 @@ namespace DM_BOM
         private void btn_Searchs_Click(object sender, EventArgs e)
         {
             Search();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == "")
+            {
+                Load_data();
+            }
         }
     }
 
