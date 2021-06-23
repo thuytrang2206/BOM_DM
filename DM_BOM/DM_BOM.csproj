@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>\\172.28.10.12\Share\18 IT\U36286%28trangpt%29\BOM_BIVN\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
@@ -25,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -40,6 +41,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,6 +51,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>ABBB379F8562352D9BA1C495E3354CDEEF9D6E65</ManifestCertificateThumbprint>
@@ -102,6 +105,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_AddMainSub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AddMainSub.Designer.cs">
+      <DependentUpon>Form_AddMainSub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ICManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ICManager.Designer.cs">
+      <DependentUpon>Form_ICManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_MainSubSpecial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_MainSubSpecial.Designer.cs">
+      <DependentUpon>Form_MainSubSpecial.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +138,15 @@
     <Compile Include="NetworkConnection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form_AddMainSub.resx">
+      <DependentUpon>Form_AddMainSub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ICManager.resx">
+      <DependentUpon>Form_ICManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_MainSubSpecial.resx">
+      <DependentUpon>Form_MainSubSpecial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,15 +177,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\binoculars.png" />
+    <None Include="Resources\export-excel.png" />
     <Content Include="Resources\file1.png" />
+    <None Include="Resources\icons8-export-excel-48.png" />
+    <None Include="Resources\iconfinder_64174_export_excel_xlsx_icon_32px.png" />
+    <None Include="Resources\iconfinder_314682_add_folder_icon_64px.png" />
+    <None Include="Resources\iconfinder_314789_add_folder_icon_64px.png" />
+    <None Include="Resources\iconfinder_314764_document_add_icon_64px.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\web.png" />
+    <None Include="Resources\xlsdnld.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

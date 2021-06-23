@@ -18,7 +18,6 @@ namespace DM_BOM
 {
     public partial class frmMain : Form
     {
-         //PVSService.PVSWebServiceSoapClient pvs = null;
         int currentColor = 0;
         int a = 0;
         bool ON = false;
@@ -47,7 +46,7 @@ namespace DM_BOM
             try {
                 if (!NetworkConnection.PingNetwork("172.28.10.17"))
                 {
-                    MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu", "Internet warring!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Kiểm tra lại mạng kết nối!", "INTERNET WARNING!",MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btn_BOM.Visible = false;
                     btn_ECS.Visible = false;
                     btnStart.Visible = false;
@@ -57,7 +56,6 @@ namespace DM_BOM
                 }
                 else
                 {
-                    //pvs = new PVSService.PVSWebServiceSoapClient();
                     connect = new SqlConnection();
                     connect.ConnectionString = constring;
                     connect.Open();
@@ -68,7 +66,6 @@ namespace DM_BOM
                     adapter_mainsub.Fill(dttable);
                     adapter_flashmemory.Fill(dttable_flash_memory);
                     adapter_flashmemory.Dispose();
-                    // dataGridView1.DataSource= dttable;
                     adapter_mainsub.Dispose();
                     connect.Close();
                 }
@@ -98,27 +95,27 @@ namespace DM_BOM
             Connect();
             this.SetStyle(ControlStyles.ResizeRedraw, true);
         }
-        private const int cGript = 16;
-        private const int cCaption = 32;
-        protected override void WndProc(ref Message m)
-        {
-            if (m.Msg == 0x84)
-            {
-                Point pos = new Point(m.LParam.ToInt32());
-                pos = this.PointToClient(pos);
-                if (pos.Y < cCaption)
-                {
-                    m.Result = (IntPtr)2;
-                    return;
-                }
-                if (pos.X >= this.ClientSize.Width - cGript && pos.Y >= this.ClientSize.Height - cGript)
-                {
-                    m.Result = (IntPtr)17;
-                    return;
-                }
-            }
-            base.WndProc(ref m);
-        }
+        //private const int cGript = 16;
+        //private const int cCaption = 32;
+        //protected override void WndProc(ref Message m)
+        //{
+        //    if (m.Msg == 0x84)
+        //    {
+        //        Point pos = new Point(m.LParam.ToInt32());
+        //        pos = this.PointToClient(pos);
+        //        if (pos.Y < cCaption)
+        //        {
+        //            m.Result = (IntPtr)2;
+        //            return;
+        //        }
+        //        if (pos.X >= this.ClientSize.Width - cGript && pos.Y >= this.ClientSize.Height - cGript)
+        //        {
+        //            m.Result = (IntPtr)17;
+        //            return;
+        //        }
+        //    }
+        //    base.WndProc(ref m);
+        //}
         public static string GetRunningVersion()
         {
             try
@@ -339,11 +336,9 @@ namespace DM_BOM
                         var result_list_cus = list_flash_memory.Where(x => x.PartNoCUS == item_flash.BOM).FirstOrDefault();
                       
                         if (result_list_cus == null)
-                        {
-                                
+                        {                                
                                 var addlistd = new Result_Location() { BOM = item_flash.BOM, Location= item_flash.Incomplete };
                                 list_rl.Add(addlistd);
-                                dt.Rows.Add(addlistd.BOM.ToString(), addlistd.Location.ToString());
                         }
                         else
                         {
@@ -353,9 +348,12 @@ namespace DM_BOM
                             {
                                 var addlistd = new Result_Location() { BOM = item_flash.BOM, Location = item_flash.Incomplete };
                                 list_rl.Add(addlistd);
-                                dt.Rows.Add(addlistd.BOM.ToString(), addlistd.Location.ToString());
                             }
                         }
+                    }
+                    foreach( var item_list_rl in list_rl)
+                    {
+                        dt.Rows.Add(item_list_rl.BOM.ToString(), item_list_rl.Location.ToString());
                     }
                     if (list_rl.Count() != 0)
                     {
@@ -372,32 +370,6 @@ namespace DM_BOM
                 }
                 else
                 {
-                    //foreach (var items in list_bom)
-                    //{
-                    //    string value_name_bom = items.BOM_Component.ToString().Substring(0, 9);
-                    //    var check_result = list_ecs.Where(x => x.PartNo == value_name_bom).FirstOrDefault();
-                    //    if (check_result != null)
-                    //    {
-                    //        string[] arrList_locationbom =( items.Location).Split(',');
-                    //        string[] arrList_locationecs = check_result.Location.Split(',');
-                    //        string[] result_dist = arrList_locationbom.Except(arrList_locationecs).ToArray();
-                    //        string result = string.Join(",", result_dist);
-                    //         //var result = arrList_locationbom.Distinct().ToArray();
-                    //        if (result !=  "")
-                    //        {
-                    //            var addlist = new Result() { BOM = items.BOM_Component, Incomplete = result };
-                    //            list_result.Add(addlist);
-                    //            dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString(),i);
-                    //            label5.Text = "VỊ TRÍ CỦA BOM_SAP KHÔNG CÓ TRONG BOM_CUSTOMER";
-                    //            label5.ForeColor = Color.Green;
-                    //            label5.Location = new Point(100, 5);
-                    //        }
-                    //    }
-                    //    i++;
-
-                    //}
-
-
                     foreach (var items in list_bom)
                     {
                         string value_name_bom = items.BOM_Component.ToString().Substring(0, 9);
@@ -440,6 +412,9 @@ namespace DM_BOM
                             }
                         }
                     }
+                    label5.Text = "VỊ TRÍ MÃ BOM SAP KHÔNG CÓ TRONG DANH SÁCH BOM CUSTOMER";
+                    label5.ForeColor = Color.Green;
+                    label5.Location = new Point(100, 5);
                     foreach (var item in list_result)
                     {
                         dt.Rows.Add(item.BOM.ToString(), item.Incomplete.ToString());
@@ -456,55 +431,6 @@ namespace DM_BOM
                         label10.ForeColor = Color.Green;
                         label10.Size = new Size(120, 14);
                     }
-                    //Y81040012
-                    //foreach (var items in disdistinctItems)
-                    //{
-                    //    list_result.Count();
-                    //    for (int i = 0; i < list_result.Count(); i++)
-                    //    {
-                    //        if (list_result[i].BOM.ToString().Substring(0, 9) == items.BOM)
-                    //        {
-                    //            string incomlete_lr = list_result[i].Incomplete.ToString() + "," + items.Incomplete;
-                    //            string[] incomplete = incomlete_lr.Split(',');
-                    //            string[] dist = incomplete.Distinct().ToArray();
-                    //            string result_dist = string.Join(",", dist);
-                    //            items.Incomplete = result_dist;
-                    //        }
-                    //    }
-                    //    list_rl.Add(new Result_Location() { BOM = items.BOM, Location = items.Incomplete });
-                    //}
-                    //foreach (var item_result in list_rl)
-                    //{
-                    //    for (int i = 0; i < list_ecs.Count(); i++)
-                    //    {
-                    //        if (item_result.BOM == list_ecs[i].PartNo)
-                    //        {
-                    //            string[] location_ecs = (list_ecs[i].Location.ToString()).Split(',');
-                    //            string[] location_rl = item_result.Location.Split(',');
-                    //            //string[] dist2 = dd.Distinct().ToArray();
-                    //            //string result_dist2 = string.Join(",", dist2);
-                    //            string[] result_dist2 = location_ecs.Except(location_rl).ToArray();
-                    //            string dist2 = string.Join(",", result_dist2);
-                    //            if (dist2 != "")
-                    //            {
-
-                    //                item_result.Location = dist2;
-                    //                var add = new Result_Location_bomSap { BOM = item_result.BOM, Location = dist2 };
-                    //                list_location_bomsap.Add(add);
-                    //                label5.Text = "VỊ TRÍ CỦA BOM_SAP KHÔNG CÓ TRONG BOM_CUSTOMER";
-                    //                label5.ForeColor = Color.Green;
-                    //                label5.Location = new Point(100, 5);
-                    //                dt.Rows.Add(add.BOM.ToString(), add.Location.ToString());
-                    //            }
-                    //        }
-                    //        else
-                    //        {
-                    //            label5.Text = "KHÔNG CÓ VỊ TRÍ CỦA MÃ BOM SAP THIẾU TRONG MÃ BOM KHÁCH HÀNG!";
-                    //            label5.ForeColor = Color.Red;
-                    //            label5.Location = new Point(60, 5);
-                    //        }
-                    //    }
-                    //}
                 }
 
                 bunifuCircleProgressbar2.Visible = true;
@@ -514,7 +440,8 @@ namespace DM_BOM
                 Properties.Settings.Default.Save();
                 btnStart.Visible = false;
                 btn_MainSubSpecial.Visible = false;
-                datagridview_Result.Columns["Vị trí"].Width = 500;
+                datagridview_Result.AutoResizeColumns();
+                datagridview_Result.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 ON = false;
             }
             catch(Exception ex)
@@ -561,9 +488,9 @@ namespace DM_BOM
           //  datagridview_Result.Size = new Size(400, 100);
             CboSheet.Text = Properties.Settings.Default.Bom;
             cbosheettwo.Text = Properties.Settings.Default.ECS;
-            datagridview_Result_main.DataSource = list_result_null;
-            datagridview_Result_main.Visible = false;
-            panel3.Visible = false;
+            //datagridview_Result_main.DataSource = list_result_null;
+            //datagridview_Result_main.Visible = false;
+            //panel3.Visible = false;
             label10.Text = "";
         }
 
@@ -703,8 +630,7 @@ namespace DM_BOM
                     for (int i = 0; i < dttable.Rows.Count; i++)
                     {
                         string name_part_bom = dttable.Rows[i]["PartNoBom"].ToString().Replace("\r\n", "");
-                        string name_sub_bom = dttable.Rows[i]["SubBom"].ToString().Replace("\r\n", "");
-                        if (name_part_bom == items.PartNo || name_sub_bom == items.PartNo)
+                        if (name_part_bom == items.PartNo)
                         {
                             var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
                             list_result.Add(addlist);
@@ -715,10 +641,10 @@ namespace DM_BOM
                         }
                     }
                 }
-                DataTable table = new DataTable();
-                datagridview_Result_main.DataSource = table;
-                table.Columns.Add("PartNoBOM");
-                table.Columns.Add("Location");
+               // DataTable table = new DataTable();
+                //datagridview_Result_main.DataSource = table;
+                //table.Columns.Add("PartNoBOM");
+                //table.Columns.Add("Location");
                 foreach (var items in list_bom)
                 {
                     for (int i = 0; i < dttable.Rows.Count; i++)
@@ -729,12 +655,12 @@ namespace DM_BOM
                         {
                             var addlist = new Result_Location_bomSap() { BOM = items.BOM_Component, Location = items.Location };
                             list_location_bomsap.Add(addlist);         
-                            datagridview_Result_main.Visible = true;
-                            panel3.Visible = true;
-                            label9.Text = "BOM_SAP CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
-                            label9.ForeColor = Color.Green;
-                            label9.Location = new Point(200, 5);
-                            table.Rows.Add(addlist.BOM.ToString(), addlist.Location.ToString());
+                           // datagridview_Result_main.Visible = true;
+                           // panel3.Visible = true;
+                            //label9.Text = "BOM_SAP CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
+                           // label9.ForeColor = Color.Green;
+                           // label9.Location = new Point(200, 5);
+                           // table.Rows.Add(addlist.BOM.ToString(), addlist.Location.ToString());
                         }
                     }
                 }
@@ -745,8 +671,8 @@ namespace DM_BOM
                 Properties.Settings.Default.Save();
                 datagridview_Result.AutoResizeColumns();
                 datagridview_Result.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                datagridview_Result_main.AutoResizeColumns();
-                datagridview_Result_main.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                //datagridview_Result_main.AutoResizeColumns();
+                //datagridview_Result_main.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 ON = false;
 
             }
@@ -788,6 +714,103 @@ namespace DM_BOM
             startPoint = new Point(e.X, e.Y);
         }
 
-        
+        private void lblexport_Click(object sender, EventArgs e)
+        {
+            //if (datagridview_Result.Rows.Count > 0)
+            //{
+            //    SaveFileDialog save_csv = new SaveFileDialog();
+            //    save_csv.Filter = "CSV (*.csv)|*.csv";
+            //    save_csv.FileName = "CSV.csv";
+            //    bool FileError = false;
+            //    if (save_csv.ShowDialog() == DialogResult.OK)
+            //    {
+            //        if (File.Exists(save_csv.FileName))
+            //        {
+            //            try
+            //            {
+            //                File.Delete(save_csv.FileName);
+            //            }
+            //            catch (IOException ex)
+            //            {
+            //                FileError = true;
+            //                MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
+            //            }
+            //        }
+            //        if (!FileError)
+            //        {
+            //            try
+            //            {
+            //                int columnCount = datagridview_Result.Columns.Count;
+            //                string columnNames = "";
+            //                string[] outputCsv = new string[datagridview_Result.Rows.Count + 1];
+            //                for (int i = 0; i < columnCount; i++)
+            //                {
+            //                    columnNames += datagridview_Result.Columns[i].HeaderText.ToString() + ",";
+            //                }
+            //                outputCsv[0] += columnNames;
+
+            //                for (int i = 1; (i - 1) < datagridview_Result.Rows.Count; i++)
+            //                {
+            //                    for (int j = 0; j < columnCount; j++)
+            //                    {
+            //                        outputCsv[i] += datagridview_Result.Rows[i - 1].Cells[j].Value.ToString() + ",";
+            //                    }
+            //                }
+
+            //                File.WriteAllLines(save_csv.FileName, outputCsv, Encoding.UTF8);
+            //                MessageBox.Show("Data Exported Successfully !!!", "Info");
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                MessageBox.Show("Error :" + ex.Message);
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("No Record To Export !!!", "Info");
+            //    }
+
+            //}
+            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+            app.Application.Workbooks.Add(Type.Missing);
+            for (int i = 1; i < datagridview_Result.Columns.Count + 1; i++)
+            {
+                app.Cells[1, i] = datagridview_Result.Columns[i - 1].HeaderText;
+            }
+            if (datagridview_Result.Rows.Count >1 )
+            {
+                for (int i = 0; i < datagridview_Result.Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j < datagridview_Result.Columns.Count; j++)
+                    {
+                        app.Cells[i + 2, j + 1] = datagridview_Result.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < datagridview_Result.Rows.Count; i++)
+                {
+                    for (int j = 0; j < datagridview_Result.Columns.Count; j++)
+                    {
+                        app.Cells[i +2, j +1 ] = datagridview_Result.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+
+            }
+            app.Columns.AutoFit();
+            app.Visible = true;
+        }
+
+        private void mainSubSpecialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Form_MainSubSpecial().ShowDialog();
+        }
+
+        private void managerICToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Form_ICManager().ShowDialog();
+        }
     }
 }
