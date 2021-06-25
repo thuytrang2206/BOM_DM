@@ -297,8 +297,8 @@ namespace DM_BOM
                 }
                 DataTable dt = new DataTable();
                 datagridview_Result.DataSource = dt;
-                dt.Columns.Add("Mã bom");
-                dt.Columns.Add("Vị trí");
+                dt.Columns.Add("BOM NAME");
+                dt.Columns.Add("LOCATION");
                 list_bom.Clear();
                 list_ecs.Clear();
                 Load_datatable_list_flash_memory();     
@@ -488,9 +488,9 @@ namespace DM_BOM
           //  datagridview_Result.Size = new Size(400, 100);
             CboSheet.Text = Properties.Settings.Default.Bom;
             cbosheettwo.Text = Properties.Settings.Default.ECS;
-            //datagridview_Result_main.DataSource = list_result_null;
-            //datagridview_Result_main.Visible = false;
-            //panel3.Visible = false;
+            dtgv_bomcus.DataSource = list_result_null;
+            dtgv_bomcus.Visible = false;
+            panel3.Visible = false;
             label10.Text = "";
         }
 
@@ -586,14 +586,12 @@ namespace DM_BOM
                     }
                 }
                 CboSheet.Text = Properties.Settings.Default.Bom;
-                cbosheettwo.Text = Properties.Settings.Default.ECS;
-                
+                cbosheettwo.Text = Properties.Settings.Default.ECS;               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void btn_MainSubSpecial_Click(object sender, EventArgs e)
@@ -605,10 +603,14 @@ namespace DM_BOM
                     MessageBox.Show("Please select file before pressing start", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                DataTable dt = new DataTable();
-                datagridview_Result.DataSource = dt;
-                dt.Columns.Add("PartNoBOM");
-                dt.Columns.Add("Location");               
+                DataTable dt_bomsap = new DataTable();
+                datagridview_Result.DataSource = dt_bomsap;
+                dt_bomsap.Columns.Add("PartNoBOM");
+                dt_bomsap.Columns.Add("Location");
+                DataTable dt_bomcus = new DataTable();
+                dtgv_bomcus.DataSource = dt_bomcus;
+                dt_bomcus.Columns.Add("PartNoBOM");
+                dt_bomcus.Columns.Add("Location");
                 list_bom.Clear();
                 list_ecs.Clear();
                 Load_datatable_list_flash_memory();
@@ -630,40 +632,56 @@ namespace DM_BOM
                     for (int i = 0; i < dttable.Rows.Count; i++)
                     {
                         string name_part_bom = dttable.Rows[i]["PartNoBom"].ToString().Replace("\r\n", "");
+                        string name_sub_bom = dttable.Rows[i]["SubBom"].ToString().Replace("\r\n", "");
                         if (name_part_bom == items.PartNo)
                         {
                             var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
                             list_result.Add(addlist);
-                            label5.Text = "BOM_CUSTOMER CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
-                            label5.ForeColor = Color.Green;
-                            label5.Location = new Point(100, 5);
-                            dt.Rows.Add(addlist.BOM.ToString(), addlist.Incomplete.ToString());
+                            label9.Text = "MÃ BOM CUSTOMER CÓ MAIN_SUB ĐẶC BIỆT! ";
+                            label9.ForeColor = Color.Green;
+                            dtgv_bomcus.Visible = true;
+                            dt_bomcus.Rows.Add(addlist.BOM, addlist.Incomplete);
+                            foreach (var item_listbom in list_bom)
+                            {
+                                if(item_listbom.BOM_Component.Substring(0,9)== items.PartNo)
+                                {
+                                    string[] arrList_location_listbom = (item_listbom.Location).Split(',');
+                                    string[] arrList_location_listresult = items.Location.Split(',');
+                                    string[] result_dist = arrList_location_listresult.Intersect(arrList_location_listbom).ToArray();
+                                    string result = string.Join(",", result_dist);
+                                    //var result = arrList_locationbom.Distinct().ToArray();
+                                    if (result != "")
+                                    {
+                                       
+                                        var addlist_bom = new Result_Location() { BOM = item_listbom.BOM_Component, Location = item_listbom.Location };
+                                        list_rl.Add(addlist_bom);
+                                    }
+                                }
+                                if (item_listbom.BOM_Component.Substring(0, 9) == name_sub_bom)
+                                {
+                                    string[] arrList_location_listbom = (item_listbom.Location).Split(',');
+                                    string[] arrList_location_listresult = items.Location.Split(',');
+                                    string[] result_dist = arrList_location_listresult.Intersect(arrList_location_listbom).ToArray();
+                                    string result = string.Join(",", result_dist);
+                                    //var result = arrList_locationbom.Distinct().ToArray();
+                                    if (result != "")
+                                    {
+                                        var addlist_bom = new Result_Location() { BOM = item_listbom.BOM_Component, Location = item_listbom.Location };
+                                        list_rl.Add(addlist_bom);
+                                    }
+                                }
+                            }
+                            foreach(var item in list_rl)
+                            {
+                                label5.Text = "MÃ BOM SAP CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
+                                label5.ForeColor = Color.Green;
+                                label5.Location = new Point(100, 5);
+                                dt_bomsap.Rows.Add(item.BOM.ToString(), item.Location.ToString());
+                            }
                         }
                     }
                 }
-               // DataTable table = new DataTable();
-                //datagridview_Result_main.DataSource = table;
-                //table.Columns.Add("PartNoBOM");
-                //table.Columns.Add("Location");
-                foreach (var items in list_bom)
-                {
-                    for (int i = 0; i < dttable.Rows.Count; i++)
-                    {
-                        string name_part_bom = dttable.Rows[i]["PartNoBom"].ToString().Replace("\r\n", "");
-                        string name_sub_bom = dttable.Rows[i]["SubBom"].ToString().Replace("\r\n", "");
-                        if (name_part_bom == items.BOM_Component.Substring(0,9) || name_sub_bom == items.BOM_Component.Substring(0,9))
-                        {
-                            var addlist = new Result_Location_bomSap() { BOM = items.BOM_Component, Location = items.Location };
-                            list_location_bomsap.Add(addlist);         
-                           // datagridview_Result_main.Visible = true;
-                           // panel3.Visible = true;
-                            //label9.Text = "BOM_SAP CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
-                           // label9.ForeColor = Color.Green;
-                           // label9.Location = new Point(200, 5);
-                           // table.Rows.Add(addlist.BOM.ToString(), addlist.Location.ToString());
-                        }
-                    }
-                }
+               
                 bunifuCircleProgressbar2.Visible = true;
                 label6.Visible = true;
                 Properties.Settings.Default.Bom = CboSheet.Text;
@@ -776,29 +794,32 @@ namespace DM_BOM
             app.Application.Workbooks.Add(Type.Missing);
             for (int i = 1; i < datagridview_Result.Columns.Count + 1; i++)
             {
-                app.Cells[1, i] = datagridview_Result.Columns[i - 1].HeaderText;
+                app.Cells[1, 1] = label5.Text;
+                app.Cells[2, i] = datagridview_Result.Columns[i - 1].HeaderText;
             }
-            if (datagridview_Result.Rows.Count >1 )
+            for (int i = 0; i < datagridview_Result.Rows.Count; i++)
             {
-                for (int i = 0; i < datagridview_Result.Rows.Count - 1; i++)
+                for (int j = 0; j < datagridview_Result.Columns.Count; j++)
                 {
-                    for (int j = 0; j < datagridview_Result.Columns.Count; j++)
+                    app.Cells[i + 3, j + 1] = datagridview_Result.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+            if (dtgv_bomcus.Rows.Count > 0)
+            {
+                for (int i = 1; i < dtgv_bomcus.Columns.Count + 1; i++)
+                {
+                    app.Cells[1, 5] = label9.Text;
+                    app.Cells[2, i + 4] = dtgv_bomcus.Columns[i - 1].HeaderText;
+                }
+                for (int i = 0; i < dtgv_bomcus.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dtgv_bomcus.Columns.Count; j++)
                     {
-                        app.Cells[i + 2, j + 1] = datagridview_Result.Rows[i].Cells[j].Value.ToString();
+                        app.Cells[i + 3, j + 5] = dtgv_bomcus.Rows[i].Cells[j].Value.ToString();
                     }
                 }
             }
-            else
-            {
-                for (int i = 0; i < datagridview_Result.Rows.Count; i++)
-                {
-                    for (int j = 0; j < datagridview_Result.Columns.Count; j++)
-                    {
-                        app.Cells[i +2, j +1 ] = datagridview_Result.Rows[i].Cells[j].Value.ToString();
-                    }
-                }
-
-            }
+            
             app.Columns.AutoFit();
             app.Visible = true;
         }

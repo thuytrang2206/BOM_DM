@@ -11,24 +11,19 @@ using System.Windows.Forms;
 
 namespace DM_BOM
 {
-    public partial class Form_AddMainSub : Form
+    public partial class Form_Add_ICManager : Form
     {
         string constring = @"Data Source=172.28.10.17;Initial Catalog=BOM_DM;Persist Security Info=True;User ID=sa;PASSWORD=umc@2019";
         SqlConnection connect;
         SqlDataAdapter adapter;
         DataTable table;
         SqlCommand cmd;
-        private Form_MainSubSpecial frm_mainsub;
-        public Form_AddMainSub(Form_MainSubSpecial frm_mainsub)
+        private Form_ICManager frm_icmanager;
+        
+        public Form_Add_ICManager(Form_ICManager frm_icmanager)
         {
             InitializeComponent();
-            this.frm_mainsub = frm_mainsub;
-        }
-        public void Clear()
-        {
-            txtPartlistName.Text = "";
-            txtSubbom.Text = "";
-            this.Close();
+            this.frm_icmanager = frm_icmanager;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -37,25 +32,25 @@ namespace DM_BOM
             {
                 connect = new SqlConnection();
                 connect.ConnectionString = constring;
-                cmd = new SqlCommand("insert into Main_Sub(PartNoBom,SubBom) values(@partnobom,@subbom)", connect);
+                cmd = new SqlCommand("insert into Flash_memory(PartNoCUS,PartNoBOM) values (@partCUS,@partBOM) ", connect);
                 connect.Open();
-                cmd.Parameters.AddWithValue("@partnobom", txtPartlistName.Text);
-                cmd.Parameters.AddWithValue("@subbom", txtSubbom.Text);
-                if (txtPartlistName.Text == "" && txtSubbom.Text == "")
+                cmd.Parameters.AddWithValue("@partCUS", txtPartCUS.Text);
+                cmd.Parameters.AddWithValue("@partBOM", txtPartBOM.Text);
+                if (txtPartCUS.Text == "" && txtPartBOM.Text == "")
                 {
                     lblerrorpartlist.Text = "Data cannot be empty!";
                     lblerrormain.Text = "Data cannot be empty!";
                 }
                 else
                 {
-                    if (txtPartlistName.Text == "" && txtSubbom.Text != "")
+                    if (txtPartCUS.Text == "" && txtPartBOM.Text != "")
                     {
                         lblerrorpartlist.Text = "Data cannot be empty!";
                         lblerrormain.Text = "";
                     }
                     else
                     {
-                        if (txtPartlistName.Text != "" && txtSubbom.Text == "")
+                        if (txtPartCUS.Text != "" && txtPartBOM.Text == "")
                         {
                             lblerrorpartlist.Text = "";
                             lblerrormain.Text = "Data cannot be empty!";
@@ -63,13 +58,14 @@ namespace DM_BOM
                         else
                         {
                             cmd.ExecuteNonQuery();
-                            adapter = new SqlDataAdapter("Select * from Main_Sub", connect);
+                            adapter = new SqlDataAdapter("Select * from Flash_memory", connect);
                             table = new DataTable();
                             adapter.Fill(table);
-                            frm_mainsub.dtgv_Mainsubspecial.DataSource = table;
-                            for (int i = 0; i < frm_mainsub.dtgv_Mainsubspecial.Rows.Count - 1; i++)
+                            frm_icmanager.dtgv_Flashmemory.DataSource = table;
+                            frm_icmanager.dtgv_Flashmemory.DataSource = table;
+                            for (int i = 0; i < frm_icmanager.dtgv_Flashmemory.Rows.Count - 1; i++)
                             {
-                                frm_mainsub.dtgv_Mainsubspecial.Rows[i].Cells["No"].Value = i + 1;
+                                frm_icmanager.dtgv_Flashmemory.Rows[i].Cells["No"].Value = i + 1;
                             }
                             connect.Close();
                             Clear();
@@ -83,5 +79,11 @@ namespace DM_BOM
             }
         }
 
+        public void Clear()
+        {
+            txtPartCUS.Text = "";
+            txtPartBOM.Text = "";
+            this.Close();
+        }
     }
 }

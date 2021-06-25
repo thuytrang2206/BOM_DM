@@ -1,6 +1,6 @@
 ﻿namespace DM_BOM
 {
-    partial class Form_AddMainSub
+    partial class Form_Add_ICManager
     {
         /// <summary>
         /// Required designer variable.
@@ -28,38 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_AddMainSub));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Add_ICManager));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtPartBOM = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.txtPartCUS = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.labelmain = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.lblerrormain = new System.Windows.Forms.Label();
             this.lblerrorpartlist = new System.Windows.Forms.Label();
             this.btnSave = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.txtSubbom = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.txtPartlistName = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.labelmain = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtPartBOM);
+            this.groupBox1.Controls.Add(this.bunifuCustomLabel1);
+            this.groupBox1.Controls.Add(this.txtPartCUS);
+            this.groupBox1.Controls.Add(this.labelmain);
             this.groupBox1.Controls.Add(this.lblerrormain);
             this.groupBox1.Controls.Add(this.lblerrorpartlist);
             this.groupBox1.Controls.Add(this.btnSave);
-            this.groupBox1.Controls.Add(this.txtSubbom);
-            this.groupBox1.Controls.Add(this.txtPartlistName);
-            this.groupBox1.Controls.Add(this.labelmain);
-            this.groupBox1.Controls.Add(this.bunifuCustomLabel1);
-            this.groupBox1.Location = new System.Drawing.Point(23, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(392, 164);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            // 
+            // txtPartBOM
+            // 
+            this.txtPartBOM.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtPartBOM.Location = new System.Drawing.Point(206, 80);
+            this.txtPartBOM.Name = "txtPartBOM";
+            this.txtPartBOM.Size = new System.Drawing.Size(133, 20);
+            this.txtPartBOM.TabIndex = 14;
+            // 
+            // bunifuCustomLabel1
+            // 
+            this.bunifuCustomLabel1.AutoSize = true;
+            this.bunifuCustomLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(94, 81);
+            this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
+            this.bunifuCustomLabel1.Size = new System.Drawing.Size(106, 15);
+            this.bunifuCustomLabel1.TabIndex = 13;
+            this.bunifuCustomLabel1.Text = "Part on BOM SAP:";
+            // 
+            // txtPartCUS
+            // 
+            this.txtPartCUS.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtPartCUS.Location = new System.Drawing.Point(206, 25);
+            this.txtPartCUS.Name = "txtPartCUS";
+            this.txtPartCUS.Size = new System.Drawing.Size(130, 20);
+            this.txtPartCUS.TabIndex = 12;
+            // 
+            // labelmain
+            // 
+            this.labelmain.AutoSize = true;
+            this.labelmain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelmain.Location = new System.Drawing.Point(48, 26);
+            this.labelmain.Name = "labelmain";
+            this.labelmain.Size = new System.Drawing.Size(152, 15);
+            this.labelmain.TabIndex = 11;
+            this.labelmain.Text = "Part on BOM CUSTOMER:";
             // 
             // lblerrormain
             // 
             this.lblerrormain.AutoSize = true;
             this.lblerrormain.ForeColor = System.Drawing.Color.Red;
-            this.lblerrormain.Location = new System.Drawing.Point(177, 105);
+            this.lblerrormain.Location = new System.Drawing.Point(203, 105);
             this.lblerrormain.Name = "lblerrormain";
             this.lblerrormain.Size = new System.Drawing.Size(0, 13);
             this.lblerrormain.TabIndex = 10;
@@ -68,7 +104,7 @@
             // 
             this.lblerrorpartlist.AutoSize = true;
             this.lblerrorpartlist.ForeColor = System.Drawing.Color.Red;
-            this.lblerrorpartlist.Location = new System.Drawing.Point(177, 59);
+            this.lblerrorpartlist.Location = new System.Drawing.Point(205, 52);
             this.lblerrorpartlist.Name = "lblerrorpartlist";
             this.lblerrorpartlist.Size = new System.Drawing.Size(0, 13);
             this.lblerrorpartlist.TabIndex = 9;
@@ -99,51 +135,14 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtSubbom
-            // 
-            this.txtSubbom.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtSubbom.Location = new System.Drawing.Point(180, 77);
-            this.txtSubbom.Name = "txtSubbom";
-            this.txtSubbom.Size = new System.Drawing.Size(130, 20);
-            this.txtSubbom.TabIndex = 7;
-            // 
-            // txtPartlistName
-            // 
-            this.txtPartlistName.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtPartlistName.Location = new System.Drawing.Point(179, 36);
-            this.txtPartlistName.Name = "txtPartlistName";
-            this.txtPartlistName.Size = new System.Drawing.Size(131, 20);
-            this.txtPartlistName.TabIndex = 6;
-            // 
-            // labelmain
-            // 
-            this.labelmain.AutoSize = true;
-            this.labelmain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelmain.Location = new System.Drawing.Point(77, 82);
-            this.labelmain.Name = "labelmain";
-            this.labelmain.Size = new System.Drawing.Size(74, 15);
-            this.labelmain.TabIndex = 5;
-            this.labelmain.Text = "Sub special:";
-            // 
-            // bunifuCustomLabel1
-            // 
-            this.bunifuCustomLabel1.AutoSize = true;
-            this.bunifuCustomLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(45, 37);
-            this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
-            this.bunifuCustomLabel1.Size = new System.Drawing.Size(131, 15);
-            this.bunifuCustomLabel1.TabIndex = 4;
-            this.bunifuCustomLabel1.Text = "Part on bom customer:";
-            // 
-            // Form_AddMainSub
+            // Form_Add_ICManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 194);
+            this.ClientSize = new System.Drawing.Size(416, 194);
             this.Controls.Add(this.groupBox1);
-            this.Location = new System.Drawing.Point(200, 0);
-            this.Name = "Form_AddMainSub";
-            this.Text = "Add_Main_Sub_Special";
+            this.Name = "Form_Add_ICManager";
+            this.Text = "IC Manager";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -153,12 +152,12 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnSave;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtSubbom;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtPartlistName;
-        private Bunifu.Framework.UI.BunifuCustomLabel labelmain;
-        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         private System.Windows.Forms.Label lblerrormain;
         private System.Windows.Forms.Label lblerrorpartlist;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnSave;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtPartBOM;
+        private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtPartCUS;
+        private Bunifu.Framework.UI.BunifuCustomLabel labelmain;
     }
 }

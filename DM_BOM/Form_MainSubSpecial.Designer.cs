@@ -31,23 +31,24 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_MainSubSpecial));
             this.dtgv_Mainsubspecial = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartNoBom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubBom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Partonbomcustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subspecial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnEdit = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnDel = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnAdd = new Bunifu.Framework.UI.BunifuImageButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtId = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.lbl_Id = new System.Windows.Forms.Label();
             this.lblId = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.lblerrorpartlist = new System.Windows.Forms.Label();
-            this.txtSubbom = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.txtPartlistName = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.labelmain = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.lblpart = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtSearch = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.btn_Searchs = new Bunifu.Framework.UI.BunifuImageButton();
+            this.txtSearch = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.txtpartbomcus = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.txtsubspecial = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_Mainsubspecial)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
@@ -63,12 +64,13 @@
             this.dtgv_Mainsubspecial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgv_Mainsubspecial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-            this.PartNoBom,
-            this.SubBom});
-            this.dtgv_Mainsubspecial.Location = new System.Drawing.Point(40, 37);
+            this.No,
+            this.Partonbomcustomer,
+            this.Subspecial});
+            this.dtgv_Mainsubspecial.Location = new System.Drawing.Point(12, 34);
             this.dtgv_Mainsubspecial.Name = "dtgv_Mainsubspecial";
             this.dtgv_Mainsubspecial.RowHeadersVisible = false;
-            this.dtgv_Mainsubspecial.Size = new System.Drawing.Size(370, 420);
+            this.dtgv_Mainsubspecial.Size = new System.Drawing.Size(370, 252);
             this.dtgv_Mainsubspecial.TabIndex = 0;
             this.dtgv_Mainsubspecial.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_Mainsubspecial_CellClick);
             // 
@@ -79,19 +81,25 @@
             this.Id.Name = "Id";
             this.Id.Width = 50;
             // 
-            // PartNoBom
+            // No
             // 
-            this.PartNoBom.DataPropertyName = "PartNoBom";
-            this.PartNoBom.HeaderText = "PartNoBom";
-            this.PartNoBom.Name = "PartNoBom";
-            this.PartNoBom.Width = 150;
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.Width = 50;
             // 
-            // SubBom
+            // Partonbomcustomer
             // 
-            this.SubBom.DataPropertyName = "SubBom";
-            this.SubBom.HeaderText = "SubBom";
-            this.SubBom.Name = "SubBom";
-            this.SubBom.Width = 150;
+            this.Partonbomcustomer.DataPropertyName = "PartNoBom";
+            this.Partonbomcustomer.HeaderText = "Part on bom customer";
+            this.Partonbomcustomer.Name = "Partonbomcustomer";
+            this.Partonbomcustomer.Width = 150;
+            // 
+            // Subspecial
+            // 
+            this.Subspecial.DataPropertyName = "SubBom";
+            this.Subspecial.HeaderText = "Sub special";
+            this.Subspecial.Name = "Subspecial";
+            this.Subspecial.Width = 150;
             // 
             // panel1
             // 
@@ -115,6 +123,7 @@
             this.btnEdit.TabIndex = 2;
             this.btnEdit.TabStop = false;
             this.btnEdit.Zoom = 10;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDel
             // 
@@ -146,114 +155,91 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtId);
+            this.groupBox1.Controls.Add(this.txtsubspecial);
+            this.groupBox1.Controls.Add(this.txtpartbomcus);
+            this.groupBox1.Controls.Add(this.lbl_Id);
             this.groupBox1.Controls.Add(this.lblId);
             this.groupBox1.Controls.Add(this.lblerrorpartlist);
-            this.groupBox1.Controls.Add(this.txtSubbom);
-            this.groupBox1.Controls.Add(this.txtPartlistName);
             this.groupBox1.Controls.Add(this.labelmain);
             this.groupBox1.Controls.Add(this.lblpart);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(416, 92);
+            this.groupBox1.Location = new System.Drawing.Point(388, 92);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(219, 138);
+            this.groupBox1.Size = new System.Drawing.Size(247, 194);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Info";
             // 
-            // txtId
+            // lbl_Id
             // 
-            this.txtId.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(105, 24);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(103, 20);
-            this.txtId.TabIndex = 23;
+            this.lbl_Id.AutoSize = true;
+            this.lbl_Id.Enabled = false;
+            this.lbl_Id.Location = new System.Drawing.Point(149, 106);
+            this.lbl_Id.Name = "lbl_Id";
+            this.lbl_Id.Size = new System.Drawing.Size(41, 13);
+            this.lbl_Id.TabIndex = 24;
+            this.lbl_Id.Text = "label1";
+            this.lbl_Id.Visible = false;
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
+            this.lblId.Enabled = false;
             this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Location = new System.Drawing.Point(17, 29);
+            this.lblId.Location = new System.Drawing.Point(121, 106);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(22, 15);
             this.lblId.TabIndex = 22;
             this.lblId.Text = "ID:";
+            this.lblId.Visible = false;
             // 
             // lblerrorpartlist
             // 
             this.lblerrorpartlist.AutoSize = true;
             this.lblerrorpartlist.ForeColor = System.Drawing.Color.Red;
-            this.lblerrorpartlist.Location = new System.Drawing.Point(103, 80);
+            this.lblerrorpartlist.Location = new System.Drawing.Point(118, 50);
             this.lblerrorpartlist.Name = "lblerrorpartlist";
             this.lblerrorpartlist.Size = new System.Drawing.Size(0, 13);
             this.lblerrorpartlist.TabIndex = 21;
-            // 
-            // txtSubbom
-            // 
-            this.txtSubbom.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtSubbom.Enabled = false;
-            this.txtSubbom.Location = new System.Drawing.Point(105, 95);
-            this.txtSubbom.Name = "txtSubbom";
-            this.txtSubbom.Size = new System.Drawing.Size(106, 20);
-            this.txtSubbom.TabIndex = 20;
-            // 
-            // txtPartlistName
-            // 
-            this.txtPartlistName.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtPartlistName.Enabled = false;
-            this.txtPartlistName.Location = new System.Drawing.Point(105, 57);
-            this.txtPartlistName.Name = "txtPartlistName";
-            this.txtPartlistName.Size = new System.Drawing.Size(103, 20);
-            this.txtPartlistName.TabIndex = 19;
             // 
             // labelmain
             // 
             this.labelmain.AutoSize = true;
             this.labelmain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelmain.Location = new System.Drawing.Point(7, 100);
+            this.labelmain.Location = new System.Drawing.Point(61, 68);
             this.labelmain.Name = "labelmain";
-            this.labelmain.Size = new System.Drawing.Size(100, 15);
+            this.labelmain.Size = new System.Drawing.Size(74, 15);
             this.labelmain.TabIndex = 18;
-            this.labelmain.Text = "Main_sub name:";
+            this.labelmain.Text = "Sub special:";
             // 
             // lblpart
             // 
             this.lblpart.AutoSize = true;
             this.lblpart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblpart.Location = new System.Drawing.Point(17, 62);
+            this.lblpart.Location = new System.Drawing.Point(6, 32);
             this.lblpart.Name = "lblpart";
-            this.lblpart.Size = new System.Drawing.Size(82, 15);
+            this.lblpart.Size = new System.Drawing.Size(131, 15);
             this.lblpart.TabIndex = 17;
-            this.lblpart.Text = "Partlist name:";
+            this.lblpart.Text = "Part on bom customer:";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btn_Searchs);
             this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(416, 33);
+            this.groupBox2.Location = new System.Drawing.Point(388, 33);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(219, 53);
+            this.groupBox2.Size = new System.Drawing.Size(247, 53);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtSearch.Location = new System.Drawing.Point(11, 19);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(164, 20);
-            this.txtSearch.TabIndex = 0;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btn_Searchs
             // 
             this.btn_Searchs.BackColor = System.Drawing.Color.White;
             this.btn_Searchs.Image = ((System.Drawing.Image)(resources.GetObject("btn_Searchs.Image")));
             this.btn_Searchs.ImageActive = null;
-            this.btn_Searchs.Location = new System.Drawing.Point(181, 15);
+            this.btn_Searchs.Location = new System.Drawing.Point(211, 15);
             this.btn_Searchs.Name = "btn_Searchs";
             this.btn_Searchs.Size = new System.Drawing.Size(25, 24);
             this.btn_Searchs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -262,18 +248,43 @@
             this.btn_Searchs.Zoom = 10;
             this.btn_Searchs.Click += new System.EventHandler(this.btn_Searchs_Click);
             // 
+            // txtSearch
+            // 
+            this.txtSearch.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtSearch.Location = new System.Drawing.Point(11, 19);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(194, 20);
+            this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // txtpartbomcus
+            // 
+            this.txtpartbomcus.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtpartbomcus.Location = new System.Drawing.Point(136, 31);
+            this.txtpartbomcus.Name = "txtpartbomcus";
+            this.txtpartbomcus.Size = new System.Drawing.Size(100, 20);
+            this.txtpartbomcus.TabIndex = 27;
+            // 
+            // txtsubspecial
+            // 
+            this.txtsubspecial.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtsubspecial.Location = new System.Drawing.Point(136, 67);
+            this.txtsubspecial.Name = "txtsubspecial";
+            this.txtsubspecial.Size = new System.Drawing.Size(100, 20);
+            this.txtsubspecial.TabIndex = 28;
+            // 
             // Form_MainSubSpecial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(650, 487);
+            this.ClientSize = new System.Drawing.Size(652, 321);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dtgv_Mainsubspecial);
             this.Name = "Form_MainSubSpecial";
-            this.Text = "Form_MainSubSpecial";
+            this.Text = "Main_Sub_Special";
             this.Load += new System.EventHandler(this.Form_MainSubSpecial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_Mainsubspecial)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -290,24 +301,25 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PartNoBom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubBom;
         private System.Windows.Forms.Panel panel1;
         private Bunifu.Framework.UI.BunifuImageButton btnAdd;
         public System.Windows.Forms.DataGridView dtgv_Mainsubspecial;
         private Bunifu.Framework.UI.BunifuImageButton btnEdit;
         private Bunifu.Framework.UI.BunifuImageButton btnDel;
         private System.Windows.Forms.GroupBox groupBox1;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtId;
         private Bunifu.Framework.UI.BunifuCustomLabel lblId;
         private System.Windows.Forms.Label lblerrorpartlist;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtSubbom;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtPartlistName;
         private Bunifu.Framework.UI.BunifuCustomLabel labelmain;
         private Bunifu.Framework.UI.BunifuCustomLabel lblpart;
         private System.Windows.Forms.GroupBox groupBox2;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox txtSearch;
         private Bunifu.Framework.UI.BunifuImageButton btn_Searchs;
+        private System.Windows.Forms.Label lbl_Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn No;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Partonbomcustomer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Subspecial;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtsubspecial;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtpartbomcus;
     }
 }
