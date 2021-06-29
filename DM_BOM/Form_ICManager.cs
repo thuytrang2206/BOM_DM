@@ -18,18 +18,60 @@ namespace DM_BOM
         SqlDataAdapter adapter;
         DataTable table;
         SqlCommand cmd;
+        SqlCommand cmd_his;
+        SqlDataAdapter adapter_role;
+        DataTable table_role;
         int ?_id;
+        private string staffcode;
+        private int id_role;
+        private int id_user;
+
         public Form_ICManager()
         {
             InitializeComponent();
         }
+        public Form_ICManager(string staff_code, int idrole,int iduser)
+        {
+            this.staffcode = staff_code;
+            this.id_role = idrole;
+            this.id_user = iduser;
+            InitializeComponent();
 
+        }
+        public void Check_role()
+        {
+            Connect();
+            adapter_role = new SqlDataAdapter("Select * from Role_user", connect);
+            adapter_role.Fill(table_role);
+            foreach (DataRow row in table_role.Rows)
+            {
+                int id_role_user = int.Parse(row["Id_role"].ToString());
+                string name_role = row["Name"].ToString();
+                if (id_role == id_role_user)
+                {
+                    if (name_role == "user")
+                    {
+                        btnAdd.Visible = false;
+                        btnEdit.Visible = false;
+                        btnDel.Visible = false;
+                    }
+                    else
+                    {
+                        btnAdd.Visible = true;
+                        btnEdit.Visible = true;
+                        btnDel.Visible = true;
+                    }
+                }
+
+            }
+        }
         public void Connect()
         {
             connect = new SqlConnection();
             connect.ConnectionString = constring;
             connect.Open();
             table = new DataTable();
+            table_role = new DataTable();
         }
 
         public void Load_data()
@@ -55,13 +97,13 @@ namespace DM_BOM
         private void Form_ICManager_Load(object sender, EventArgs e)
         {
             Load_data();
-           
+            Check_role();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Form_Add_ICManager frm_icmanager = new Form_Add_ICManager(this);
-            frm_icmanager.Show();
+            Form_Add_ICManager frm_icmanager = new Form_Add_ICManager(staffcode, id_user, this);
+            frm_icmanager.ShowDialog();
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -73,6 +115,12 @@ namespace DM_BOM
                     Connect();
                     cmd = new SqlCommand("delete Flash_memory where Id='" + _id + "'", connect);
                     cmd.ExecuteNonQuery();
+                    cmd_his = new SqlCommand("insert into History(Datetime,Id_user,Status,Note) values(@datetime,@id_user,@status,@note)", connect);
+                    cmd_his.Parameters.AddWithValue("@datetime", DateTime.Now);
+                    cmd_his.Parameters.AddWithValue("@id_user", id_user);
+                    cmd_his.Parameters.AddWithValue("@status", Task.Delete_data.ToString());
+                    cmd_his.Parameters.AddWithValue("@note", "Delete data with Part on bom customer to '" + txtbomcustomer.Text + "' and Part on bom sap to '" + txtbomsap.Text + "' in IC Manager");
+                    cmd_his.ExecuteNonQuery();
                     MessageBox.Show("Record Deleted Successfully!");
                     Load_data();
                     connect.Close();
@@ -80,7 +128,7 @@ namespace DM_BOM
                 }
                 else
                 {
-                    MessageBox.Show("Don't have choose value to delete!");
+                    MessageBox.Show("Don't have choose value to delete!","Warning!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }   
             }
             catch(Exception ex)
@@ -116,7 +164,7 @@ namespace DM_BOM
         {
             Search();
         }
-
+          
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (txtSearch.Text == "")
@@ -129,13 +177,26 @@ namespace DM_BOM
         {
             try
             {
-                Connect();
-                cmd = new SqlCommand("update Flash_memory set PartNoCUS='" + txtbomcustomer.Text + "', PartNoBOM='" +txtbomsap.Text + "' where Id='" + _id + "'", connect);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Record Updated Successfully!");
-                Load_data();
-                connect.Close();
-                Clear();
+                if (_id!= null)
+                {
+                    Connect();
+                    cmd = new SqlCommand("update Flash_memory set PartNoCUS='" + txtbomcustomer.Text + "', PartNoBOM='" + txtbomsap.Text + "',Id_user='" + id_user + "' where Id='" + _id + "'", connect);
+                    cmd_his = new SqlCommand("insert into History(Datetime,Id_user,Status,Note) values(@datetime,@id_user,@status,@note)", connect);
+                    cmd_his.Parameters.AddWithValue("@datetime", DateTime.Now);
+                    cmd_his.Parameters.AddWithValue("@id_user", id_user);
+                    cmd_his.Parameters.AddWithValue("@status", Task.Edit_data.ToString());
+                    cmd_his.Parameters.AddWithValue("@note", "Edit data with Part on bom customer to '" + txtbomcustomer.Text + "' and Part on bom sap to '" + txtbomsap.Text + "' in IC Manager");
+                    cmd_his.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Record Updated Successfully!");
+                    Load_data();
+                    connect.Close();
+                    Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Don't have value to edit!", "Warning!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch(Exception ex)
             {

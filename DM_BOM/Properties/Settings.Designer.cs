@@ -70,5 +70,16 @@ namespace DM_BOM.Properties {
                 this["PathfileB"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.28.10.17;Initial Catalog=BOM_DM;Persist Security Info=True;User I" +
+            "D=sa;Password=umc@2019")]
+        public string BOM_DMConnectionString {
+            get {
+                return ((string)(this["BOM_DMConnectionString"]));
+            }
+        }
     }
 }

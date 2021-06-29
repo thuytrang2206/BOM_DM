@@ -117,50 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="iconfinder_314789_add_folder_icon_64px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconfinder_314789_add_folder_icon_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="roleuserBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>164, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnSave.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEIAAAAhCAYAAABtNH0cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIaSURBVGhD7ZjLSwJRFMb7i9q1adeqVW0KgmhRLSQoMAIj
+        IqJFRCFhLRQiw6CHSYVRUEQUUyiF0UMkNEF7KqRFQ7iQWpz47lynxKk2bWbu/eBb6Qz3/Jh7XlWqqpK0
+        ShIEtwTBLUFwSxDcEgT3ryCenvO0frZHfcFJal8apvqZbqp2tpjGOC/O3bM2Tv7IDj3msoZxwj+C2I2F
+        2Iscm1O0Ew/T6f0VZdQcmUk4L869n4zQ0LabxQMgRvFWgAC1gc1p6lodo3zhlb/SGnorFhgQW2CUUtm7
+        srjLQABCk89BGzGFP2pNhdIX1LowSImHlDEIfAlWh1ASrgzyRwUI5ARcB5E0dbRMnsPAFwhUByQSq+WE
+        v1T8eKfm+X6K3iY0EMikSCIiau5kgyb2fBoI1FmUGBGVeLphBYKBaJi1U/olw38SS7geNa42DUTtdAer
+        saIKXSgDASIgI6p0EKgYZmuf/1M6CLSc6LZEFHIjciQD4VZWWHMhotBJo6NmINBzN3p7hcwT9qCTti4V
+        DQTsOlgkT3iV/yyGsF7ArgXx6yDQZmMIiWaS/G/WFsYJ3ILSskYHAaPnRu9t9eYKEDr9I6TEI3rsZSDg
+        8PU5azm9x0H+mLWEUQJfwncIcAUIGNcEgwioIauafSpF14x8gLUj5iqj3aUhiJJBDaWlzm3TF6JmNEYI
+        JEUsoo3ihH8FIZIlCG4JgluC4JYgmFX6BDZ8OHvSbDlxAAAAAElFTkSuQmCC
+</value>
   </data>
-  <data name="icons8-export-excel-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-export-excel-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="export-excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export-excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconfinder_314764_document_add_icon_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconfinder_314764_document_add_icon_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="file1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="web" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\web.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconfinder_314682_add_folder_icon_64px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconfinder_314682_add_folder_icon_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconfinder_314789_add_folder_icon_64px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconfinder_314789_add_folder_icon_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconfinder_314682_add_folder_icon_64px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconfinder_314682_add_folder_icon_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="xlsdnld" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\xlsdnld.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconfinder_314789_add_folder_icon_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconfinder_314789_add_folder_icon_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconfinder_64174_export_excel_xlsx_icon_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconfinder_64174_export_excel_xlsx_icon_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="97923644-user-icon-avatar-login-sign-circle-button-with-soft-color-gradient-background-vector-" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\97923644-user-icon-avatar-login-sign-circle-button-with-soft-color-gradient-background-vector-.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iconfinder_314682_add_folder_icon_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iconfinder_314682_add_folder_icon_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="bOM_DMDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="role_userTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>338, 17</value>
+  </metadata>
 </root>

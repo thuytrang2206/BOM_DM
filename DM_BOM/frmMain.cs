@@ -18,8 +18,8 @@ namespace DM_BOM
 {
     public partial class frmMain : Form
     {
-        int currentColor = 0;
-        int a = 0;
+        private string staff_code;
+        int id_role,id_user;
         bool ON = false;
         private bool dragging = false;
         private Point startPoint = new Point(0, 0);
@@ -75,10 +75,16 @@ namespace DM_BOM
                 MessageBox.Show(ex.Message);
             }
         }
-        
+        public frmMain(string staffcode,int idrole,int iduser)
+        {
+            InitializeComponent();
+            this.staff_code = staffcode;
+            this.id_role = idrole;
+            this.id_user = iduser;
+        }
         public frmMain()
         {
-
+            
             colors.Add(Color.FromArgb(0, 158, 71));
             colors.Add(Color.FromArgb(112, 191, 83));
             colors.Add(Color.FromArgb(216, 155, 40));
@@ -95,27 +101,7 @@ namespace DM_BOM
             Connect();
             this.SetStyle(ControlStyles.ResizeRedraw, true);
         }
-        //private const int cGript = 16;
-        //private const int cCaption = 32;
-        //protected override void WndProc(ref Message m)
-        //{
-        //    if (m.Msg == 0x84)
-        //    {
-        //        Point pos = new Point(m.LParam.ToInt32());
-        //        pos = this.PointToClient(pos);
-        //        if (pos.Y < cCaption)
-        //        {
-        //            m.Result = (IntPtr)2;
-        //            return;
-        //        }
-        //        if (pos.X >= this.ClientSize.Width - cGript && pos.Y >= this.ClientSize.Height - cGript)
-        //        {
-        //            m.Result = (IntPtr)17;
-        //            return;
-        //        }
-        //    }
-        //    base.WndProc(ref m);
-        //}
+
         public static string GetRunningVersion()
         {
             try
@@ -131,7 +117,7 @@ namespace DM_BOM
         {
             try
             {
-                using (OpenFileDialog openfiledialog = new OpenFileDialog() { Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx" })/*All files (*.*)|*.**/
+                using (OpenFileDialog openfiledialog = new OpenFileDialog() { Filter = "All files (*.*)|*.*" })/*Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx*/
                 {
                     if (openfiledialog.ShowDialog() == DialogResult.OK)
                     {
@@ -170,7 +156,7 @@ namespace DM_BOM
         private void btn_ECS_Click(object sender, EventArgs e)
         {
             try {
-                using (OpenFileDialog openfiledialog = new OpenFileDialog() { Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx" })
+                using (OpenFileDialog openfiledialog = new OpenFileDialog() { Filter = "All files (*.*)|*.*" })
                 {
                     if (openfiledialog.ShowDialog() == DialogResult.OK)
                     {
@@ -232,7 +218,7 @@ namespace DM_BOM
 
         private void linkLabel2_Click(object sender, EventArgs e)
         {
-            if (WindowState.ToString() =="Narmal")
+            if (WindowState.ToString() =="Normal")
             {
                 this.WindowState = FormWindowState.Maximized;
             }
@@ -250,31 +236,31 @@ namespace DM_BOM
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lbltime.Text = DateTime.Now.ToString("dd/MM/yyy hh:mm:ss");
-            if (ON == true)
-            {
-                lbltime.ForeColor = Color.White;
-                if (currentColor < colors.Count - 1)
-                {
+            //lbltime.Text = DateTime.Now.ToString("dd/MM/yyy hh:mm:ss");
+            //if (ON == true)
+            //{
+            //    lbltime.ForeColor = Color.White;
+            //    if (currentColor < colors.Count - 1)
+            //    {
 
-                    panel1.BackColor = Bunifu.Framework.UI.BunifuColorTransition.getColorScale(a, colors[currentColor], colors[currentColor + 1]);
-                    if (a < 100)
-                    {
-                        a++;
-                    }
-                    else
-                    {
-                        a = 0;
-                        currentColor++;
-                    }
-                }
-            }
-            else
-            {
-                timer1.Enabled = false;
-                panel1.BackColor = Color.White;
-                lbltime.ForeColor = Color.DimGray;
-            }
+            //        panel1.BackColor = Bunifu.Framework.UI.BunifuColorTransition.getColorScale(a, colors[currentColor], colors[currentColor + 1]);
+            //        if (a < 100)
+            //        {
+            //            a++;
+            //        }
+            //        else
+            //        {
+            //            a = 0;
+            //            currentColor++;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    timer1.Enabled = false;
+            //    panel1.BackColor = Color.White;
+            //    lbltime.ForeColor = Color.DimGray;
+            //}
         }
         public void Load_datatable_list_flash_memory()
         {
@@ -453,6 +439,8 @@ namespace DM_BOM
         private void frmMain_Load(object sender, EventArgs e)
         {
             //reload();
+            lblstaffcode.Text = staff_code;
+            lblid_role.Text =id_role.ToString();
             CboSheet.Text = Properties.Settings.Default.Bom;
             cbosheettwo.Text = Properties.Settings.Default.ECS;
             lblVersion.Text = GetRunningVersion();
@@ -462,11 +450,11 @@ namespace DM_BOM
         {
             if (bunifuSwitch1.Value == true)
             {
-                label5.Text = "Tìm kiếm mã bom thiếu trong Bom so với Tài liệu";
+                label5.Text = "Tìm kiếm mã bom sap thiếu trong bom customer";
             }
             else
             {
-                label5.Text = "Tìm kiếm mã bom thiếu trong Tài liệu so với BOM";
+                label5.Text = "Tìm kiếm mã bom customer thiếu trong bom sap";
             }
         }
 
@@ -500,11 +488,11 @@ namespace DM_BOM
             reload();
             if (bunifuSwitch1.Value == true)
             {
-                label5.Text = "Tìm kiếm vị trí thiếu trong Bom so với Tài liệu";
+                label5.Text = "Tìm kiếm mã bom sap thiếu trong bom customer";
             }
             else
             {
-                label5.Text = "Tìm kiếm vị trí thiếu trong Tài liệu so với BOM";
+                label5.Text = "Tìm kiếm mã bom customer thiếu trong bom sap";
             }
         }
 
@@ -514,11 +502,11 @@ namespace DM_BOM
             reload();
             if (bunifuSwitch1.Value == true)
             {
-                label5.Text = "Tìm kiếm vị trí thiếu trong Bom so với Tài liệu";
+                label5.Text = "Tìm kiếm mã bom sap thiếu trong bom customer";
             }
             else
             {
-                label5.Text = "Tìm kiếm vị trí thiếu trong Tài liệu so với BOM";
+                label5.Text = "Tìm kiếm mã bom customer thiếu trong bom sap";
             }
         }
 
@@ -604,11 +592,11 @@ namespace DM_BOM
                     return;
                 }
                 DataTable dt_bomsap = new DataTable();
-                datagridview_Result.DataSource = dt_bomsap;
+                dtgv_bomcus.DataSource = dt_bomsap;
                 dt_bomsap.Columns.Add("PartNoBOM");
                 dt_bomsap.Columns.Add("Location");
                 DataTable dt_bomcus = new DataTable();
-                dtgv_bomcus.DataSource = dt_bomcus;
+                datagridview_Result.DataSource = dt_bomcus;
                 dt_bomcus.Columns.Add("PartNoBOM");
                 dt_bomcus.Columns.Add("Location");
                 list_bom.Clear();
@@ -637,10 +625,7 @@ namespace DM_BOM
                         {
                             var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
                             list_result.Add(addlist);
-                            label9.Text = "MÃ BOM CUSTOMER CÓ MAIN_SUB ĐẶC BIỆT! ";
-                            label9.ForeColor = Color.Green;
-                            dtgv_bomcus.Visible = true;
-                            dt_bomcus.Rows.Add(addlist.BOM, addlist.Incomplete);
+                          
                             foreach (var item_listbom in list_bom)
                             {
                                 if(item_listbom.BOM_Component.Substring(0,9)== items.PartNo)
@@ -651,8 +636,7 @@ namespace DM_BOM
                                     string result = string.Join(",", result_dist);
                                     //var result = arrList_locationbom.Distinct().ToArray();
                                     if (result != "")
-                                    {
-                                       
+                                    {                          
                                         var addlist_bom = new Result_Location() { BOM = item_listbom.BOM_Component, Location = item_listbom.Location };
                                         list_rl.Add(addlist_bom);
                                     }
@@ -671,9 +655,26 @@ namespace DM_BOM
                                     }
                                 }
                             }
+                            if (list_rl.Count>1)
+                            {
+
+                            }
+                            else
+                            {
+
+                            }
+                            foreach( var item in list_result)
+                            {
+                                  dtgv_bomcus.Visible = true;
+                            label9.Text = "MÃ BOM SAP CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
+                            label9.ForeColor = Color.Green;
+
+                            dt_bomcus.Rows.Add(addlist.BOM, addlist.Incomplete);
+                            }
                             foreach(var item in list_rl)
                             {
-                                label5.Text = "MÃ BOM SAP CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
+                                
+                                label5.Text = "MÃ BOM CUSTOMER CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
                                 label5.ForeColor = Color.Green;
                                 label5.Location = new Point(100, 5);
                                 dt_bomsap.Rows.Add(item.BOM.ToString(), item.Location.ToString());
@@ -689,6 +690,7 @@ namespace DM_BOM
                 Properties.Settings.Default.Save();
                 datagridview_Result.AutoResizeColumns();
                 datagridview_Result.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                panel3.Visible = true;
                 //datagridview_Result_main.AutoResizeColumns();
                 //datagridview_Result_main.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 ON = false;
@@ -826,12 +828,27 @@ namespace DM_BOM
 
         private void mainSubSpecialToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Form_MainSubSpecial().ShowDialog();
+
+            new Form_MainSubSpecial(lblstaffcode.Text,id_role,id_user).ShowDialog();
+            
         }
 
         private void managerICToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Form_ICManager().ShowDialog();
+            new Form_ICManager(lblstaffcode.Text, id_role,id_user).ShowDialog();
+        }
+
+        private void systemUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Frm_Users(lblstaffcode.Text, id_role, id_user).ShowDialog();
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+            frmLogin frmLogin = new frmLogin();
+            frmLogin.ShowDialog();
         }
     }
 }

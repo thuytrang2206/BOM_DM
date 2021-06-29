@@ -34,39 +34,42 @@
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Partonbomcustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Subspecial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Iduser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnEdit = new Bunifu.Framework.UI.BunifuImageButton();
-            this.btnDel = new Bunifu.Framework.UI.BunifuImageButton();
-            this.btnAdd = new Bunifu.Framework.UI.BunifuImageButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtsubspecial = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.txtpartbomcus = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.lbl_Id = new System.Windows.Forms.Label();
             this.lblId = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.lblerrorpartlist = new System.Windows.Forms.Label();
             this.labelmain = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.lblpart = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_Searchs = new Bunifu.Framework.UI.BunifuImageButton();
             this.txtSearch = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.txtpartbomcus = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.txtsubspecial = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.btn_Searchs = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnEdit = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnDel = new Bunifu.Framework.UI.BunifuImageButton();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuImageButton();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_Mainsubspecial)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_Searchs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
             this.SuspendLayout();
             // 
             // dtgv_Mainsubspecial
             // 
+            this.dtgv_Mainsubspecial.AllowUserToAddRows = false;
             this.dtgv_Mainsubspecial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgv_Mainsubspecial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.No,
             this.Partonbomcustomer,
-            this.Subspecial});
+            this.Subspecial,
+            this.Iduser});
             this.dtgv_Mainsubspecial.Location = new System.Drawing.Point(12, 34);
             this.dtgv_Mainsubspecial.Name = "dtgv_Mainsubspecial";
             this.dtgv_Mainsubspecial.RowHeadersVisible = false;
@@ -101,6 +104,12 @@
             this.Subspecial.Name = "Subspecial";
             this.Subspecial.Width = 150;
             // 
+            // Iduser
+            // 
+            this.Iduser.DataPropertyName = "Id_user";
+            this.Iduser.HeaderText = "Id_user";
+            this.Iduser.Name = "Iduser";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnEdit);
@@ -110,48 +119,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(648, 28);
             this.panel1.TabIndex = 2;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackColor = System.Drawing.Color.White;
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.ImageActive = null;
-            this.btnEdit.Location = new System.Drawing.Point(584, 3);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(25, 24);
-            this.btnEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.TabStop = false;
-            this.btnEdit.Zoom = 10;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnDel
-            // 
-            this.btnDel.BackColor = System.Drawing.Color.White;
-            this.btnDel.Image = ((System.Drawing.Image)(resources.GetObject("btnDel.Image")));
-            this.btnDel.ImageActive = null;
-            this.btnDel.Location = new System.Drawing.Point(615, 0);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Size = new System.Drawing.Size(30, 27);
-            this.btnDel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnDel.TabIndex = 1;
-            this.btnDel.TabStop = false;
-            this.btnDel.Zoom = 10;
-            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
-            this.btnAdd.ImageActive = null;
-            this.btnAdd.Location = new System.Drawing.Point(546, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(32, 27);
-            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Zoom = 10;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // groupBox1
             // 
@@ -169,6 +136,22 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Info";
+            // 
+            // txtsubspecial
+            // 
+            this.txtsubspecial.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtsubspecial.Location = new System.Drawing.Point(136, 67);
+            this.txtsubspecial.Name = "txtsubspecial";
+            this.txtsubspecial.Size = new System.Drawing.Size(100, 20);
+            this.txtsubspecial.TabIndex = 28;
+            // 
+            // txtpartbomcus
+            // 
+            this.txtpartbomcus.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtpartbomcus.Location = new System.Drawing.Point(136, 31);
+            this.txtpartbomcus.Name = "txtpartbomcus";
+            this.txtpartbomcus.Size = new System.Drawing.Size(100, 20);
+            this.txtpartbomcus.TabIndex = 27;
             // 
             // lbl_Id
             // 
@@ -234,6 +217,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
             // 
+            // txtSearch
+            // 
+            this.txtSearch.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtSearch.Location = new System.Drawing.Point(11, 19);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(194, 20);
+            this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // btn_Searchs
             // 
             this.btn_Searchs.BackColor = System.Drawing.Color.White;
@@ -248,30 +240,47 @@
             this.btn_Searchs.Zoom = 10;
             this.btn_Searchs.Click += new System.EventHandler(this.btn_Searchs_Click);
             // 
-            // txtSearch
+            // btnEdit
             // 
-            this.txtSearch.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtSearch.Location = new System.Drawing.Point(11, 19);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(194, 20);
-            this.txtSearch.TabIndex = 0;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.btnEdit.BackColor = System.Drawing.Color.White;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.ImageActive = null;
+            this.btnEdit.Location = new System.Drawing.Point(584, 3);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(25, 24);
+            this.btnEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnEdit.TabIndex = 2;
+            this.btnEdit.TabStop = false;
+            this.btnEdit.Zoom = 10;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // txtpartbomcus
+            // btnDel
             // 
-            this.txtpartbomcus.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtpartbomcus.Location = new System.Drawing.Point(136, 31);
-            this.txtpartbomcus.Name = "txtpartbomcus";
-            this.txtpartbomcus.Size = new System.Drawing.Size(100, 20);
-            this.txtpartbomcus.TabIndex = 27;
+            this.btnDel.BackColor = System.Drawing.Color.White;
+            this.btnDel.Image = ((System.Drawing.Image)(resources.GetObject("btnDel.Image")));
+            this.btnDel.ImageActive = null;
+            this.btnDel.Location = new System.Drawing.Point(615, 0);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(30, 27);
+            this.btnDel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnDel.TabIndex = 1;
+            this.btnDel.TabStop = false;
+            this.btnDel.Zoom = 10;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
-            // txtsubspecial
+            // btnAdd
             // 
-            this.txtsubspecial.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtsubspecial.Location = new System.Drawing.Point(136, 67);
-            this.txtsubspecial.Name = "txtsubspecial";
-            this.txtsubspecial.Size = new System.Drawing.Size(100, 20);
-            this.txtsubspecial.TabIndex = 28;
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageActive = null;
+            this.btnAdd.Location = new System.Drawing.Point(546, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(32, 27);
+            this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Zoom = 10;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // Form_MainSubSpecial
             // 
@@ -288,14 +297,14 @@
             this.Load += new System.EventHandler(this.Form_MainSubSpecial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgv_Mainsubspecial)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_Searchs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,11 +324,12 @@
         private WindowsFormsControlLibrary1.BunifuCustomTextbox txtSearch;
         private Bunifu.Framework.UI.BunifuImageButton btn_Searchs;
         private System.Windows.Forms.Label lbl_Id;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtsubspecial;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtpartbomcus;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewTextBoxColumn Partonbomcustomer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subspecial;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtsubspecial;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtpartbomcus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Iduser;
     }
 }

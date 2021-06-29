@@ -18,11 +18,22 @@ namespace DM_BOM
         SqlDataAdapter adapter;
         DataTable table;
         SqlCommand cmd;
-        private Form_MainSubSpecial frm_mainsub;
-        public Form_AddMainSub(Form_MainSubSpecial frm_mainsub)
+        SqlCommand cmd_his;
+        Form_MainSubSpecial frm_mainsub;
+        private string staffcode;
+        private int id_user;
+        public Form_AddMainSub()
         {
             InitializeComponent();
+           
+        }
+        public Form_AddMainSub(string staff_code, int iduser,Form_MainSubSpecial frm_mainsub)
+        {
+            this.staffcode = staff_code;
+            this.id_user = iduser;
             this.frm_mainsub = frm_mainsub;
+            InitializeComponent();
+
         }
         public void Clear()
         {
@@ -37,10 +48,11 @@ namespace DM_BOM
             {
                 connect = new SqlConnection();
                 connect.ConnectionString = constring;
-                cmd = new SqlCommand("insert into Main_Sub(PartNoBom,SubBom) values(@partnobom,@subbom)", connect);
+                cmd = new SqlCommand("insert into Main_Sub(PartNoBom,SubBom,Id_user) values(@partnobom,@subbom,@id_user)", connect);
                 connect.Open();
                 cmd.Parameters.AddWithValue("@partnobom", txtPartlistName.Text);
                 cmd.Parameters.AddWithValue("@subbom", txtSubbom.Text);
+                cmd.Parameters.AddWithValue("@id_user", id_user);
                 if (txtPartlistName.Text == "" && txtSubbom.Text == "")
                 {
                     lblerrorpartlist.Text = "Data cannot be empty!";
@@ -62,6 +74,12 @@ namespace DM_BOM
                         }
                         else
                         {
+                            cmd_his = new SqlCommand("insert into History(Datetime,Id_user,Status,Note) values(@datetime,@id_user,@status,@note)", connect);
+                            cmd_his.Parameters.AddWithValue("@datetime", DateTime.Now);
+                            cmd_his.Parameters.AddWithValue("@id_user", id_user);
+                            cmd_his.Parameters.AddWithValue("@status", Task.Add_data.ToString());
+                            cmd_his.Parameters.AddWithValue("@note", "Add data with Part on bom customer to '" + txtPartlistName.Text + "' and Sub special to '" + txtSubbom.Text + "' in Main sub special");
+                            cmd_his.ExecuteNonQuery();
                             cmd.ExecuteNonQuery();
                             adapter = new SqlDataAdapter("Select * from Main_Sub", connect);
                             table = new DataTable();

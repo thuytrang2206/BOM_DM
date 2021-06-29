@@ -18,12 +18,23 @@ namespace DM_BOM
         SqlDataAdapter adapter;
         DataTable table;
         SqlCommand cmd;
-        private Form_ICManager frm_icmanager;
-        
-        public Form_Add_ICManager(Form_ICManager frm_icmanager)
+        SqlCommand cmd_his;
+        Form_ICManager frm_icmanager;
+        Task task;
+        private string staffcode;
+        private int id_user;
+
+        public Form_Add_ICManager()
         {
             InitializeComponent();
+        }
+        public Form_Add_ICManager(string staff_code, int iduser, Form_ICManager frm_icmanager)
+        {
+            this.staffcode = staff_code;
+            this.id_user = iduser;
             this.frm_icmanager = frm_icmanager;
+            InitializeComponent();
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -32,10 +43,11 @@ namespace DM_BOM
             {
                 connect = new SqlConnection();
                 connect.ConnectionString = constring;
-                cmd = new SqlCommand("insert into Flash_memory(PartNoCUS,PartNoBOM) values (@partCUS,@partBOM) ", connect);
+                cmd = new SqlCommand("insert into Flash_memory(PartNoCUS,PartNoBOM,Id_user) values (@partCUS,@partBOM,@iduser) ", connect);
                 connect.Open();
                 cmd.Parameters.AddWithValue("@partCUS", txtPartCUS.Text);
                 cmd.Parameters.AddWithValue("@partBOM", txtPartBOM.Text);
+                cmd.Parameters.AddWithValue("@iduser", id_user);
                 if (txtPartCUS.Text == "" && txtPartBOM.Text == "")
                 {
                     lblerrorpartlist.Text = "Data cannot be empty!";
@@ -57,6 +69,12 @@ namespace DM_BOM
                         }
                         else
                         {
+                            cmd_his = new SqlCommand("insert into History(Datetime,Id_user,Status,Note) values(@datetime,@id_user,@status,@note)", connect);
+                            cmd_his.Parameters.AddWithValue("@datetime", DateTime.Now);
+                            cmd_his.Parameters.AddWithValue("@id_user", id_user);
+                            cmd_his.Parameters.AddWithValue("@status", Task.Add_data.ToString());
+                            cmd_his.Parameters.AddWithValue("@note", "Add data with Part on bom customer to '" + txtPartCUS.Text + "' and Sub special to '" + txtPartBOM.Text + "' in IC Manager");
+                            cmd_his.ExecuteNonQuery();
                             cmd.ExecuteNonQuery();
                             adapter = new SqlDataAdapter("Select * from Flash_memory", connect);
                             table = new DataTable();

@@ -15,45 +15,91 @@ namespace DM_BOM
     {
         string constring = @"Data Source=172.28.10.17;Initial Catalog=BOM_DM;Persist Security Info=True;User ID=sa;PASSWORD=umc@2019";
         SqlConnection connect;
-        SqlDataAdapter adapter;
-        DataTable table;
+        SqlDataAdapter adapter_mainsub;
+        SqlDataAdapter adapter_role;
+        SqlDataAdapter adapter_history;
+        DataTable table_history;
+        DataTable table_mainsub;
+        DataTable table_role;
         SqlCommand cmd;
+        SqlCommand cmd_his;
         int ? _Id;
+        private string staffcode;
+        private int id_role,id_user;
         public Form_MainSubSpecial()
         {
             InitializeComponent();
         }
-
+       
         public void Connect()
         {
             connect = new SqlConnection();
             connect.ConnectionString = constring;
             connect.Open();
-            table = new DataTable();
+            table_mainsub = new DataTable();
+            table_role = new DataTable();
+            table_history = new DataTable();
         }
 
         public void Load_data()
         {
             Connect();
-            adapter = new SqlDataAdapter("Select * from Main_Sub", connect);
+            adapter_mainsub = new SqlDataAdapter("Select * from Main_Sub", connect);
             dtgv_Mainsubspecial.Columns["Id"].Visible = false;
-            adapter.Fill(table);
-            dtgv_Mainsubspecial.DataSource = table;
+            dtgv_Mainsubspecial.Columns["Iduser"].Visible = false;
+            adapter_mainsub.Fill(table_mainsub);
+            dtgv_Mainsubspecial.DataSource = table_mainsub;
             for (int i = 0; i < dtgv_Mainsubspecial.Rows.Count - 1; i++)
             {
                 dtgv_Mainsubspecial.Rows[i].Cells["No"].Value = i + 1;
             }
+           
         }
+        public Form_MainSubSpecial(string staff_code, int idrole,int iduser)
+        {
+            this.staffcode = staff_code;
+            this.id_role = idrole;
+            this.id_user = iduser;
+            InitializeComponent();
+          
+        }
+        public void Check_role()
+        {
+            Connect();
+            adapter_role = new SqlDataAdapter("Select * from Role_user", connect);
+            adapter_role.Fill(table_role);
+            foreach (DataRow row in table_role.Rows)
+            {
+                int id_role_user = int.Parse(row["Id_role"].ToString());
+                string name_role = row["Name"].ToString();
+                if ( id_role== id_role_user )
+                {
+                    if (name_role == "user")
+                    {
+                        btnAdd.Visible = false;
+                        btnEdit.Visible = false;
+                        btnDel.Visible = false;
+                    }
+                    else
+                    {
+                        btnAdd.Visible = true;
+                        btnEdit.Visible = true;
+                        btnDel.Visible = true;
+                    }
+                }
 
+            }
+        }
         private void Form_MainSubSpecial_Load(object sender, EventArgs e)
         {
             Load_data();
+            Check_role();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Form_AddMainSub frm_addmain = new Form_AddMainSub(this);
-            frm_addmain.Show();
+            Form_AddMainSub frm_addmain = new Form_AddMainSub(staffcode, id_user,this);
+            frm_addmain.ShowDialog();
         }
 
         private void dtgv_Mainsubspecial_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -73,16 +119,22 @@ namespace DM_BOM
                 if(_Id!= null)
                 {
                     Connect();
-                    cmd = new SqlCommand("delete Main_Sub where Id='" + lbl_Id.Text + "'", connect);
+                    cmd = new SqlCommand("delete Main_Sub where Id='" + _Id + "'", connect);
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Record Deleted Successfully!");
                     Load_data();
+                    cmd_his = new SqlCommand("insert into History(Datetime,Id_user,Status,Note) values(@datetime,@id_user,@status,@note)", connect);
+                    cmd_his.Parameters.AddWithValue("@datetime", DateTime.Now);
+                    cmd_his.Parameters.AddWithValue("@id_user", id_user);
+                    cmd_his.Parameters.AddWithValue("@status", Task.Delete_data.ToString());
+                    cmd_his.Parameters.AddWithValue("@note", "Delete data with Part on bom customer to '" + txtpartbomcus.Text + "' and Sub special to '" + txtsubspecial.Text + "' in Main sub special");
+                    cmd_his.ExecuteNonQuery();
+                    MessageBox.Show("Record Deleted Successfully!");
                     connect.Close();
                     Clear();
                 }
                 else
                 {
-                    MessageBox.Show("Don't have choose value to delete!");
+                    MessageBox.Show("Don't have choose value to delete!", "Warning!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -106,10 +158,10 @@ namespace DM_BOM
                 Connect();
                 //cmd = new SqlCommand("select * from Main_Sub where CONCAT(Id,PartNoBom,SubBom) like'%" + txtSearch.Text + "%'", connect);
                 cmd = new SqlCommand("select * from Main_Sub where PartNoBom like'%" + txtSearch.Text + "%' or SubBom like '%" + txtSearch.Text + "%'", connect);
-                adapter = new SqlDataAdapter(cmd);
-                table = new DataTable();
-                adapter.Fill(table);
-                dtgv_Mainsubspecial.DataSource = table;
+                adapter_mainsub = new SqlDataAdapter(cmd);
+                table_mainsub = new DataTable();
+                adapter_mainsub.Fill(table_mainsub);
+                dtgv_Mainsubspecial.DataSource = table_mainsub;
                 for (int i = 0; i < dtgv_Mainsubspecial.Rows.Count - 1; i++)
                 {
                     dtgv_Mainsubspecial.Rows[i].Cells["No"].Value = i + 1;
@@ -138,13 +190,27 @@ namespace DM_BOM
         {
             try
             {
-                Connect();
-                cmd = new SqlCommand("update Main_Sub set PartNoBom='" + txtpartbomcus.Text + "', SubBom='" + txtsubspecial.Text + "' where Id='" + _Id + "'", connect);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Record Updated Successfully!");
-                Load_data();
-                connect.Close();
-                Clear();
+                if(_Id!= null)
+                {
+                    Connect();
+                    cmd = new SqlCommand("update Main_Sub set PartNoBom='" + txtpartbomcus.Text + "', SubBom='" + txtsubspecial.Text + "',Id_user='" + id_user + "' where Id='" + _Id + "'", connect);
+                    cmd_his = new SqlCommand("insert into History(Datetime,Id_user,Status,Note) values(@datetime,@id_user,@status,@note)", connect);
+                    cmd_his.Parameters.AddWithValue("@datetime", DateTime.Now);
+                    cmd_his.Parameters.AddWithValue("@id_user", id_user);
+                    cmd_his.Parameters.AddWithValue("@status", Task.Edit_data.ToString());
+                    cmd_his.Parameters.AddWithValue("@note","Edit data with Part on bom customer to '" + txtpartbomcus.Text +"' and Sub special to '" + txtsubspecial.Text + "' in Main sub special");
+                    cmd_his.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Record Updated Successfully!");
+                    Load_data();
+                    connect.Close();
+                    Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Don't have value to edit!","Warning!!!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+               
             }
             catch(Exception ex)
             {

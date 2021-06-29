@@ -65,25 +65,30 @@
             this.lblVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblid_role = new System.Windows.Forms.Label();
+            this.lblstaffcode = new System.Windows.Forms.Label();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.lblexport = new System.Windows.Forms.LinkLabel();
             this.label10 = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.bunifuCircleProgressbar2 = new Bunifu.Framework.UI.BunifuCircleProgressbar();
-            this.lbltime = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblConfigs = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_MainSubSpecial = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.btnStart = new Bunifu.Framework.UI.BunifuThinButton2();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mainSubSpecialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.managerICToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dtgv_bomcus = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.systemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.securityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.dtgv_bomcus = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.btn_MainSubSpecial = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnStart = new Bunifu.Framework.UI.BunifuThinButton2();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview_BOM)).BeginInit();
@@ -93,8 +98,8 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgv_bomcus)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv_bomcus)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -119,22 +124,22 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(24, 23);
+            this.label1.Location = new System.Drawing.Point(68, 75);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 19);
+            this.label1.Size = new System.Drawing.Size(81, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "BOM";
+            this.label1.Text = "BOM SAP";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(24, 74);
+            this.label2.Location = new System.Drawing.Point(6, 31);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 19);
+            this.label2.Size = new System.Drawing.Size(143, 19);
             this.label2.TabIndex = 1;
-            this.label2.Text = "ECS";
+            this.label2.Text = "BOM CUSTOMER";
             // 
             // groupBox1
             // 
@@ -146,7 +151,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(639, 108);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(625, 118);
+            this.groupBox1.Size = new System.Drawing.Size(625, 133);
             this.groupBox1.TabIndex = 95;
             this.groupBox1.TabStop = false;
             // 
@@ -169,7 +174,7 @@
             this.btn_BOM.IdleFillColor = System.Drawing.Color.White;
             this.btn_BOM.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btn_BOM.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btn_BOM.Location = new System.Drawing.Point(465, 12);
+            this.btn_BOM.Location = new System.Drawing.Point(531, 64);
             this.btn_BOM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_BOM.Name = "btn_BOM";
             this.btn_BOM.Size = new System.Drawing.Size(80, 40);
@@ -195,7 +200,7 @@
             this.btn_ECS.IdleFillColor = System.Drawing.Color.White;
             this.btn_ECS.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btn_ECS.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btn_ECS.Location = new System.Drawing.Point(465, 60);
+            this.btn_ECS.Location = new System.Drawing.Point(531, 17);
             this.btn_ECS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_ECS.Name = "btn_ECS";
             this.btn_ECS.Size = new System.Drawing.Size(80, 40);
@@ -210,7 +215,7 @@
             this.CboSheet.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.CboSheet.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.CboSheet.FormattingEnabled = true;
-            this.CboSheet.Location = new System.Drawing.Point(89, 19);
+            this.CboSheet.Location = new System.Drawing.Point(155, 71);
             this.CboSheet.Name = "CboSheet";
             this.CboSheet.Size = new System.Drawing.Size(356, 28);
             this.CboSheet.TabIndex = 91;
@@ -223,7 +228,7 @@
             this.cbosheettwo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbosheettwo.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.cbosheettwo.FormattingEnabled = true;
-            this.cbosheettwo.Location = new System.Drawing.Point(89, 70);
+            this.cbosheettwo.Location = new System.Drawing.Point(155, 27);
             this.cbosheettwo.Name = "cbosheettwo";
             this.cbosheettwo.Size = new System.Drawing.Size(356, 28);
             this.cbosheettwo.TabIndex = 92;
@@ -233,7 +238,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(2, 390);
+            this.label3.Location = new System.Drawing.Point(636, 389);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 16);
             this.label3.TabIndex = 96;
@@ -262,7 +267,7 @@
             this.datagridview_BOM.EnableHeadersVisualStyles = false;
             this.datagridview_BOM.HeaderBgColor = System.Drawing.Color.White;
             this.datagridview_BOM.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.datagridview_BOM.Location = new System.Drawing.Point(5, 409);
+            this.datagridview_BOM.Location = new System.Drawing.Point(636, 408);
             this.datagridview_BOM.Name = "datagridview_BOM";
             this.datagridview_BOM.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.datagridview_BOM.RowHeadersVisible = false;
@@ -273,7 +278,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(636, 390);
+            this.label4.Location = new System.Drawing.Point(2, 390);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 16);
             this.label4.TabIndex = 98;
@@ -301,11 +306,11 @@
             this.datagridview_ECS.EnableHeadersVisualStyles = false;
             this.datagridview_ECS.HeaderBgColor = System.Drawing.Color.White;
             this.datagridview_ECS.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.datagridview_ECS.Location = new System.Drawing.Point(639, 409);
+            this.datagridview_ECS.Location = new System.Drawing.Point(5, 409);
             this.datagridview_ECS.Name = "datagridview_ECS";
             this.datagridview_ECS.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.datagridview_ECS.RowHeadersVisible = false;
-            this.datagridview_ECS.Size = new System.Drawing.Size(620, 470);
+            this.datagridview_ECS.Size = new System.Drawing.Size(627, 470);
             this.datagridview_ECS.TabIndex = 99;
             // 
             // datagridview_Result
@@ -450,13 +455,14 @@
             // panel1
             // 
             this.panel1.AllowDrop = true;
+            this.panel1.Controls.Add(this.lblid_role);
+            this.panel1.Controls.Add(this.lblstaffcode);
             this.panel1.Controls.Add(this.bunifuCustomLabel1);
             this.panel1.Controls.Add(this.lblexport);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.linkLabel2);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.bunifuCircleProgressbar2);
-            this.panel1.Controls.Add(this.lbltime);
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.lblConfigs);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -469,6 +475,26 @@
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
+            // 
+            // lblid_role
+            // 
+            this.lblid_role.AutoSize = true;
+            this.lblid_role.Location = new System.Drawing.Point(178, 40);
+            this.lblid_role.Name = "lblid_role";
+            this.lblid_role.Size = new System.Drawing.Size(41, 13);
+            this.lblid_role.TabIndex = 113;
+            this.lblid_role.Text = "label11";
+            this.lblid_role.Visible = false;
+            // 
+            // lblstaffcode
+            // 
+            this.lblstaffcode.AutoSize = true;
+            this.lblstaffcode.ForeColor = System.Drawing.Color.Gray;
+            this.lblstaffcode.Location = new System.Drawing.Point(76, 40);
+            this.lblstaffcode.Name = "lblstaffcode";
+            this.lblstaffcode.Size = new System.Drawing.Size(82, 13);
+            this.lblstaffcode.TabIndex = 112;
+            this.lblstaffcode.Text = "CLINT (ADMIN)";
             // 
             // bunifuCustomLabel1
             // 
@@ -548,16 +574,6 @@
             this.bunifuCircleProgressbar2.Visible = false;
             this.bunifuCircleProgressbar2.Click += new System.EventHandler(this.bunifuCircleProgressbar2_Click);
             // 
-            // lbltime
-            // 
-            this.lbltime.AutoSize = true;
-            this.lbltime.ForeColor = System.Drawing.Color.Gray;
-            this.lbltime.Location = new System.Drawing.Point(88, 37);
-            this.lbltime.Name = "lbltime";
-            this.lbltime.Size = new System.Drawing.Size(82, 13);
-            this.lbltime.TabIndex = 105;
-            this.lbltime.Text = "CLINT (ADMIN)";
-            // 
             // linkLabel1
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -589,6 +605,119 @@
             this.pictureBox1.Size = new System.Drawing.Size(69, 54);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainSubSpecialToolStripMenuItem,
+            this.managerICToolStripMenuItem,
+            this.systemsToolStripMenuItem,
+            this.securityToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 57);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1271, 24);
+            this.menuStrip1.TabIndex = 109;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // mainSubSpecialToolStripMenuItem
+            // 
+            this.mainSubSpecialToolStripMenuItem.Name = "mainSubSpecialToolStripMenuItem";
+            this.mainSubSpecialToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.mainSubSpecialToolStripMenuItem.Text = "Main Sub Special";
+            this.mainSubSpecialToolStripMenuItem.Click += new System.EventHandler(this.mainSubSpecialToolStripMenuItem_Click);
+            // 
+            // managerICToolStripMenuItem
+            // 
+            this.managerICToolStripMenuItem.Name = "managerICToolStripMenuItem";
+            this.managerICToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.managerICToolStripMenuItem.Text = "Manager IC";
+            this.managerICToolStripMenuItem.Click += new System.EventHandler(this.managerICToolStripMenuItem_Click);
+            // 
+            // systemsToolStripMenuItem
+            // 
+            this.systemsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logOutToolStripMenuItem});
+            this.systemsToolStripMenuItem.Name = "systemsToolStripMenuItem";
+            this.systemsToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.systemsToolStripMenuItem.Text = "Systems";
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logOutToolStripMenuItem.Text = "Log Out";
+            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
+            // 
+            // securityToolStripMenuItem
+            // 
+            this.securityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.systemUsersToolStripMenuItem});
+            this.securityToolStripMenuItem.Name = "securityToolStripMenuItem";
+            this.securityToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.securityToolStripMenuItem.Text = "Security";
+            // 
+            // systemUsersToolStripMenuItem
+            // 
+            this.systemUsersToolStripMenuItem.Name = "systemUsersToolStripMenuItem";
+            this.systemUsersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.systemUsersToolStripMenuItem.Text = "System Users";
+            this.systemUsersToolStripMenuItem.Click += new System.EventHandler(this.systemUsersToolStripMenuItem_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Location = new System.Drawing.Point(636, 84);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(631, 28);
+            this.panel3.TabIndex = 113;
+            this.panel3.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(145, 8);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(0, 13);
+            this.label9.TabIndex = 97;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label8.Location = new System.Drawing.Point(270, 5);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 17);
+            this.label8.TabIndex = 96;
+            // 
+            // dtgv_bomcus
+            // 
+            this.dtgv_bomcus.AllowUserToAddRows = false;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dtgv_bomcus.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            this.dtgv_bomcus.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dtgv_bomcus.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dtgv_bomcus.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgv_bomcus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.dtgv_bomcus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgv_bomcus.DoubleBuffered = true;
+            this.dtgv_bomcus.EnableHeadersVisualStyles = false;
+            this.dtgv_bomcus.HeaderBgColor = System.Drawing.Color.White;
+            this.dtgv_bomcus.HeaderForeColor = System.Drawing.Color.SeaGreen;
+            this.dtgv_bomcus.Location = new System.Drawing.Point(637, 114);
+            this.dtgv_bomcus.Name = "dtgv_bomcus";
+            this.dtgv_bomcus.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dtgv_bomcus.RowHeadersVisible = false;
+            this.dtgv_bomcus.Size = new System.Drawing.Size(626, 272);
+            this.dtgv_bomcus.TabIndex = 112;
+            this.dtgv_bomcus.Visible = false;
             // 
             // btn_MainSubSpecial
             // 
@@ -642,92 +771,12 @@
             this.btnStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mainSubSpecialToolStripMenuItem,
-            this.managerICToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 57);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1271, 24);
-            this.menuStrip1.TabIndex = 109;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // mainSubSpecialToolStripMenuItem
-            // 
-            this.mainSubSpecialToolStripMenuItem.Name = "mainSubSpecialToolStripMenuItem";
-            this.mainSubSpecialToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
-            this.mainSubSpecialToolStripMenuItem.Text = "Main Sub Special";
-            this.mainSubSpecialToolStripMenuItem.Click += new System.EventHandler(this.mainSubSpecialToolStripMenuItem_Click);
-            // 
-            // managerICToolStripMenuItem
-            // 
-            this.managerICToolStripMenuItem.Name = "managerICToolStripMenuItem";
-            this.managerICToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
-            this.managerICToolStripMenuItem.Text = "Manager IC";
-            this.managerICToolStripMenuItem.Click += new System.EventHandler(this.managerICToolStripMenuItem_Click);
-            // 
-            // dtgv_bomcus
-            // 
-            this.dtgv_bomcus.AllowUserToAddRows = false;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dtgv_bomcus.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
-            this.dtgv_bomcus.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.dtgv_bomcus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dtgv_bomcus.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgv_bomcus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
-            this.dtgv_bomcus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgv_bomcus.DoubleBuffered = true;
-            this.dtgv_bomcus.EnableHeadersVisualStyles = false;
-            this.dtgv_bomcus.HeaderBgColor = System.Drawing.Color.White;
-            this.dtgv_bomcus.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.dtgv_bomcus.Location = new System.Drawing.Point(638, 115);
-            this.dtgv_bomcus.Name = "dtgv_bomcus";
-            this.dtgv_bomcus.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dtgv_bomcus.RowHeadersVisible = false;
-            this.dtgv_bomcus.Size = new System.Drawing.Size(626, 272);
-            this.dtgv_bomcus.TabIndex = 110;
-            this.dtgv_bomcus.Visible = false;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Location = new System.Drawing.Point(633, 84);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(631, 28);
-            this.panel3.TabIndex = 111;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(145, 8);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(0, 13);
-            this.label9.TabIndex = 97;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label8.Location = new System.Drawing.Point(270, 5);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(0, 17);
-            this.label8.TabIndex = 96;
-            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1271, 918);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.dtgv_bomcus);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.btn_MainSubSpecial);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -762,9 +811,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgv_bomcus)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgv_bomcus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -802,7 +851,6 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label6;
         private Bunifu.Framework.UI.BunifuCircleProgressbar bunifuCircleProgressbar2;
-        private System.Windows.Forms.Label lbltime;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel lblConfigs;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -813,10 +861,16 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mainSubSpecialToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem managerICToolStripMenuItem;
-        private Bunifu.Framework.UI.BunifuCustomDataGrid dtgv_bomcus;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dtgv_bomcus;
+        private System.Windows.Forms.Label lblstaffcode;
+        private System.Windows.Forms.Label lblid_role;
+        private System.Windows.Forms.ToolStripMenuItem systemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem securityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem systemUsersToolStripMenuItem;
     }
 }
 

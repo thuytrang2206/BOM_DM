@@ -63,6 +63,17 @@ namespace DM_BOM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _97923644_user_icon_avatar_login_sign_circle_button_with_soft_color_gradient_background_vector_ {
+            get {
+                object obj = ResourceManager.GetObject("97923644-user-icon-avatar-login-sign-circle-button-with-soft-color-gradient-backg" +
+                        "round-vector-", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap export_excel {
             get {
                 object obj = ResourceManager.GetObject("export-excel", resourceCulture);
@@ -76,6 +87,16 @@ namespace DM_BOM.Properties {
         internal static System.Drawing.Bitmap file1 {
             get {
                 object obj = ResourceManager.GetObject("file1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon {
+            get {
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
