@@ -20,6 +20,8 @@ namespace DM_BOM
         SqlCommand cmd;
         SqlCommand cmd_his;
         Form_MainSubSpecial frm_mainsub;
+        SqlDataAdapter adapter_user;
+        DataTable table_user;
         private string staffcode;
         private int id_user;
         public Form_AddMainSub()
@@ -85,8 +87,21 @@ namespace DM_BOM
                             table = new DataTable();
                             adapter.Fill(table);
                             frm_mainsub.dtgv_Mainsubspecial.DataSource = table;
-                            for (int i = 0; i < frm_mainsub.dtgv_Mainsubspecial.Rows.Count - 1; i++)
+                            table_user = new DataTable();
+                            adapter_user = new SqlDataAdapter("select * from Users", connect);
+                            adapter_user.Fill(table_user);
+                            for (int i = 0; i < frm_mainsub.dtgv_Mainsubspecial.Rows.Count; i++)
                             {
+                                string x = frm_mainsub.dtgv_Mainsubspecial.Rows[i].Cells["Iduser"].Value.ToString();
+                                foreach (DataRow dr in table_user.Rows)
+                                {
+                                    string name = dr["Id_user"].ToString();
+                                    if (name == x)
+                                    {
+                                        frm_mainsub.dtgv_Mainsubspecial.Rows[i].Cells["Name_user"].Value = dr["Name"].ToString();
+
+                                    }
+                                }
                                 frm_mainsub.dtgv_Mainsubspecial.Rows[i].Cells["No"].Value = i + 1;
                             }
                             connect.Close();

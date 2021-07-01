@@ -37,6 +37,9 @@
             this.lblerrorpartlist = new System.Windows.Forms.Label();
             this.lblpart = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtbomcustomer = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.labelmain = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.txtbomsap = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnEdit = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnDel = new Bunifu.Framework.UI.BunifuImageButton();
@@ -46,9 +49,8 @@
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Partonbomcustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Partonbomsap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtbomsap = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.txtbomcustomer = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.labelmain = new Bunifu.Framework.UI.BunifuCustomLabel();
+            this.Id_users = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name_user = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_Searchs)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -73,7 +75,7 @@
             this.groupBox2.Controls.Add(this.btn_Searchs);
             this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(389, 35);
+            this.groupBox2.Location = new System.Drawing.Point(513, 36);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(286, 53);
             this.groupBox2.TabIndex = 22;
@@ -146,12 +148,38 @@
             this.groupBox1.Controls.Add(this.lblerrorpartlist);
             this.groupBox1.Controls.Add(this.lblpart);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(389, 94);
+            this.groupBox1.Location = new System.Drawing.Point(513, 95);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(286, 194);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Info";
+            // 
+            // txtbomcustomer
+            // 
+            this.txtbomcustomer.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtbomcustomer.Location = new System.Drawing.Point(166, 34);
+            this.txtbomcustomer.Name = "txtbomcustomer";
+            this.txtbomcustomer.Size = new System.Drawing.Size(100, 20);
+            this.txtbomcustomer.TabIndex = 28;
+            // 
+            // labelmain
+            // 
+            this.labelmain.AutoSize = true;
+            this.labelmain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelmain.Location = new System.Drawing.Point(52, 34);
+            this.labelmain.Name = "labelmain";
+            this.labelmain.Size = new System.Drawing.Size(108, 15);
+            this.labelmain.TabIndex = 27;
+            this.labelmain.Text = "Part on PARTLIST:";
+            // 
+            // txtbomsap
+            // 
+            this.txtbomsap.BorderColor = System.Drawing.Color.SeaGreen;
+            this.txtbomsap.Location = new System.Drawing.Point(166, 66);
+            this.txtbomsap.Name = "txtbomsap";
+            this.txtbomsap.Size = new System.Drawing.Size(100, 20);
+            this.txtbomsap.TabIndex = 25;
             // 
             // panel1
             // 
@@ -160,7 +188,7 @@
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Location = new System.Drawing.Point(1, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(674, 28);
+            this.panel1.Size = new System.Drawing.Size(798, 28);
             this.panel1.TabIndex = 20;
             // 
             // btnEdit
@@ -168,7 +196,7 @@
             this.btnEdit.BackColor = System.Drawing.Color.White;
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageActive = null;
-            this.btnEdit.Location = new System.Drawing.Point(610, 3);
+            this.btnEdit.Location = new System.Drawing.Point(736, 3);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(25, 24);
             this.btnEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -182,7 +210,7 @@
             this.btnDel.BackColor = System.Drawing.Color.White;
             this.btnDel.Image = ((System.Drawing.Image)(resources.GetObject("btnDel.Image")));
             this.btnDel.ImageActive = null;
-            this.btnDel.Location = new System.Drawing.Point(641, 0);
+            this.btnDel.Location = new System.Drawing.Point(767, 0);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(30, 27);
             this.btnDel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -196,7 +224,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
             this.btnAdd.ImageActive = null;
-            this.btnAdd.Location = new System.Drawing.Point(572, 0);
+            this.btnAdd.Location = new System.Drawing.Point(698, 0);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(32, 27);
             this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -207,16 +235,19 @@
             // 
             // dtgv_Flashmemory
             // 
+            this.dtgv_Flashmemory.AllowUserToAddRows = false;
             this.dtgv_Flashmemory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgv_Flashmemory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.No,
             this.Partonbomcustomer,
-            this.Partonbomsap});
-            this.dtgv_Flashmemory.Location = new System.Drawing.Point(13, 36);
+            this.Partonbomsap,
+            this.Id_users,
+            this.Name_user});
+            this.dtgv_Flashmemory.Location = new System.Drawing.Point(1, 37);
             this.dtgv_Flashmemory.Name = "dtgv_Flashmemory";
             this.dtgv_Flashmemory.RowHeadersVisible = false;
-            this.dtgv_Flashmemory.Size = new System.Drawing.Size(370, 252);
+            this.dtgv_Flashmemory.Size = new System.Drawing.Size(494, 252);
             this.dtgv_Flashmemory.TabIndex = 19;
             this.dtgv_Flashmemory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgv_Flashmemory_CellClick);
             // 
@@ -236,7 +267,7 @@
             // Partonbomcustomer
             // 
             this.Partonbomcustomer.DataPropertyName = "PartNoCUS";
-            this.Partonbomcustomer.HeaderText = "Part on BOM CUSTOMER";
+            this.Partonbomcustomer.HeaderText = "Part on PARTLIST";
             this.Partonbomcustomer.Name = "Partonbomcustomer";
             this.Partonbomcustomer.Width = 150;
             // 
@@ -247,37 +278,23 @@
             this.Partonbomsap.Name = "Partonbomsap";
             this.Partonbomsap.Width = 150;
             // 
-            // txtbomsap
+            // Id_users
             // 
-            this.txtbomsap.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtbomsap.Location = new System.Drawing.Point(166, 66);
-            this.txtbomsap.Name = "txtbomsap";
-            this.txtbomsap.Size = new System.Drawing.Size(100, 20);
-            this.txtbomsap.TabIndex = 25;
+            this.Id_users.DataPropertyName = "Id_user";
+            this.Id_users.HeaderText = "Id_user";
+            this.Id_users.Name = "Id_users";
             // 
-            // txtbomcustomer
+            // Name_user
             // 
-            this.txtbomcustomer.BorderColor = System.Drawing.Color.SeaGreen;
-            this.txtbomcustomer.Location = new System.Drawing.Point(166, 34);
-            this.txtbomcustomer.Name = "txtbomcustomer";
-            this.txtbomcustomer.Size = new System.Drawing.Size(100, 20);
-            this.txtbomcustomer.TabIndex = 28;
-            // 
-            // labelmain
-            // 
-            this.labelmain.AutoSize = true;
-            this.labelmain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelmain.Location = new System.Drawing.Point(8, 34);
-            this.labelmain.Name = "labelmain";
-            this.labelmain.Size = new System.Drawing.Size(152, 15);
-            this.labelmain.TabIndex = 27;
-            this.labelmain.Text = "Part on BOM CUSTOMER:";
+            this.Name_user.HeaderText = "Name_user";
+            this.Name_user.Name = "Name_user";
+            this.Name_user.Width = 124;
             // 
             // Form_ICManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 309);
+            this.ClientSize = new System.Drawing.Size(811, 309);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
@@ -314,12 +331,14 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.DataGridView dtgv_Flashmemory;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtbomcustomer;
+        private Bunifu.Framework.UI.BunifuCustomLabel labelmain;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtbomsap;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.DataGridViewTextBoxColumn Partonbomcustomer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Partonbomsap;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtbomcustomer;
-        private Bunifu.Framework.UI.BunifuCustomLabel labelmain;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtbomsap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id_users;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name_user;
     }
 }

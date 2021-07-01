@@ -16,7 +16,9 @@ namespace DM_BOM
         SqlCommand cmd;
         SqlConnection connect;
         string constring = @"Data Source=172.28.10.17;Initial Catalog=BOM_DM;Persist Security Info=True;User ID=sa;PASSWORD=umc@2019";
-        
+        private bool dragging = false;
+        private Point startPoint = new Point(0, 0);
+
         void Connect()
         {
             try
@@ -69,7 +71,7 @@ namespace DM_BOM
                 }
                 else
                 {
-                    MessageBox.Show("Login is not correct!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Username or password incorrect!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
               
             }
@@ -77,6 +79,53 @@ namespace DM_BOM
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void txtpassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_login.PerformClick();
+            }
+        }
+
+        private void frmLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_login_Click(sender, e);
+            }
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            this.KeyPreview = true;
+            this.KeyDown += frmLogin_KeyDown;
+        }
+
+        private void lblConfigs_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void frmLogin_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void frmLogin_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point p = PointToScreen(e.Location);
+                Location = new Point(p.X - this.startPoint.X, p.Y - this.startPoint.Y);
+            }
+        }
+
+        private void frmLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            startPoint = new Point(e.X, e.Y);
         }
     }
 }

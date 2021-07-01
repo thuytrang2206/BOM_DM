@@ -21,6 +21,8 @@ namespace DM_BOM
         SqlCommand cmd_his;
         SqlDataAdapter adapter_role;
         DataTable table_role;
+        SqlDataAdapter adapter_user;
+        DataTable table_user;
         int ?_id;
         private string staffcode;
         private int id_role;
@@ -54,6 +56,9 @@ namespace DM_BOM
                         btnAdd.Visible = false;
                         btnEdit.Visible = false;
                         btnDel.Visible = false;
+                        dtgv_Flashmemory.Columns["Name_user"].Visible = false;
+                        dtgv_Flashmemory.Columns["Partonbomcustomer"].Width = 212;
+                        dtgv_Flashmemory.Columns["Partonbomsap"].Width = 212;
                     }
                     else
                     {
@@ -72,6 +77,7 @@ namespace DM_BOM
             connect.Open();
             table = new DataTable();
             table_role = new DataTable();
+            table_user = new DataTable();
         }
 
         public void Load_data()
@@ -79,10 +85,23 @@ namespace DM_BOM
             Connect();
             adapter = new SqlDataAdapter("Select * from Flash_memory",connect);
             dtgv_Flashmemory.Columns["Id"].Visible = false;
+            dtgv_Flashmemory.Columns["Id_users"].Visible = false;
             adapter.Fill(table);
             dtgv_Flashmemory.DataSource = table;
-            for (int i = 0; i < dtgv_Flashmemory.Rows.Count-1; i++)
+            adapter_user = new SqlDataAdapter("select * from Users", connect);
+            adapter_user.Fill(table_user);
+            for (int i = 0; i < dtgv_Flashmemory.Rows.Count; i++)
             {
+                string x = dtgv_Flashmemory.Rows[i].Cells["Id_users"].Value.ToString();
+                foreach (DataRow dr in table_user.Rows)
+                {
+                    string name = dr["Id_user"].ToString();
+                    if (name == x)
+                    {
+                        dtgv_Flashmemory.Rows[i].Cells["Name_user"].Value = dr["Name"].ToString();
+
+                    }
+                }
                 dtgv_Flashmemory.Rows[i].Cells["No"].Value = i + 1;
             }
         }

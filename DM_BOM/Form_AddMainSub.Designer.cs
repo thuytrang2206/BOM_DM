@@ -129,11 +129,11 @@
             // 
             this.bunifuCustomLabel1.AutoSize = true;
             this.bunifuCustomLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuCustomLabel1.Location = new System.Drawing.Point(45, 37);
+            this.bunifuCustomLabel1.Location = new System.Drawing.Point(63, 37);
             this.bunifuCustomLabel1.Name = "bunifuCustomLabel1";
-            this.bunifuCustomLabel1.Size = new System.Drawing.Size(131, 15);
+            this.bunifuCustomLabel1.Size = new System.Drawing.Size(88, 15);
             this.bunifuCustomLabel1.TabIndex = 4;
-            this.bunifuCustomLabel1.Text = "Part on bom customer:";
+            this.bunifuCustomLabel1.Text = "Part on partlist:";
             // 
             // Form_AddMainSub
             // 

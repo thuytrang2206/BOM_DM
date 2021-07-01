@@ -85,11 +85,11 @@
             // 
             this.labelmain.AutoSize = true;
             this.labelmain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelmain.Location = new System.Drawing.Point(48, 26);
+            this.labelmain.Location = new System.Drawing.Point(92, 26);
             this.labelmain.Name = "labelmain";
-            this.labelmain.Size = new System.Drawing.Size(152, 15);
+            this.labelmain.Size = new System.Drawing.Size(108, 15);
             this.labelmain.TabIndex = 11;
-            this.labelmain.Text = "Part on BOM CUSTOMER:";
+            this.labelmain.Text = "Part on PARTLIST:";
             // 
             // lblerrormain
             // 
@@ -153,11 +153,11 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblerrormain;
-        private System.Windows.Forms.Label lblerrorpartlist;
         private Bunifu.Framework.UI.BunifuThinButton2 btnSave;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox txtPartBOM;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox txtPartCUS;
         private Bunifu.Framework.UI.BunifuCustomLabel labelmain;
+        private System.Windows.Forms.Label lblerrorpartlist;
     }
 }

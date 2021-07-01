@@ -18,6 +18,8 @@ namespace DM_BOM
         SqlDataAdapter adapter_mainsub;
         SqlDataAdapter adapter_role;
         SqlDataAdapter adapter_history;
+        SqlDataAdapter adapter_user;
+        DataTable table_user;
         DataTable table_history;
         DataTable table_mainsub;
         DataTable table_role;
@@ -30,39 +32,6 @@ namespace DM_BOM
         {
             InitializeComponent();
         }
-       
-        public void Connect()
-        {
-            connect = new SqlConnection();
-            connect.ConnectionString = constring;
-            connect.Open();
-            table_mainsub = new DataTable();
-            table_role = new DataTable();
-            table_history = new DataTable();
-        }
-
-        public void Load_data()
-        {
-            Connect();
-            adapter_mainsub = new SqlDataAdapter("Select * from Main_Sub", connect);
-            dtgv_Mainsubspecial.Columns["Id"].Visible = false;
-            dtgv_Mainsubspecial.Columns["Iduser"].Visible = false;
-            adapter_mainsub.Fill(table_mainsub);
-            dtgv_Mainsubspecial.DataSource = table_mainsub;
-            for (int i = 0; i < dtgv_Mainsubspecial.Rows.Count - 1; i++)
-            {
-                dtgv_Mainsubspecial.Rows[i].Cells["No"].Value = i + 1;
-            }
-           
-        }
-        public Form_MainSubSpecial(string staff_code, int idrole,int iduser)
-        {
-            this.staffcode = staff_code;
-            this.id_role = idrole;
-            this.id_user = iduser;
-            InitializeComponent();
-          
-        }
         public void Check_role()
         {
             Connect();
@@ -72,13 +41,16 @@ namespace DM_BOM
             {
                 int id_role_user = int.Parse(row["Id_role"].ToString());
                 string name_role = row["Name"].ToString();
-                if ( id_role== id_role_user )
+                if (id_role == id_role_user)
                 {
                     if (name_role == "user")
                     {
                         btnAdd.Visible = false;
                         btnEdit.Visible = false;
                         btnDel.Visible = false;
+                        dtgv_Mainsubspecial.Columns["Name_user"].Visible = false;
+                        dtgv_Mainsubspecial.Columns["Partonbomcustomer"].Width = 200;
+                        dtgv_Mainsubspecial.Columns["Subspecial"].Width = 200;
                     }
                     else
                     {
@@ -90,6 +62,51 @@ namespace DM_BOM
 
             }
         }
+        public void Connect()
+        {
+            connect = new SqlConnection();
+            connect.ConnectionString = constring;
+            connect.Open();
+            table_mainsub = new DataTable();
+            table_role = new DataTable();
+            table_history = new DataTable();
+            table_user = new DataTable();
+        }
+
+        public void Load_data()
+        {
+            Connect();
+            adapter_mainsub = new SqlDataAdapter("Select * from Main_Sub", connect);
+            dtgv_Mainsubspecial.Columns["Id"].Visible = false;
+            dtgv_Mainsubspecial.Columns["Iduser"].Visible = false;
+            adapter_mainsub.Fill(table_mainsub);
+            dtgv_Mainsubspecial.DataSource = table_mainsub;
+            adapter_user = new SqlDataAdapter("select * from Users", connect);
+            adapter_user.Fill(table_user);
+            for (int i = 0; i < dtgv_Mainsubspecial.Rows.Count; i++)
+            {
+                string x = dtgv_Mainsubspecial.Rows[i].Cells["Iduser"].Value.ToString();
+                foreach (DataRow dr in table_user.Rows)
+                {
+                    string name = dr["Id_user"].ToString();
+                    if (name == x)
+                    {
+                        dtgv_Mainsubspecial.Rows[i].Cells["Name_user"].Value = dr["Name"].ToString();
+
+                    }
+                }
+                dtgv_Mainsubspecial.Rows[i].Cells["No"].Value = i + 1;
+            }
+        }
+        public Form_MainSubSpecial(string staff_code, int idrole,int iduser)
+        {
+            this.staffcode = staff_code;
+            this.id_role = idrole;
+            this.id_user = iduser;
+            InitializeComponent();
+          
+        }
+      
         private void Form_MainSubSpecial_Load(object sender, EventArgs e)
         {
             Load_data();
@@ -109,7 +126,7 @@ namespace DM_BOM
             txtpartbomcus.Text = dtgv_Mainsubspecial.Rows[e.RowIndex].Cells["Partonbomcustomer"].Value.ToString();
             txtsubspecial.Text = dtgv_Mainsubspecial.Rows[e.RowIndex].Cells["Subspecial"].Value.ToString();
             txtpartbomcus.Visible = true;
-            txtpartbomcus.Visible = true;
+            txtsubspecial.Visible = true;
         }
 
         private void btnDel_Click(object sender, EventArgs e)
@@ -162,8 +179,20 @@ namespace DM_BOM
                 table_mainsub = new DataTable();
                 adapter_mainsub.Fill(table_mainsub);
                 dtgv_Mainsubspecial.DataSource = table_mainsub;
-                for (int i = 0; i < dtgv_Mainsubspecial.Rows.Count - 1; i++)
+                adapter_user = new SqlDataAdapter("select * from Users", connect);
+                adapter_user.Fill(table_user);
+                for (int i = 0; i < dtgv_Mainsubspecial.Rows.Count; i++)
                 {
+                    string x = dtgv_Mainsubspecial.Rows[i].Cells["Iduser"].Value.ToString();
+                    foreach (DataRow dr in table_user.Rows)
+                    {
+                        string name = dr["Id_user"].ToString();
+                        if (name == x)
+                        {
+                            dtgv_Mainsubspecial.Rows[i].Cells["Name_user"].Value = dr["Name"].ToString();
+
+                        }
+                    }
                     dtgv_Mainsubspecial.Rows[i].Cells["No"].Value = i + 1;
                 }
             }

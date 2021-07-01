@@ -39,23 +39,14 @@ namespace DM_BOM
         DataTable dttable_flash_memory;
         SqlDataAdapter adapter_mainsub;
         SqlDataAdapter adapter_flashmemory;
+        SqlDataAdapter adapter_role;
+        DataTable table_role;
         SqlConnection connect;
         string constring = @"Data Source=172.28.10.17;Initial Catalog=BOM_DM;Persist Security Info=True;User ID=sa;PASSWORD=umc@2019";
         void Connect()
         {
             try {
-                if (!NetworkConnection.PingNetwork("172.28.10.17"))
-                {
-                    MessageBox.Show("Kiểm tra lại mạng kết nối!", "INTERNET WARNING!",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    btn_BOM.Visible = false;
-                    btn_ECS.Visible = false;
-                    btnStart.Visible = false;
-                    btn_MainSubSpecial.Visible = false;
-                    label6.Enabled = false;
-                    bunifuCircleProgressbar2.Enabled = false;
-                }
-                else
-                {
+                
                     connect = new SqlConnection();
                     connect.ConnectionString = constring;
                     connect.Open();
@@ -63,13 +54,12 @@ namespace DM_BOM
                     adapter_flashmemory = new SqlDataAdapter("Select * from Flash_memory", connect);
                     dttable = new DataTable();
                     dttable_flash_memory = new DataTable();
+                    table_role = new DataTable(); 
                     adapter_mainsub.Fill(dttable);
                     adapter_flashmemory.Fill(dttable_flash_memory);
                     adapter_flashmemory.Dispose();
                     adapter_mainsub.Dispose();
                     connect.Close();
-                }
-                
             }
             catch (Exception ex){
                 MessageBox.Show(ex.Message);
@@ -81,6 +71,7 @@ namespace DM_BOM
             this.staff_code = staffcode;
             this.id_role = idrole;
             this.id_user = iduser;
+            Connect();
         }
         public frmMain()
         {
@@ -304,7 +295,7 @@ namespace DM_BOM
                 list_ecs.RemoveRange(0, 2);
                 if (bunifuSwitch1.Value == true)
                 {
-                    label5.Text = "MÃ BOM KHÁCH HÀNG KHÔNG CÓ TRONG DANH SÁCH BOM SAP";
+                    label5.Text = "PARTLIST KHÔNG CÓ TRONG DANH SÁCH BOM SAP";
                     label5.ForeColor = Color.Green;
                     label5.Location = new Point(100, 5);
                     foreach (var items in list_ecs)
@@ -335,6 +326,18 @@ namespace DM_BOM
                                 var addlistd = new Result_Location() { BOM = item_flash.BOM, Location = item_flash.Incomplete };
                                 list_rl.Add(addlistd);
                             }
+                            else
+                            {
+                                string[] arrList_locationbom = (result_list_bom.Location).Split(',');
+                                string[] arrList_locationesc= (item_flash.Incomplete).Split(',');
+                                string[] result_dist = arrList_locationbom.Except(arrList_locationesc).ToArray();
+                                string result = string.Join(",", result_dist);
+                                if(result!= "")
+                                {
+                                    var addlistd = new Result_Location() { BOM = item_flash.BOM, Location = item_flash.Incomplete };
+                                    list_rl.Add(addlistd);
+                                }
+                            }
                         }
                     }
                     foreach( var item_list_rl in list_rl)
@@ -343,13 +346,13 @@ namespace DM_BOM
                     }
                     if (list_rl.Count() != 0)
                     {
-                        label10.Text = "NG - HAI FILE BOM SAP VÀ BOM CUSTOMER KHÔNG TRÙNG NHAU!";
+                        label10.Text = "NG - HAI FILE BOM SAP VÀ PARTLIST KHÔNG TRÙNG NHAU!";
                         label10.ForeColor = Color.Red;
                         label10.Size = new Size(120,14) ;
                     }
                     else
                     {
-                        label10.Text = "OK - HAI FILE BOM SAP VÀ BOM CUSTOMER TRÙNG NHAU!";
+                        label10.Text = "OK - HAI FILE BOM SAP VÀ PARTLIST TRÙNG NHAU!";
                         label10.ForeColor = Color.Green;
                         label10.Size = new Size(120, 14);
                     }
@@ -360,60 +363,69 @@ namespace DM_BOM
                     {
                         string value_name_bom = items.BOM_Component.ToString().Substring(0, 9);
                         var check_result = list_ecs.Where(x => x.PartNo == value_name_bom).FirstOrDefault();
-                        if (check_result != null)
+                        if (check_result == null)
+                        {                        
+                                var addlist = new Result() { BOM = items.BOM_Component, Incomplete = items.Location };
+                                list_result.Add(addlist);
+                        }
+                        else
                         {
                             string[] arrList_locationbom = (items.Location).Split(',');
                             string[] arrList_locationecs = check_result.Location.Split(',');
                             string[] result_dist = arrList_locationbom.Except(arrList_locationecs).ToArray();
-                            string result = string.Join(",", result_dist);
-                            //var result = arrList_locationbom.Distinct().ToArray();
+                            string result = string.Join(",", result_dist);                          
                             if (result != "")
                             {
-                                var addlist = new Result() { BOM = items.BOM_Component, Incomplete = result };
-                                list_result.Add(addlist);
+                            var addlist = new Result() { BOM = items.BOM_Component, Incomplete = items.Location };
+                            list_result.Add(addlist);
                             }
+                        }
+                    }
+                    foreach(var item_list  in list_result)
+                    {
+                        string name_bom = item_list.BOM.Substring(0, 9).ToString();
+                        var result_check = list_flash_memory.Where(x => x.PartNoBOM == name_bom).FirstOrDefault();
+                        if (result_check== null)
+                        {
+                            var addlist_rl = new Result_Location() { BOM = item_list.BOM, Location = item_list.Incomplete };
+                            list_rl.Add(addlist_rl);
                         }
                         else
                         {
-                            var addlist = new Result_Location() { BOM = items.BOM_Component, Location = items.Location };
-                            list_rl.Add(addlist);
-                            var check_bom_in_listflash = list_flash_memory.Where(x => x.PartNoBOM == value_name_bom).FirstOrDefault();
-                            if (check_bom_in_listflash != null)
+                            string name = result_check.PartNoCUS.ToString();
+                            var result_list_bom = list_ecs.Where(x => x.PartNo== name).FirstOrDefault();
+                            if (result_list_bom != null)
                             {
-                                string name_part_list = check_bom_in_listflash.PartNoCUS.ToString();
-                                var check_bom_in_partlist = list_ecs.Where(x => x.PartNo == name_part_list).FirstOrDefault();
-                                if (check_bom_in_partlist != null)
+                                string[] arrList_locationbom = (item_list.Incomplete).Split(',');
+                                string[] arrList_locationesc = (result_list_bom.Location).Split(',');
+                                string[] result_dist = arrList_locationbom.Except(arrList_locationesc).ToArray();
+                                string result = string.Join(",", result_dist);
+                                if (result != "")
                                 {
-                                    string[] arrList_locationbom = (items.Location).Split(',');
-                                    string[] arrList_locationecs = check_bom_in_partlist.Location.Split(',');
-                                    string[] result_dist = arrList_locationbom.Except(arrList_locationecs).ToArray();
-                                    string result = string.Join(",", result_dist);
-                                    //var result = arrList_locationbom.Distinct().ToArray();
-                                    if (result != "")
-                                    {
-                                        var addlist1 = new Result() { BOM = items.BOM_Component, Incomplete = result };
-                                        list_result.Add(addlist1);
-                                    }
+                                    var addlist_rl = new Result_Location() { BOM = item_list.BOM, Location = item_list.Incomplete };
+                                    list_rl.Add(addlist_rl);
                                 }
                             }
                         }
                     }
-                    label5.Text = "VỊ TRÍ MÃ BOM SAP KHÔNG CÓ TRONG DANH SÁCH BOM CUSTOMER";
+                    label5.Text = "VỊ TRÍ MÃ BOM SAP KHÔNG CÓ TRONG DANH SÁCH PARTLIST";
                     label5.ForeColor = Color.Green;
                     label5.Location = new Point(100, 5);
-                    foreach (var item in list_result)
+                    datagridview_Result.Size = new Size(627, 337);
+
+                    foreach (var item in list_rl)
                     {
-                        dt.Rows.Add(item.BOM.ToString(), item.Incomplete.ToString());
+                        dt.Rows.Add(item.BOM.ToString(), item.Location.ToString());
                     }
                     if (list_result.Count() != 0)
                     {
-                        label10.Text = "NG - TÌM RA VỊ TRÍ CỦA BOM SAP KHÔNG CÓ TRONG BOM CUSTOMER!";
+                        label10.Text = "NG - TÌM RA VỊ TRÍ CỦA BOM SAP KHÔNG CÓ TRONG PARTLIST!";
                         label10.ForeColor = Color.Red;
                         label10.Size = new Size(120, 14);
                     }
                     else
                     {
-                        label10.Text = "OK - KHÔNG TÌM RA VỊ TRÍ CỦA BOM SAP THIẾU TRONG BOM CUSTOMER!";
+                        label10.Text = "OK - KHÔNG TÌM RA VỊ TRÍ CỦA BOM SAP THIẾU TRONG PARTLIST!";
                         label10.ForeColor = Color.Green;
                         label10.Size = new Size(120, 14);
                     }
@@ -428,6 +440,7 @@ namespace DM_BOM
                 btn_MainSubSpecial.Visible = false;
                 datagridview_Result.AutoResizeColumns();
                 datagridview_Result.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                datagridview_Result.Size = new Size(1260, 350);
                 ON = false;
             }
             catch(Exception ex)
@@ -444,17 +457,18 @@ namespace DM_BOM
             CboSheet.Text = Properties.Settings.Default.Bom;
             cbosheettwo.Text = Properties.Settings.Default.ECS;
             lblVersion.Text = GetRunningVersion();
+            Check_role();
         }
 
         private void bunifuSwitch1_Click(object sender, EventArgs e)
         {
             if (bunifuSwitch1.Value == true)
             {
-                label5.Text = "Tìm kiếm mã bom sap thiếu trong bom customer";
+                label5.Text = "Tìm kiếm mã bom sap thiếu trong partlist";
             }
             else
             {
-                label5.Text = "Tìm kiếm mã bom customer thiếu trong bom sap";
+                label5.Text = "Tìm kiếm mã partlist thiếu trong bom sap";
             }
         }
 
@@ -480,6 +494,7 @@ namespace DM_BOM
             dtgv_bomcus.Visible = false;
             panel3.Visible = false;
             label10.Text = "";
+            datagridview_Result.Size = new Size(627, 337);
         }
 
         private void bunifuCircleProgressbar2_Click(object sender, EventArgs e)
@@ -488,11 +503,11 @@ namespace DM_BOM
             reload();
             if (bunifuSwitch1.Value == true)
             {
-                label5.Text = "Tìm kiếm mã bom sap thiếu trong bom customer";
+                label5.Text = "Tìm kiếm mã bom sap thiếu trong partlist";
             }
             else
             {
-                label5.Text = "Tìm kiếm mã bom customer thiếu trong bom sap";
+                label5.Text = "Tìm kiếm mã partlist thiếu trong bom sap";
             }
         }
 
@@ -502,11 +517,11 @@ namespace DM_BOM
             reload();
             if (bunifuSwitch1.Value == true)
             {
-                label5.Text = "Tìm kiếm mã bom sap thiếu trong bom customer";
+                label5.Text = "Tìm kiếm mã bom sap thiếu trong partlist";
             }
             else
             {
-                label5.Text = "Tìm kiếm mã bom customer thiếu trong bom sap";
+                label5.Text = "Tìm kiếm mã partlist thiếu trong bom sap";
             }
         }
 
@@ -625,7 +640,7 @@ namespace DM_BOM
                         {
                             var addlist = new Result() { BOM = items.PartNo, Incomplete = items.Location };
                             list_result.Add(addlist);
-                          
+                            //dt_bomcus.Rows.Add(addlist.BOM, addlist.Incomplete);
                             foreach (var item_listbom in list_bom)
                             {
                                 if(item_listbom.BOM_Component.Substring(0,9)== items.PartNo)
@@ -641,7 +656,7 @@ namespace DM_BOM
                                         list_rl.Add(addlist_bom);
                                     }
                                 }
-                                if (item_listbom.BOM_Component.Substring(0, 9) == name_sub_bom)
+                              if (item_listbom.BOM_Component.Substring(0, 9) == name_sub_bom)
                                 {
                                     string[] arrList_location_listbom = (item_listbom.Location).Split(',');
                                     string[] arrList_location_listresult = items.Location.Split(',');
@@ -655,34 +670,48 @@ namespace DM_BOM
                                     }
                                 }
                             }
-                            if (list_rl.Count>1)
-                            {
-
-                            }
-                            else
-                            {
-
-                            }
-                            foreach( var item in list_result)
-                            {
-                                  dtgv_bomcus.Visible = true;
-                            label9.Text = "MÃ BOM SAP CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
-                            label9.ForeColor = Color.Green;
-
-                            dt_bomcus.Rows.Add(addlist.BOM, addlist.Incomplete);
-                            }
-                            foreach(var item in list_rl)
-                            {
-                                
-                                label5.Text = "MÃ BOM CUSTOMER CÓ TRONG MAIN_SUB ĐẶC BIỆT! ";
-                                label5.ForeColor = Color.Green;
-                                label5.Location = new Point(100, 5);
-                                dt_bomsap.Rows.Add(item.BOM.ToString(), item.Location.ToString());
-                            }
                         }
+                        
+                    }
+                  
+                }
+                if (list_result.Count > 0)
+                {
+                    var query = list_result.GroupBy(x => x.BOM).Select(y => y.FirstOrDefault()).ToList();
+                    foreach (var _item_listresult in query)
+                    {
+                        label5.Text = "MÃ LINH KIỆN TRÊN PARTLIST CÓ TRONG MAIN SUB SPECIAL";
+                        label5.ForeColor = Color.Green;
+                        label5.Location = new Point(100, 5);
+                        dt_bomcus.Rows.Add(_item_listresult.BOM, _item_listresult.Incomplete);
                     }
                 }
-               
+                else
+                {
+                    label5.Text = "KHÔNG CÓ MÃ LINH KIỆN TRÊN PARTLIST CÓ TRONG MAIN SUB SPECIAL";
+                    label5.ForeColor = Color.Green;
+                    label5.Location = new Point(100, 5);
+                }
+                if (list_rl.Count > 0)
+                {
+                    var query_list = list_rl.GroupBy(x => x.BOM).Select(y => y.FirstOrDefault()).ToList();
+                    foreach (var _item_listrl in query_list)
+                    {
+                        label9.Text = "MÃ LINH KIỆN TRÊN BOM SAP CÓ TRONG MAIN SUB SPECIAL";
+                        label9.ForeColor = Color.Green;
+                        label9.Location = new Point(100, 5);
+                        dtgv_bomcus.Visible = true;
+                        dt_bomsap.Rows.Add(_item_listrl.BOM, _item_listrl.Location);
+                    }
+                }
+                else
+                {
+                    label9.Text = "KHÔNG CÓ MÃ LINH KIỆN TRÊN BOM SAP CÓ TRONG MAIN SUB SPECIAL";
+                    label9.ForeColor = Color.Green;
+                    label9.Location = new Point(100, 5);
+                    dtgv_bomcus.Visible = true;
+                }
+                
                 bunifuCircleProgressbar2.Visible = true;
                 label6.Visible = true;
                 Properties.Settings.Default.Bom = CboSheet.Text;
@@ -806,7 +835,7 @@ namespace DM_BOM
                     app.Cells[i + 3, j + 1] = datagridview_Result.Rows[i].Cells[j].Value.ToString();
                 }
             }
-            if (dtgv_bomcus.Rows.Count > 0)
+            if(dtgv_bomcus.Visible == true)
             {
                 for (int i = 1; i < dtgv_bomcus.Columns.Count + 1; i++)
                 {
@@ -820,8 +849,7 @@ namespace DM_BOM
                         app.Cells[i + 3, j + 5] = dtgv_bomcus.Rows[i].Cells[j].Value.ToString();
                     }
                 }
-            }
-            
+            }            
             app.Columns.AutoFit();
             app.Visible = true;
         }
@@ -849,6 +877,29 @@ namespace DM_BOM
             this.Hide();
             frmLogin frmLogin = new frmLogin();
             frmLogin.ShowDialog();
+        }
+        public void Check_role()
+        {
+            Connect();
+            adapter_role = new SqlDataAdapter("Select * from Role_user", connect);
+            adapter_role.Fill(table_role);
+            foreach (DataRow row in table_role.Rows)
+            {
+                int id_role_user = int.Parse(row["Id_role"].ToString());
+                string name_role = row["Name"].ToString();
+                if (id_role == id_role_user)
+                {
+                    if (name_role == "user")
+                    {
+                        securityToolStripMenuItem.Visible = false;
+                    }
+                    else
+                    {
+                        securityToolStripMenuItem.Visible = true;
+                    }
+                }
+
+            }
         }
     }
 }

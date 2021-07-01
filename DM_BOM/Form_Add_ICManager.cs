@@ -16,6 +16,8 @@ namespace DM_BOM
         string constring = @"Data Source=172.28.10.17;Initial Catalog=BOM_DM;Persist Security Info=True;User ID=sa;PASSWORD=umc@2019";
         SqlConnection connect;
         SqlDataAdapter adapter;
+        SqlDataAdapter adapter_user;
+        DataTable table_user;
         DataTable table;
         SqlCommand cmd;
         SqlCommand cmd_his;
@@ -80,9 +82,21 @@ namespace DM_BOM
                             table = new DataTable();
                             adapter.Fill(table);
                             frm_icmanager.dtgv_Flashmemory.DataSource = table;
-                            frm_icmanager.dtgv_Flashmemory.DataSource = table;
-                            for (int i = 0; i < frm_icmanager.dtgv_Flashmemory.Rows.Count - 1; i++)
+                            adapter_user = new SqlDataAdapter("select * from Users", connect);
+                            table_user = new DataTable();
+                            adapter_user.Fill(table_user);
+                            for (int i = 0; i < frm_icmanager.dtgv_Flashmemory.Rows.Count; i++)
                             {
+                                string x = frm_icmanager.dtgv_Flashmemory.Rows[i].Cells["Id_users"].Value.ToString();
+                                foreach (DataRow dr in table_user.Rows)
+                                {
+                                    string name = dr["Id_user"].ToString();
+                                    if (name == x)
+                                    {
+                                        frm_icmanager.dtgv_Flashmemory.Rows[i].Cells["Name_user"].Value = dr["Name"].ToString();
+
+                                    }
+                                }
                                 frm_icmanager.dtgv_Flashmemory.Rows[i].Cells["No"].Value = i + 1;
                             }
                             connect.Close();

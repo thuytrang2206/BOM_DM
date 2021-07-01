@@ -104,6 +104,16 @@ namespace DM_BOM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_285655_user_icon_24px {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_285655_user_icon_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_314682_add_folder_icon_64px {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_314682_add_folder_icon_64px", resourceCulture);
@@ -127,6 +137,26 @@ namespace DM_BOM.Properties {
         internal static System.Drawing.Bitmap iconfinder_314682_add_folder_icon_64px2 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_314682_add_folder_icon_64px2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_314757_key_icon_20px {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_314757_key_icon_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_314757_key_icon_24px {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_314757_key_icon_24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -177,6 +207,16 @@ namespace DM_BOM.Properties {
         internal static System.Drawing.Bitmap iconfinder_64174_export_excel_xlsx_icon_32px {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_64174_export_excel_xlsx_icon_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_728935_exit_left_logout_arrow_move_icon_24px {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_728935_exit_left_logout_arrow_move_icon_24px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

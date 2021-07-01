@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -109,6 +109,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BOM_DMDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BOM_DMDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BOM_DMDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Form_AddMainSub.cs">
       <SubType>Form</SubType>
@@ -213,6 +218,17 @@
     <None Include="BOM_DMDataSet.xss">
       <DependentUpon>BOM_DMDataSet.xsd</DependentUpon>
     </None>
+    <None Include="BOM_DMDataSet1.xsc">
+      <DependentUpon>BOM_DMDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="BOM_DMDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BOM_DMDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BOM_DMDataSet1.xss">
+      <DependentUpon>BOM_DMDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="DM_BOM_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -239,6 +255,10 @@
     <None Include="Resources\iconfinder_314789_add_folder_icon_64px.png" />
     <None Include="Resources\iconfinder_314764_document_add_icon_64px.png" />
     <None Include="Resources\icon.png" />
+    <None Include="Resources\iconfinder_285655_user_icon_24px.png" />
+    <None Include="Resources\iconfinder_728935_exit_left_logout_arrow_move_icon_24px.png" />
+    <None Include="Resources\iconfinder_314757_key_icon_24px.png" />
+    <None Include="Resources\iconfinder_314757_key_icon_20px.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\web.png" />
     <None Include="Resources\xlsdnld.png" />

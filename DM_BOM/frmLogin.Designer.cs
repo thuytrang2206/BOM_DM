@@ -29,26 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_login = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btn_login = new System.Windows.Forms.Button();
             this.bunifuCustomLabel3 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.bunifuCustomLabel2 = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.txtpassword = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.txtstaffcode = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.bunifuCustomLabel1 = new Bunifu.Framework.UI.BunifuCustomLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblConfigs = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DM_BOM.Properties.Resources.icon;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(202, 190);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
@@ -58,7 +50,7 @@
             this.groupBox1.Controls.Add(this.txtpassword);
             this.groupBox1.Controls.Add(this.txtstaffcode);
             this.groupBox1.Controls.Add(this.bunifuCustomLabel1);
-            this.groupBox1.Location = new System.Drawing.Point(220, 7);
+            this.groupBox1.Location = new System.Drawing.Point(220, 31);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(268, 195);
             this.groupBox1.TabIndex = 1;
@@ -66,28 +58,16 @@
             // 
             // btn_login
             // 
-            this.btn_login.ActiveBorderThickness = 1;
-            this.btn_login.ActiveCornerRadius = 20;
-            this.btn_login.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.btn_login.ActiveForecolor = System.Drawing.Color.White;
-            this.btn_login.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.btn_login.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_login.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_login.BackgroundImage")));
-            this.btn_login.ButtonText = "Login";
-            this.btn_login.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_login.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_login.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btn_login.IdleBorderThickness = 1;
-            this.btn_login.IdleCornerRadius = 20;
-            this.btn_login.IdleFillColor = System.Drawing.Color.White;
-            this.btn_login.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.btn_login.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btn_login.Location = new System.Drawing.Point(132, 146);
-            this.btn_login.Margin = new System.Windows.Forms.Padding(5);
+            this.btn_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_login.Image = global::DM_BOM.Properties.Resources.iconfinder_314757_key_icon_20px;
+            this.btn_login.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btn_login.Location = new System.Drawing.Point(128, 161);
             this.btn_login.Name = "btn_login";
-            this.btn_login.Size = new System.Drawing.Size(72, 41);
-            this.btn_login.TabIndex = 10;
-            this.btn_login.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_login.Size = new System.Drawing.Size(70, 28);
+            this.btn_login.TabIndex = 11;
+            this.btn_login.Text = "Login";
+            this.btn_login.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_login.UseVisualStyleBackColor = true;
             this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
             // bunifuCustomLabel3
@@ -118,6 +98,7 @@
             this.txtpassword.Size = new System.Drawing.Size(122, 20);
             this.txtpassword.TabIndex = 7;
             this.txtpassword.UseSystemPasswordChar = true;
+            this.txtpassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtpassword_KeyDown);
             // 
             // txtstaffcode
             // 
@@ -137,19 +118,46 @@
             this.bunifuCustomLabel1.TabIndex = 0;
             this.bunifuCustomLabel1.Text = "ĐĂNG NHẬP";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DM_BOM.Properties.Resources.icon;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 36);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(202, 190);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblConfigs
+            // 
+            this.lblConfigs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblConfigs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblConfigs.Image = ((System.Drawing.Image)(resources.GetObject("lblConfigs.Image")));
+            this.lblConfigs.Location = new System.Drawing.Point(469, 0);
+            this.lblConfigs.Name = "lblConfigs";
+            this.lblConfigs.Size = new System.Drawing.Size(30, 30);
+            this.lblConfigs.TabIndex = 103;
+            this.lblConfigs.Click += new System.EventHandler(this.lblConfigs_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 217);
+            this.ClientSize = new System.Drawing.Size(500, 243);
+            this.Controls.Add(this.lblConfigs);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Location = new System.Drawing.Point(600, 0);
             this.Name = "frmLogin";
             this.Text = "Login";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLogin_KeyDown);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmLogin_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmLogin_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.frmLogin_MouseUp);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -158,11 +166,12 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private Bunifu.Framework.UI.BunifuThinButton2 btn_login;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel3;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel2;
         private WindowsFormsControlLibrary1.BunifuCustomTextbox txtpassword;
         private Bunifu.Framework.UI.BunifuCustomLabel bunifuCustomLabel1;
         public WindowsFormsControlLibrary1.BunifuCustomTextbox txtstaffcode;
+        private System.Windows.Forms.Button btn_login;
+        private System.Windows.Forms.LinkLabel lblConfigs;
     }
 }
